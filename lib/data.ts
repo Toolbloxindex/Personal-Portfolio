@@ -104,29 +104,54 @@ export const projects: Project[] = [
     title: "BookHero",
     year: "2026",
     role: "Founder, product, sales & marketing",
-    summary: "All-in-one booking platform for small service businesses, built and launched solo.",
-    stack: ["Next.js", "Supabase", "Vercel", "WhatsApp Cloud API"],
+    summary: "A B2B SaaS for small service businesses: booking pages, WhatsApp reminders, checkout and reporting, built and launched solo.",
+    stack: ["TypeScript", "React", "Next.js", "Node.js", "Supabase (PostgreSQL)", "Meta WhatsApp Cloud API"],
+    skills: [
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "SQL & Database Design",
+      "REST APIs",
+      "Product Design",
+      "User Interface Design",
+      "Sales",
+      "Cold Calling",
+      "B2B Sales",
+      "Relationship Management",
+      "Onboarding & Implementation",
+      "Marketing",
+    ],
     links: [
-      { label: "live", href: "https://bookhero.app", external: true },
+      { label: "bookhero.app", href: "https://bookhero.app", external: true },
     ],
     body: [
       {
         heading: "Context",
         paragraphs: [
-          "Salons, barbershops and nail studios in Lisbon run on phone calls, WhatsApp threads and paper diaries. Their owners are busy with customers, not software.",
+          "Walk into almost any salon and you'll see the same thing: a phone that won't stop buzzing, a paper diary, an owner juggling customers and rescheduling at the same time. **Almost 1 in 4 appointments ends in a no-show**, and a solo professional loses roughly **€340 a month** to them. The tools on the market charge commission per booking, are built for the customer rather than the owner, and cost too much for a business that just wants to fill its schedule.",
         ],
       },
       {
-        heading: "What I did",
+        heading: "Product & technical",
         paragraphs: [
-          "Built and launched the platform solo in four months: online booking pages, a multi-professional calendar, WhatsApp and email reminders, checkout with PDF receipts, and a reporting dashboard, all on Next.js, Supabase and the Meta WhatsApp Cloud API.",
-          "Then I did the sales myself: high-volume cold calling and in-person meetings, onboarding each business and holding their hand through implementation.",
+          "**I built and launched BookHero solo**: an all-in-one booking platform for small service businesses, on **TypeScript, React, Next.js, Supabase (PostgreSQL) and the Meta WhatsApp Cloud API**. Design, architecture, code, deployment and support were all mine.",
+          "On the customer side there's an **online booking page**: each business gets its own link (bookhero.app/their-name), styled with its own logo, banner, colors and services, where clients book in under a minute without creating an account. Real availability only, group bookings, mobile-first, no app to install.",
+          "Behind that sits a **multi-professional calendar** with day, week, month and agenda views, time blocked for lunch breaks and days off, live sync across devices, and sensible defaults like auto-assigning a booking when no professional is preferred.",
+          "A **messaging layer** keeps clients showing up: confirmation the moment they book, a WhatsApp reminder on a dynamic schedule (you set the window), native reschedule and cancel buttons, and a review request after the service. Every client gets a profile with visit history, notes, no-shows, and the tax data needed to invoice them.",
+          "The **checkout** closes the sale: add services, addons and products to a cart, apply a discount and a tip, take cash or card, and generate a PDF receipt that lands in the client's history automatically. The **reporting dashboard** then shows what's working: revenue, bookings, no-show rate, top services, performance per professional. No SQL required.",
+        ],
+      },
+      {
+        heading: "Sales",
+        paragraphs: [
+          "**I did the sales myself with high-volume cold calling and in-person meetings** with salons, barbershops and nail studios, people who would never find or buy this online.",
+          "Once a business signed up I onboarded them by hand: set up their page, services and team, walked them through the first bookings and stayed close as they built a daily routine on it. It turned a product into relationships.",
         ],
       },
       {
         heading: "Outcome",
         paragraphs: [
-          "A product that talks to its customers where they already are (WhatsApp), and a playbook for selling to businesses that don't buy software online.",
+          "[BookHero](https://bookhero.app) is live, built on a simple promise: **no commission, no lock-in, reminders that cut no-shows, and data the owner can export anytime**. It talks to small businesses where they already are (WhatsApp), and it proved you can sell software to people who would never sign up for it online.",
         ],
       },
     ],
@@ -137,7 +162,7 @@ export const projects: Project[] = [
     year: "2025",
     role: "Co-founder, product, marketing & sales",
     icon: { src: "/images/Veblen/icon.png", alt: "Veblen app icon" },
-    summary: "Financial intelligence platform: AI-driven stock research, portfolio analytics and investment insights. Founded at sixteen.",
+    summary: "A B2C SaaS financial intelligence platform: AI-driven stock research, portfolio analytics and investment insights. Founded at sixteen.",
     stack: ["TypeScript", "React Native", "Node.js", "Supabase (PostgreSQL)", "REST APIs", "Data pipelines"],
     skills: [
       "TypeScript",
@@ -234,6 +259,7 @@ images: [
     year: "2024",
     role: "Design, build & launch",
     small: true,
+    icon: { src: "/images/Toolblox%20Labs/icon.png", alt: "Toolblox Labs rocket icon" },
     summary: "A small model rocket: designed and simulated in OpenRocket, 3D-printed on a Bambu Lab A1 Mini, launched and compared against the simulation.",
     stack: [],
     links: [
@@ -320,7 +346,7 @@ export const roles: Role[] = [
       "Drove early acquisition through cold calling and in-person meetings with salons, barbershops and nail studios.",
       "Onboarded and supported every business end to end, turning a product into relationships.",
     ],
-    stack: ["Next.js", "Supabase", "Vercel", "WhatsApp Cloud API"],
+    stack: ["Next.js", "Supabase", "WhatsApp Cloud API"],
   },
   {
     period: "May 2025 – May 2026",

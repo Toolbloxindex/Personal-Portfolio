@@ -110,7 +110,7 @@ export function ProofGallery({
         }}
       >
         {label}
-        <span aria-hidden="true">↗</span>
+        <span aria-hidden="true">→</span>
       </button>
       {open && (
         <ProofLightbox
