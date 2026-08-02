@@ -25,7 +25,7 @@ export default function Home() {
             alt={portrait.alt}
             width={portrait.width}
             height={portrait.height}
-            sizes="(max-width: 860px) 440px, 500px"
+            sizes="(max-width: 860px) 440px, 400px"
           />
         </div>
       </section>

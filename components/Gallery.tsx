@@ -3,10 +3,10 @@ import { GalleryCarousel } from "./GalleryCarousel";
 
 export function Gallery({
   groups,
-  video,
+  videos,
 }: {
   groups: GalleryGroup[];
-  video?: ProjectVideo;
+  videos?: ProjectVideo[];
 }) {
   return (
     <section className="gallery">
@@ -16,21 +16,28 @@ export function Gallery({
           label={group.label}
           images={group.images}
           framed={group.framed}
+          captions={group.captions}
         />
       ))}
-      {video && (
+      {videos && videos.length > 0 && (
         <div className="gallery-group">
           <h2 className="gallery-head">Demo</h2>
-          <figure className="gallery-video-wrap">
-            <video
-              src={video.src}
-              controls
-              playsInline
-              preload="metadata"
-              className="gallery-video"
-            />
-            <figcaption className="gallery-caption">{video.caption}</figcaption>
-          </figure>
+          <div className="gallery-videos">
+            {videos.map((video) => (
+              <figure key={video.src} className="gallery-video-wrap">
+                <video
+                  src={video.src}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="gallery-video"
+                />
+                <figcaption className="gallery-caption">
+                  {video.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       )}
     </section>

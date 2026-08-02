@@ -41,10 +41,10 @@ export const photo = {
 };
 
 export const portrait = {
-  src: "/images/Home/ascii-portrait.png",
-  alt: "ASCII art portrait of Tomás Correia",
-  width: 1422,
-  height: 1088,
+  src: "/images/Home/dot-tomas-portrait.png",
+  alt: "Dot art portrait of Tomás Correia",
+  width: 2353,
+  height: 2713,
 };
 
 export const hero = {
@@ -73,6 +73,7 @@ export type ProjectImage = {
 export type GalleryGroup = {
   label: string;
   framed?: boolean;
+  captions?: boolean;
   images: ProjectImage[];
 };
 
@@ -88,10 +89,11 @@ export type Project = {
   role: string;
   summary: string;
   stack: string[];
+  skills?: string[];
   links: { label: string; href: string; external: boolean }[];
   body: ProjectSection[];
   gallery?: GalleryGroup[];
-  video?: ProjectVideo;
+  videos?: ProjectVideo[];
 };
 
 export const projects: Project[] = [
@@ -132,29 +134,46 @@ export const projects: Project[] = [
     title: "Veblen",
     year: "2025",
     role: "Co-founder, product, marketing & sales",
-    summary: "Financial intelligence platform: stock research, portfolio analytics, AI-driven insights. Founded at sixteen.",
-    stack: ["TypeScript", "React Native", "Data pipelines", "Figma"],
+    summary: "Financial intelligence platform: AI-driven stock research, portfolio analytics and investment insights. Founded at sixteen.",
+    stack: ["TypeScript", "React Native", "Node.js", "Supabase (PostgreSQL)", "REST APIs", "Data pipelines"],
+    skills: [
+      "TypeScript",
+      "React Native",
+      "iOS Development",
+      "Android Development",
+      "Figma",
+      "REST APIs",
+      "Data Analysis",
+      "User Interface Design",
+      "User Experience (UX)",
+      "Marketing",
+      "Growth Marketing",
+      "Start-up Ventures",
+    ],
     links: [
-      { label: "live", href: "https://tryveblen.com", external: true },
+      { label: "tryveblen.com", href: "https://tryveblen.com", external: true },
     ],
     body: [
-      {
+{
         heading: "Context",
         paragraphs: [
-          "Institutional-grade financial data is locked behind contracts and six-figure licences. Retail investors get screenshots and social media. I started Veblen at sixteen to build the bridge.",
+          "**AI-powered market insights**, insider trading signals, analyst recommendations, personalized stock recommendations, portfolio analysis and more, all in one elegant app.",
         ],
       },
       {
         heading: "What I did",
         paragraphs: [
-          "Built the full-stack infrastructure (data pipelines, APIs, databases, backend services, and cross-platform web and mobile apps) processing 70,000+ assets: stocks, ETFs, mutual funds, commodities, forex and crypto. Integrated institutional datasets: financial statements, earnings transcripts, analyst estimates, insider trading, ETF holdings, decades of history.",
-          "Designed the entire product in Figma, from UX research and wireframing to prototyping, animations and the design system. Negotiated partnerships and data contracts with brokers and exchanges, and led content across Instagram, TikTok, Reddit and X.",
+          "Built a **cross-platform codebase designed for both iOS and Android from a single source**: a **React Native client talking to a Node.js server with a Supabase Postgres database** at the core, data pipelines, APIs and background jobs processing **70,000+ assets** (stocks, ETFs, mutual funds, commodities, forex and crypto) across global markets. Integrated institutional-grade datasets: financial statements, earnings transcripts, analyst estimates, insider trading activity, ETF holdings and decades of historical data, with **caching and real-time data feeds engineered for scale** to reduce API costs and increase efficiency.",
+          "Across the app, a feature layer with an AI stock overview (buy rating, health score, risk score, market sentiment and a 1-month forecast), an 'Ask Why' explanation behind every insight, market signals (analyst ratings, price targets, insider trading, fair value, Piotroski score, bankruptcy risk), AI-simplified financials, news, daily hidden gems and daily movers, a 24/7 AI chat assistant, daily AI move recommendations, an AI tools suite (daily positions briefing, market overview, market news summary), OAuth sign-in with a personalized onboarding flow that surfaces **AI stock picks that, on average, outperform 92% of investors historically**, full position tracking and unlimited watchlists.",
+          "**Designed the entire product in Figma**, leading UX research, wireframing, prototyping, animations and the design system from concept to production, and led product strategy, software development, marketing and business operations.",
+          "Sourced international partnerships and **negotiated data contracts with brokers and exchanges**, from cold outbound emails to setting up meetings and negotiating the best data prices along the way.",
+          "Growth rested on organic content: **short videos and slideshow posts** edited in **DaVinci Resolve and Affinity**, plus **UGC-style strategies** built for Instagram, TikTok, Reddit and X.",
         ],
       },
       {
         heading: "Outcome",
         paragraphs: [
-          "11M+ views, 380k+ likes, 160k+ shares and 24k+ followers, a predominantly international audience. Commercialization was ultimately constrained by the cost of institutional data licensing, and I moved on, with the full stack intact in my head.",
+          "**11M+ views, 380k+ likes, 160k+ shares and 13k+ followers** across Instagram, TikTok, Reddit and X, driven by a **predominantly international audience led by the US, Canada, UK, Australia and Singapore**. Commercialization was ultimately constrained by the cost of institutional data licensing and exchange agreements, and I moved on.",
         ],
       },
     ],
@@ -162,25 +181,28 @@ export const projects: Project[] = [
       {
         label: "Screens",
         framed: false,
-        images: [
-          { src: "/images/Veblen/screens/search.png", caption: "Search", width: 961, height: 1983 },
-          { src: "/images/Veblen/screens/stock-page.png", caption: "Stock page", width: 977, height: 2004 },
-          { src: "/images/Veblen/screens/stock-page-financials.png", caption: "Stock page, financials", width: 971, height: 2003 },
-          { src: "/images/Veblen/screens/stock-page-news.png", caption: "Stock page, news", width: 976, height: 2010 },
-          { src: "/images/Veblen/screens/financials-ai.png", caption: "Financials, AI summary", width: 892, height: 1830 },
+images: [
+          { src: "/images/Veblen/screens/stock-page.png", caption: "Stock Overview", width: 977, height: 2004 },
+          { src: "/images/Veblen/screens/ai-analysis.png", caption: "AI Analysis", width: 790, height: 1559 },
+          { src: "/images/Veblen/screens/market-signals.png", caption: "Market Signals", width: 1026, height: 1062 },
+          { src: "/images/Veblen/screens/stock-page-news.png", caption: "Stock News", width: 976, height: 2010 },
+          { src: "/images/Veblen/screens/stock-page-financials.png", caption: "Stock Financials", width: 971, height: 2003 },
+          { src: "/images/Veblen/screens/financials-ai.png", caption: "AI Financial Analysis", width: 892, height: 1830 },
           { src: "/images/Veblen/screens/discover.png", caption: "Discover", width: 966, height: 1978 },
-          { src: "/images/Veblen/screens/hidden-gem-article.png", caption: "Hidden gem article", width: 983, height: 2008 },
-          { src: "/images/Veblen/screens/market-signals.png", caption: "Market signals", width: 1026, height: 1062 },
-          { src: "/images/Veblen/screens/ai-analysis.png", caption: "AI analysis", width: 790, height: 1559 },
-          { src: "/images/Veblen/screens/ai-move-recommendations.png", caption: "AI move recommendations", width: 980, height: 2022 },
-          { src: "/images/Veblen/screens/ai-chat.png", caption: "AI chat", width: 1032, height: 2085 },
-          { src: "/images/Veblen/screens/chat-page.png", caption: "Chat page", width: 959, height: 2000 },
-          { src: "/images/Veblen/screens/export.png", caption: "Export", width: 976, height: 2006 },
+          { src: "/images/Veblen/screens/hidden-gem-article.png", caption: "AI Hidden Gem Article", width: 983, height: 2008 },
+          { src: "/images/Veblen/screens/chat-page.png", caption: "AI Chat", width: 959, height: 2000 },
+          { src: "/images/Veblen/screens/ai-chat.png", caption: "Chat Demo", width: 1032, height: 2085 },
+          { src: "/images/Veblen/screens/export.png", caption: "Home", width: 976, height: 2006 },
+          { src: "/images/Veblen/screens/ai-move-recommendations.png", caption: "AI Move Recommendations", width: 980, height: 2022 },
+          { src: "/images/Veblen/screens/search.png", caption: "Search", width: 961, height: 1983 },
         ],
       },
       {
         label: "App Store",
+        captions: false,
         images: [
+          { src: "/images/Veblen/app-store/ai-chat.jpg", caption: "AI chat", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/hidden-gems.jpg", caption: "Hidden gems", width: 1284, height: 2778 },
           { src: "/images/Veblen/app-store/portfolio.jpg", caption: "Portfolio", width: 1284, height: 2778 },
           { src: "/images/Veblen/app-store/financials.jpg", caption: "Financials", width: 1284, height: 2778 },
           { src: "/images/Veblen/app-store/analysis-1.jpg", caption: "Analysis 1", width: 1284, height: 2778 },
@@ -188,16 +210,20 @@ export const projects: Project[] = [
           { src: "/images/Veblen/app-store/analysis-3.jpg", caption: "Analysis 3", width: 1284, height: 2778 },
           { src: "/images/Veblen/app-store/ai-1.jpg", caption: "AI 1", width: 1284, height: 2778 },
           { src: "/images/Veblen/app-store/ai-2.jpg", caption: "AI 2", width: 1284, height: 2778 },
-          { src: "/images/Veblen/app-store/ai-chat.jpg", caption: "AI chat", width: 1284, height: 2778 },
-          { src: "/images/Veblen/app-store/hidden-gems.jpg", caption: "Hidden gems", width: 1284, height: 2778 },
           { src: "/images/Veblen/app-store/news.jpg", caption: "News", width: 1284, height: 2778 },
         ],
       },
     ],
-    video: {
-      src: "/videos/Veblen/showoff.mp4",
-      caption: "Product walkthrough",
-    },
+    videos: [
+      {
+        src: "/videos/Veblen/showoff.mp4",
+        caption: "Product walkthrough",
+      },
+      {
+        src: "/videos/Veblen/veblenAd.mp4",
+        caption: "Promo ad",
+      },
+    ],
   },
 ];
 
@@ -251,7 +277,7 @@ export const roles: Role[] = [
       "Built the full-stack infrastructure: data pipelines, APIs, databases, backend services, and cross-platform web and mobile apps.",
       "Engineered systems processing 70,000+ assets across global markets, with institutional datasets from financial statements to insider trading.",
       "Designed the entire product in Figma and led strategy, engineering, marketing and operations.",
-      "Generated 11M+ views and 24k+ followers across Instagram, TikTok, Reddit and X, mostly in the US, Canada, UK, Australia and Singapore.",
+      "Generated 11M+ views and 13k+ followers across Instagram, TikTok, Reddit and X, mostly in the US, Canada, UK, Australia and Singapore.",
       "Negotiated international partnerships and data contracts with brokers and exchanges.",
     ],
     stack: ["TypeScript", "React Native", "Node.js", "PostgreSQL", "Figma"],
@@ -314,10 +340,13 @@ export const skills = [
   "Next.js",
   "React Native",
   "Node.js",
+  "iOS Development",
+  "Android Development",
   "REST APIs",
   "Figma",
   "Product Design",
   "UX & UI Design",
+  "Web Design",
   "Graphic Design",
   "Branding",
   "DaVinci Resolve",

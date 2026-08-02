@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Gallery } from "@/components/Gallery";
+import { RichText } from "@/components/RichText";
 import { projects } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -53,7 +54,9 @@ export default async function ProjectDetail({
               <section key={section.heading}>
                 <h3>{section.heading}</h3>
                 {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <p key={paragraph}>
+                    <RichText text={paragraph} />
+                  </p>
                 ))}
               </section>
             ))}
@@ -61,8 +64,26 @@ export default async function ProjectDetail({
           <dl className="spec">
             <div className="spec-row">
               <dt>Stack</dt>
-              <dd>{project.stack.join(", ")}</dd>
+              <dd className="spec-list">
+                {project.stack.map((item) => (
+                  <span className="spec-item" key={item}>
+                    {item}
+                  </span>
+                ))}
+              </dd>
             </div>
+            {project.skills && (
+              <div className="spec-row">
+                <dt>Skills</dt>
+                <dd className="spec-list">
+                  {project.skills.map((item) => (
+                    <span className="spec-item" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            )}
             <div className="spec-row">
               <dt>Links</dt>
               <dd>
@@ -90,7 +111,7 @@ export default async function ProjectDetail({
           </dl>
         </div>
         {project.gallery && (
-          <Gallery groups={project.gallery} video={project.video} />
+          <Gallery groups={project.gallery} videos={project.videos} />
         )}
         <nav className="page-nav" aria-label="Project navigation">
           {prev && (
