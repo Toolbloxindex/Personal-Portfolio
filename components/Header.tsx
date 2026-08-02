@@ -16,9 +16,6 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container site-header-inner">
-        <Link href="/" className="wordmark">
-          Tomás Correia
-        </Link>
         <nav className="site-nav" aria-label="Primary">
           {links.map((link) => (
             <Link
