@@ -285,7 +285,7 @@ a:focus-visible .ext {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
+  grid-template-columns: minmax(0, 1fr) 500px;
   column-gap: clamp(40px, 6vw, 96px);
   align-items: start;
   padding: clamp(32px, 6vh, 64px) 0 clamp(48px, 8vh, 84px);
@@ -1072,6 +1072,12 @@ a:focus-visible .ext {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--text-3);
+}
+
+.about-photo {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
 }
 
 /* ---------- contact ---------- */

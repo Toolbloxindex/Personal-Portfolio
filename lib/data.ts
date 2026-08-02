@@ -33,6 +33,20 @@ export const profile = {
   ],
 };
 
+export const photo = {
+  src: "/images/Home/Photo_Tomas.jpeg",
+  alt: "Portrait of Tomás Correia",
+  width: 3024,
+  height: 2715,
+};
+
+export const portrait = {
+  src: "/images/Home/ascii-portrait.png",
+  alt: "ASCII art portrait of Tomás Correia",
+  width: 1422,
+  height: 1088,
+};
+
 export const hero = {
   name: "Tomás Correia",
   location: "Delft, NL",

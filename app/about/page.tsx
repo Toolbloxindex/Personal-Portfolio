@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   aboutSite,
   aboutSub,
   bio,
   currentlyUsing,
   howIWork,
+  photo,
   profile,
 } from "@/lib/data";
 
@@ -28,6 +30,14 @@ export default function About() {
           ))}
         </div>
         <aside className="about-side">
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            sizes="(max-width: 860px) 100vw, 340px"
+            className="about-photo"
+          />
           <section>
             <h2 className="section-head">How I work</h2>
             <ul className="star-list">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ProjectList } from "@/components/ProjectList";
-import { hero, now, projects } from "@/lib/data";
+import { hero, now, portrait, projects } from "@/lib/data";
 
 export default function Home() {
   return (
@@ -21,11 +21,11 @@ export default function Home() {
         </div>
         <div className="hero-photo">
           <Image
-            src="/images/Home/Photo_Tomas.jpeg"
-            alt="Portrait of Tomás Correia"
-            width={1200}
-            height={1077}
-            sizes="(max-width: 860px) 440px, 380px"
+            src={portrait.src}
+            alt={portrait.alt}
+            width={portrait.width}
+            height={portrait.height}
+            sizes="(max-width: 860px) 440px, 500px"
           />
         </div>
       </section>
