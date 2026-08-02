@@ -1,0 +1,372 @@
+export const profile = {
+  name: "Tomás Correia",
+  handle: "tomas-correia",
+  title: "Founder & Full-Stack Developer",
+  tagline: "Toward a future of abundance.",
+  location: "Delft, NL",
+  timezone: "UTC+1",
+  email: "hello@thomascorreia.dev",
+  source: "https://github.com/thomascorreia/termfolio",
+  linkedin: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/",
+  socials: [
+    {
+      id: "github",
+      label: "github",
+      handle: "@thomascorreia",
+      href: "https://github.com/thomascorreia",
+      external: true,
+    },
+    {
+      id: "linkedin",
+      label: "linkedin",
+      handle: "in/tomás-correia-367810278",
+      href: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/",
+      external: true,
+    },
+    {
+      id: "email",
+      label: "email",
+      handle: "hello@thomascorreia.dev",
+      href: "mailto:hello@thomascorreia.dev",
+      external: false,
+    },
+  ],
+};
+
+export const hero = {
+  name: "Tomás Correia",
+  location: "Delft, NL",
+  timezone: "UTC+1",
+  tagline: "Toward a future of abundance.",
+  bio: "Founder and full-stack developer. Founded a fintech platform at sixteen and a booking product at seventeen; now studying Computer Science at TU Delft.",
+};
+
+export const now = [
+  { label: "currently", text: "studying Computer Science at TU Delft" },
+  { label: "recently", text: "built and launched BookHero, a booking platform for small businesses" },
+];
+
+export type ProjectSection = { heading: string; paragraphs: string[] };
+
+export type Project = {
+  slug: string;
+  title: string;
+  year: string;
+  role: string;
+  summary: string;
+  stack: string[];
+  links: { label: string; href: string; external: boolean }[];
+  body: ProjectSection[];
+};
+
+export const projects: Project[] = [
+  {
+    slug: "bookhero",
+    title: "BookHero",
+    year: "2026",
+    role: "Founder, product & engineering",
+    summary: "All-in-one booking platform for small service businesses, built and launched solo.",
+    stack: ["Next.js", "Supabase", "Vercel", "WhatsApp Cloud API"],
+    links: [
+      { label: "live", href: "https://bookhero.app", external: true },
+    ],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "Salons, barbershops and nail studios in Lisbon run on phone calls, WhatsApp threads and paper diaries. Their owners are busy with customers, not software.",
+        ],
+      },
+      {
+        heading: "What I did",
+        paragraphs: [
+          "Built and launched the platform solo in four months: online booking pages, a multi-professional calendar, WhatsApp and email reminders, checkout with PDF receipts, and a reporting dashboard, all on Next.js, Supabase and the Meta WhatsApp Cloud API.",
+          "Then I did the sales myself: high-volume cold calling and in-person meetings, onboarding each business and holding their hand through implementation.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "A product that talks to its customers where they already are (WhatsApp), and a playbook for selling to businesses that don't buy software online.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "veblen",
+    title: "Veblen",
+    year: "2025",
+    role: "Co-founder, product & engineering",
+    summary: "Financial intelligence platform: stock research, portfolio analytics, AI-driven insights. Founded at sixteen.",
+    stack: ["TypeScript", "React Native", "Data pipelines", "Figma"],
+    links: [
+      { label: "live", href: "https://tryveblen.com", external: true },
+    ],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "Institutional-grade financial data is locked behind contracts and six-figure licences. Retail investors get screenshots and social media. I started Veblen at sixteen to build the bridge.",
+        ],
+      },
+      {
+        heading: "What I did",
+        paragraphs: [
+          "Built the full-stack infrastructure (data pipelines, APIs, databases, backend services, and cross-platform web and mobile apps) processing 70,000+ assets: stocks, ETFs, mutual funds, commodities, forex and crypto. Integrated institutional datasets: financial statements, earnings transcripts, analyst estimates, insider trading, ETF holdings, decades of history.",
+          "Designed the entire product in Figma, from UX research and wireframing to prototyping, animations and the design system. Negotiated partnerships and data contracts with brokers and exchanges, and led content across Instagram, TikTok, Reddit and X.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "11M+ views, 380k+ likes, 160k+ shares and 24k+ followers, a predominantly international audience. Commercialization was ultimately constrained by the cost of institutional data licensing, and I moved on, with the full stack intact in my head.",
+        ],
+      },
+    ],
+  },
+];
+
+export const aboutSub =
+  "Two startups by seventeen, a CS degree in progress at TU Delft, and a habit of building things in public.";
+
+export const projectsSub =
+  "A timeline of things I've built, newest first. Earlier work is available on request.";
+
+export const experienceSub =
+  "Work, education and skills. The full history lives on LinkedIn.";
+
+export type Role = {
+  period: string;
+  title: string;
+  company: string;
+  location: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  project?: string;
+  startAge?: string;
+  links?: { label: string; href: string }[];
+};
+
+export const roles: Role[] = [
+  {
+    period: "Apr 2026 – Jul 2026",
+    title: "Founder",
+    company: "BookHero",
+    location: "Lisbon, PT",
+    project: "bookhero",
+    summary:
+      "Built and launched an all-in-one booking platform for small service businesses, solo, from product to sales.",
+    highlights: [
+      "Shipped booking pages, a multi-professional calendar, WhatsApp and email reminders, checkout with PDF receipts, and a reporting dashboard.",
+      "Drove early acquisition through cold calling and in-person meetings with salons, barbershops and nail studios.",
+      "Onboarded and supported every business end to end, turning a product into relationships.",
+    ],
+    stack: ["Next.js", "Supabase", "Vercel", "WhatsApp Cloud API"],
+  },
+  {
+    period: "May 2025 – May 2026",
+    title: "Co-Founder",
+    company: "Veblen",
+    location: "Lisbon, PT",
+    project: "veblen",
+    summary:
+      "Founded a fintech startup at sixteen, a financial intelligence platform for stock research, portfolio analytics and AI-driven insights.",
+    highlights: [
+      "Built the full-stack infrastructure: data pipelines, APIs, databases, backend services, and cross-platform web and mobile apps.",
+      "Engineered systems processing 70,000+ assets across global markets, with institutional datasets from financial statements to insider trading.",
+      "Designed the entire product in Figma and led strategy, engineering, marketing and operations.",
+      "Generated 11M+ views and 24k+ followers across Instagram, TikTok, Reddit and X, mostly in the US, Canada, UK, Australia and Singapore.",
+      "Negotiated international partnerships and data contracts with brokers and exchanges.",
+    ],
+    stack: ["TypeScript", "React Native", "Node.js", "PostgreSQL", "Figma"],
+  },
+  {
+    period: "Sep 2020 – Jan 2022",
+    title: "Content Creator",
+    company: "Toolblox",
+    location: "Lisbon, PT",
+    startAge: "11",
+    summary:
+      "A Roblox YouTube channel that grew to 350k+ views and 1.5k subscribers, with a community of loyal followers.",
+    highlights: [
+      "Grew the channel to 350k+ views and 1.5k subscribers as a one-person operation.",
+      "Built a loyal community around the channel, learning video editing and content creation from the ground up.",
+      "Owned the full pipeline: scripting, recording, editing, thumbnails and titles.",
+    ],
+    stack: ["Video Editing", "Content Creation", "YouTube", "Community Building"],
+    links: [{ label: "Watch the channel", href: "https://www.youtube.com/@ToolbloxChannel" }],
+  },
+  {
+    period: "Jan – Dec 2021",
+    title: "Freelance GFX Designer",
+    company: "Self-employed",
+    location: "Lisbon, PT",
+    startAge: "12",
+    summary:
+      "Roblox profile pictures and thumbnails for Game Developers and Content Creators in Blender, Paint.NET and Photoshop 2021.",
+    highlights: [
+      "Served multiple clients with Roblox avatars, banners and thumbnails.",
+      "Earned $200+ across commissions.",
+      "Learned the business side of freelancing: pricing, deadlines and client relationships.",
+    ],
+    stack: ["Blender", "Photoshop 2021", "Paint.NET", "GFX Design"],
+  },
+];
+
+export const education = [
+  {
+    period: "2026 – present",
+    title: "B.Sc. Computer Science & Engineering",
+    company: "TU Delft",
+    location: "Delft, NL",
+    summary: "Bachelor's degree in progress at one of Europe's leading engineering universities.",
+  },
+  {
+    period: "2013 – 2026",
+    title: "Colégio Pedro Arrupe",
+    company: "High school",
+    location: "Lisbon, PT",
+    summary: "Graduated with a 19.44 average, among the best in the year.",
+  },
+];
+
+export const skills = [
+  "TypeScript",
+  "JavaScript",
+  "Java",
+  "React",
+  "Next.js",
+  "React Native",
+  "Node.js",
+  "REST APIs",
+  "Figma",
+  "Product Design",
+  "UX & UI Design",
+  "Graphic Design",
+  "Branding",
+  "DaVinci Resolve",
+  "Video Editing",
+  "Affinity",
+  "Sales",
+  "Start-up Ventures",
+  "Growth Marketing",
+  "Marketing",
+  "Partnerships",
+  "Data Analysis",
+  "Content Creation",
+  "Community Building",
+];
+
+export const languages = [
+  { language: "Portuguese", level: "Native or bilingual proficiency" },
+  { language: "English", level: "Full professional proficiency (IELTS 8.0)" },
+];
+
+export type Certification = {
+  name: string;
+  issuer: string;
+  issued: string;
+  skills: string;
+  hours?: string;
+  credentialId?: string;
+  links?: { label: string; href: string }[];
+};
+
+export const certifications: Certification[] = [
+  {
+    name: "Learn Java Course",
+    issuer: "Codecademy",
+    issued: "Jul 2026",
+    hours: "~17 hours",
+    skills: "Java",
+    credentialId: "d3f89367b558583e361640f778191345",
+    links: [
+      {
+        label: "credential",
+        href: "https://www.codecademy.com/profiles/core1710733758/certificates/d3f89367b558583e361640f778191345",
+      },
+    ],
+  },
+  {
+    name: "TU Delft edX Verified Certificate for Pre-University Calculus",
+    issuer: "edX",
+    issued: "Feb 2026",
+    skills: "Calculus",
+    credentialId: "0e84ae5e133d46c893f22a7b952e3c3f",
+    links: [
+      {
+        label: "credential",
+        href: "https://courses.edx.org/certificates/0e84ae5e133d46c893f22a7b952e3c3f",
+      },
+    ],
+  },
+  {
+    name: "IELTS: Overall Score 8.0",
+    issuer: "IELTS Official",
+    issued: "Dec 2025",
+    skills: "English",
+    credentialId: "25PT502694DUAT008A",
+  },
+  {
+    name: "Legacy JavaScript Algorithms and Data Structures",
+    issuer: "freeCodeCamp",
+    issued: "Jul 2025",
+    hours: "~300 hours",
+    skills: "JavaScript, Algorithms",
+    credentialId: "toolbloxindex-ljaads",
+    links: [
+      {
+        label: "credential",
+        href: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/details/certifications/",
+      },
+      { label: "projects", href: "https://github.com/Toolbloxindex/FCC-Projects" },
+    ],
+  },
+  {
+    name: "Responsive Web Design",
+    issuer: "freeCodeCamp",
+    issued: "Sep 2024",
+    hours: "~300 hours",
+    skills: "Responsive Web Design, HTML",
+    credentialId: "toolbloxindex-rwd",
+    links: [
+      {
+        label: "credential",
+        href: "https://www.freecodecamp.org/certification/toolbloxindex/responsive-web-design",
+      },
+      { label: "projects", href: "https://github.com/Toolbloxindex/FCC-Projects" },
+    ],
+  },
+];
+
+export const bio = [
+  "I founded my first company at sixteen: Veblen, a financial intelligence platform covering 70,000+ assets, built end to end: pipelines, APIs, mobile apps, the Figma file and the Instagram account. At seventeen I founded BookHero, a booking platform for small service businesses, where I did everything from the database schema to the cold calls.",
+  "I care about the unglamorous parts of the job: performance budgets, error budgets, code that a colleague can still read on a Monday morning. I've written CSS by hand since browsers hyphenated vendor prefixes, and I still do.",
+  "Now I'm studying Computer Science at TU Delft, where I'm learning the theory behind the products I've already shipped. Outside work I ride a bicycle, brew espresso badly, and keep a small self-hosted homelab that my partner tolerates.",
+];
+
+export const howIWork = [
+  "Talk to customers before writing code. Sales is a design tool.",
+  "Design and engineering are the same discipline.",
+  "Ship in small increments, in public, and let users shape the roadmap.",
+  "Use boring infrastructure so the product can be ambitious.",
+];
+
+export const currentlyUsing = [
+  "TypeScript",
+  "Next.js",
+  "React Native",
+  "Supabase",
+  "Figma",
+  "Java",
+];
+
+export const aboutSite =
+  "This site is hand-built with Next.js and a single stylesheet, no UI libraries, no client-side JavaScript. The design leans on type, spacing and thin rules; it should feel calm, even a little quiet.";
+
+export const contact = {
+  title: "Working on something interesting? I'd like to hear about it.",
+  text: "Best reached by email; I read everything and answer within a day or two.",
+  response: "Delft, NL ⬩ UTC+1 ⬩ replies within a day",
+};
