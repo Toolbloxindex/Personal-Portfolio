@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Gallery } from "@/components/Gallery";
@@ -41,12 +42,26 @@ export default async function ProjectDetail({
         ← All projects
       </Link>
       <article>
-        <header className="page-head">
-          <p className="eyebrow">
-            {project.year} ⬩ {project.role}
-          </p>
-          <h1 className="page-title">{project.title}</h1>
-          <p className="sub">{project.summary}</p>
+        <header className="page-head project-head">
+          <div className="page-head-main">
+            <p className="eyebrow">
+              {project.year} ⬩ {project.role}
+            </p>
+            <h1 className="page-title">{project.title}</h1>
+            <p className="sub">{project.summary}</p>
+          </div>
+          {project.icon && (
+            <div className="project-head-icon">
+              <Image
+                className="project-icon"
+                src={project.icon.src}
+                alt={project.icon.alt}
+                width={88}
+                height={88}
+                sizes="88px"
+              />
+            </div>
+          )}
         </header>
         <div className="article-grid">
           <div className="prose">

@@ -94,6 +94,7 @@ export type Project = {
   body: ProjectSection[];
   gallery?: GalleryGroup[];
   videos?: ProjectVideo[];
+  icon?: { src: string; alt: string };
 };
 
 export const projects: Project[] = [
@@ -134,6 +135,7 @@ export const projects: Project[] = [
     title: "Veblen",
     year: "2025",
     role: "Co-founder, product, marketing & sales",
+    icon: { src: "/images/Veblen/icon.png", alt: "Veblen app icon" },
     summary: "Financial intelligence platform: AI-driven stock research, portfolio analytics and investment insights. Founded at sixteen.",
     stack: ["TypeScript", "React Native", "Node.js", "Supabase (PostgreSQL)", "REST APIs", "Data pipelines"],
     skills: [
