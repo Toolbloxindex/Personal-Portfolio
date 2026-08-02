@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Gallery } from "@/components/Gallery";
 import { projects } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -88,6 +89,7 @@ export default async function ProjectDetail({
             </div>
           </dl>
         </div>
+        {project.gallery && <Gallery images={project.gallery} />}
         <nav className="page-nav" aria-label="Project navigation">
           {prev && (
             <Link href={`/projects/${prev.slug}`} className="nav-link prev">

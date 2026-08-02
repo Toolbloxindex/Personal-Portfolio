@@ -48,6 +48,13 @@ export const now = [
 
 export type ProjectSection = { heading: string; paragraphs: string[] };
 
+export type ProjectImage = {
+  src: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -57,6 +64,7 @@ export type Project = {
   stack: string[];
   links: { label: string; href: string; external: boolean }[];
   body: ProjectSection[];
+  gallery?: ProjectImage[];
 };
 
 export const projects: Project[] = [
@@ -64,7 +72,7 @@ export const projects: Project[] = [
     slug: "bookhero",
     title: "BookHero",
     year: "2026",
-    role: "Founder, product & engineering",
+    role: "Founder, product, sales & marketing",
     summary: "All-in-one booking platform for small service businesses, built and launched solo.",
     stack: ["Next.js", "Supabase", "Vercel", "WhatsApp Cloud API"],
     links: [
@@ -96,7 +104,7 @@ export const projects: Project[] = [
     slug: "veblen",
     title: "Veblen",
     year: "2025",
-    role: "Co-founder, product & engineering",
+    role: "Co-founder, product, marketing & sales",
     summary: "Financial intelligence platform: stock research, portfolio analytics, AI-driven insights. Founded at sixteen.",
     stack: ["TypeScript", "React Native", "Data pipelines", "Figma"],
     links: [

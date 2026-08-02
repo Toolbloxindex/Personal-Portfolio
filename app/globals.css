@@ -285,7 +285,7 @@ a:focus-visible .ext {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 1.1fr;
+  grid-template-columns: minmax(0, 1fr) 1.1fr 220px;
   column-gap: clamp(40px, 6vw, 96px);
   align-items: start;
   padding: clamp(32px, 6vh, 64px) 0 clamp(48px, 8vh, 84px);
@@ -321,6 +321,18 @@ a:focus-visible .ext {
   color: var(--text-2);
   text-wrap: pretty;
   max-width: 46ch;
+}
+
+.hero-photo {
+  justify-self: end;
+  width: 100%;
+  max-width: 220px;
+}
+
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ---------- split sections (label | content) ---------- */
@@ -461,6 +473,7 @@ a:focus-visible .ext {
 }
 
 .tl-role {
+  display: block;
   margin-top: 5px;
   font-family: var(--font-mono);
   font-size: 12px;
@@ -468,6 +481,7 @@ a:focus-visible .ext {
 }
 
 .tl-summary {
+  display: block;
   margin-top: 6px;
   color: var(--text-2);
   font-size: 14.5px;
@@ -475,6 +489,7 @@ a:focus-visible .ext {
 }
 
 .tl-stack {
+  display: block;
   margin-top: 10px;
   font-family: var(--font-mono);
   font-size: 11.5px;
@@ -636,7 +651,7 @@ a:focus-visible .ext {
   margin-top: 0;
 }
 
-.prose h3:not(:first-child) {
+.prose section + section h3 {
   margin-top: 34px;
 }
 
@@ -651,6 +666,51 @@ a:focus-visible .ext {
 .prose a:hover {
   color: var(--text);
   text-decoration-color: var(--text);
+}
+
+/* ---------- gallery ---------- */
+
+.gallery {
+  margin-top: clamp(56px, 8vh, 80px);
+}
+
+.gallery-head {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+  margin-bottom: 22px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 28px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+}
+
+.gallery-item {
+  min-width: 0;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease;
+}
+
+.gallery-item:hover img {
+  border-color: var(--border-strong);
+}
+
+.gallery-caption {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-3);
 }
 
 /* ---------- prev / next ---------- */
@@ -975,6 +1035,11 @@ a:focus-visible .ext {
     gap: 32px;
   }
 
+  .hero-photo {
+    justify-self: start;
+    max-width: 260px;
+  }
+
   .split,
   .exp-article {
     grid-template-columns: 1fr;
@@ -998,6 +1063,11 @@ a:focus-visible .ext {
 
   .skill-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
   }
 
   .cert-row {

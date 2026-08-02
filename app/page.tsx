@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ProjectList } from "@/components/ProjectList";
 import { hero, now, projects } from "@/lib/data";
 
@@ -15,6 +16,15 @@ export default function Home() {
         </div>
         <div>
           <p className="hero-bio">{hero.bio}</p>
+        </div>
+        <div className="hero-photo">
+          <Image
+            src="/images/Home/me.jpg"
+            alt="Portrait of Tomás Correia"
+            width={900}
+            height={1200}
+            sizes="(max-width: 860px) 60vw, 220px"
+          />
         </div>
       </section>
 
