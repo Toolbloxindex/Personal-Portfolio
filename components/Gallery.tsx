@@ -1,28 +1,38 @@
-import Image from "next/image";
-import type { ProjectImage } from "@/lib/data";
+import type { GalleryGroup, ProjectVideo } from "@/lib/data";
+import { GalleryCarousel } from "./GalleryCarousel";
 
-export function Gallery({ images }: { images: ProjectImage[] }) {
+export function Gallery({
+  groups,
+  video,
+}: {
+  groups: GalleryGroup[];
+  video?: ProjectVideo;
+}) {
   return (
     <section className="gallery">
-      <h2 className="gallery-head">
-        Gallery ⬩ {images.length} screens
-      </h2>
-      <div className="gallery-grid">
-        {images.map((image) => (
-          <figure className="gallery-item" key={image.src}>
-            <Image
-              src={image.src}
-              alt={image.caption}
-              width={image.width}
-              height={image.height}
-              sizes="(max-width: 860px) 100vw, 50vw"
+      {groups.map((group) => (
+        <GalleryCarousel
+          key={group.label}
+          label={group.label}
+          images={group.images}
+          framed={group.framed}
+        />
+      ))}
+      {video && (
+        <div className="gallery-group">
+          <h2 className="gallery-head">Demo</h2>
+          <figure className="gallery-video-wrap">
+            <video
+              src={video.src}
+              controls
+              playsInline
+              preload="metadata"
+              className="gallery-video"
             />
-            <figcaption className="gallery-caption">
-              {image.caption}
-            </figcaption>
+            <figcaption className="gallery-caption">{video.caption}</figcaption>
           </figure>
-        ))}
-      </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -9,21 +9,23 @@ export default function Home() {
       <section className="hero">
         <div>
           <h1 className="hero-name">{hero.name}</h1>
+          <p className="hero-tagline">
+            {hero.tagline}
+            <br />
+            {hero.motto}
+          </p>
+          <p className="hero-bio">{hero.bio}</p>
           <p className="hero-loc">
             {hero.location} ⬩ {hero.timezone}
           </p>
-          <p className="hero-tagline">{hero.tagline}</p>
-        </div>
-        <div>
-          <p className="hero-bio">{hero.bio}</p>
         </div>
         <div className="hero-photo">
           <Image
-            src="/images/Home/me.jpg"
+            src="/images/Home/Photo_Tomas.jpeg"
             alt="Portrait of Tomás Correia"
-            width={900}
-            height={1200}
-            sizes="(max-width: 860px) 60vw, 220px"
+            width={1200}
+            height={1077}
+            sizes="(max-width: 860px) 440px, 380px"
           />
         </div>
       </section>

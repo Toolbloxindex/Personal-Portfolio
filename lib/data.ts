@@ -5,7 +5,7 @@ export const profile = {
   tagline: "Toward a future of abundance.",
   location: "Delft, NL",
   timezone: "UTC+1",
-  email: "hello@thomascorreia.dev",
+  email: "jfjsc.taba@gmail.com",
   source: "https://github.com/thomascorreia/termfolio",
   linkedin: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/",
   socials: [
@@ -26,8 +26,8 @@ export const profile = {
     {
       id: "email",
       label: "email",
-      handle: "hello@thomascorreia.dev",
-      href: "mailto:hello@thomascorreia.dev",
+      handle: "jfjsc.taba@gmail.com",
+      href: "mailto:jfjsc.taba@gmail.com",
       external: false,
     },
   ],
@@ -38,6 +38,7 @@ export const hero = {
   location: "Delft, NL",
   timezone: "UTC+1",
   tagline: "Toward a future of abundance.",
+  motto: "Driven by the pursuit of human progress.",
   bio: "Founder and full-stack developer. Founded a fintech platform at sixteen and a booking product at seventeen; now studying Computer Science at TU Delft.",
 };
 
@@ -55,6 +56,17 @@ export type ProjectImage = {
   height: number;
 };
 
+export type GalleryGroup = {
+  label: string;
+  framed?: boolean;
+  images: ProjectImage[];
+};
+
+export type ProjectVideo = {
+  src: string;
+  caption: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -64,7 +76,8 @@ export type Project = {
   stack: string[];
   links: { label: string; href: string; external: boolean }[];
   body: ProjectSection[];
-  gallery?: ProjectImage[];
+  gallery?: GalleryGroup[];
+  video?: ProjectVideo;
 };
 
 export const projects: Project[] = [
@@ -131,6 +144,46 @@ export const projects: Project[] = [
         ],
       },
     ],
+    gallery: [
+      {
+        label: "Screens",
+        framed: false,
+        images: [
+          { src: "/images/Veblen/screens/search.png", caption: "Search", width: 961, height: 1983 },
+          { src: "/images/Veblen/screens/stock-page.png", caption: "Stock page", width: 977, height: 2004 },
+          { src: "/images/Veblen/screens/stock-page-financials.png", caption: "Stock page, financials", width: 971, height: 2003 },
+          { src: "/images/Veblen/screens/stock-page-news.png", caption: "Stock page, news", width: 976, height: 2010 },
+          { src: "/images/Veblen/screens/financials-ai.png", caption: "Financials, AI summary", width: 892, height: 1830 },
+          { src: "/images/Veblen/screens/discover.png", caption: "Discover", width: 966, height: 1978 },
+          { src: "/images/Veblen/screens/hidden-gem-article.png", caption: "Hidden gem article", width: 983, height: 2008 },
+          { src: "/images/Veblen/screens/market-signals.png", caption: "Market signals", width: 1026, height: 1062 },
+          { src: "/images/Veblen/screens/ai-analysis.png", caption: "AI analysis", width: 790, height: 1559 },
+          { src: "/images/Veblen/screens/ai-move-recommendations.png", caption: "AI move recommendations", width: 980, height: 2022 },
+          { src: "/images/Veblen/screens/ai-chat.png", caption: "AI chat", width: 1032, height: 2085 },
+          { src: "/images/Veblen/screens/chat-page.png", caption: "Chat page", width: 959, height: 2000 },
+          { src: "/images/Veblen/screens/export.png", caption: "Export", width: 976, height: 2006 },
+        ],
+      },
+      {
+        label: "App Store",
+        images: [
+          { src: "/images/Veblen/app-store/portfolio.jpg", caption: "Portfolio", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/financials.jpg", caption: "Financials", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/analysis-1.jpg", caption: "Analysis 1", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/analysis-2.jpg", caption: "Analysis 2", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/analysis-3.jpg", caption: "Analysis 3", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/ai-1.jpg", caption: "AI 1", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/ai-2.jpg", caption: "AI 2", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/ai-chat.jpg", caption: "AI chat", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/hidden-gems.jpg", caption: "Hidden gems", width: 1284, height: 2778 },
+          { src: "/images/Veblen/app-store/news.jpg", caption: "News", width: 1284, height: 2778 },
+        ],
+      },
+    ],
+    video: {
+      src: "/videos/Veblen/showoff.mp4",
+      caption: "Product walkthrough",
+    },
   },
 ];
 
@@ -267,7 +320,7 @@ export const skills = [
 ];
 
 export const languages = [
-  { language: "Portuguese", level: "Native or bilingual proficiency" },
+  { language: "Portuguese", level: "Native" },
   { language: "English", level: "Full professional proficiency (IELTS 8.0)" },
 ];
 
@@ -317,7 +370,7 @@ export const certifications: Certification[] = [
     credentialId: "25PT502694DUAT008A",
   },
   {
-    name: "Legacy JavaScript Algorithms and Data Structures",
+    name: "JavaScript Algorithms and Data Structures",
     issuer: "freeCodeCamp",
     issued: "Jul 2025",
     hours: "~300 hours",

@@ -89,7 +89,9 @@ export default async function ProjectDetail({
             </div>
           </dl>
         </div>
-        {project.gallery && <Gallery images={project.gallery} />}
+        {project.gallery && (
+          <Gallery groups={project.gallery} video={project.video} />
+        )}
         <nav className="page-nav" aria-label="Project navigation">
           {prev && (
             <Link href={`/projects/${prev.slug}`} className="nav-link prev">

@@ -285,7 +285,7 @@ a:focus-visible .ext {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 1.1fr 220px;
+  grid-template-columns: minmax(0, 1fr) 380px;
   column-gap: clamp(40px, 6vw, 96px);
   align-items: start;
   padding: clamp(32px, 6vh, 64px) 0 clamp(48px, 8vh, 84px);
@@ -300,22 +300,24 @@ a:focus-visible .ext {
 }
 
 .hero-loc {
-  margin-top: 16px;
+  margin-top: 32px;
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--text-3);
 }
 
 .hero-tagline {
-  margin-top: 26px;
+  margin-top: 32px;
   font-size: clamp(1.35rem, 2.6vw, 1.7rem);
   font-weight: 500;
   letter-spacing: -0.015em;
+  line-height: 1.15;
   color: var(--text-3);
-  max-width: 16em;
+  white-space: nowrap;
 }
 
 .hero-bio {
+  margin-top: 36px;
   font-size: 1.08rem;
   line-height: 1.65;
   color: var(--text-2);
@@ -324,9 +326,7 @@ a:focus-visible .ext {
 }
 
 .hero-photo {
-  justify-self: end;
   width: 100%;
-  max-width: 220px;
 }
 
 .hero-photo img {
@@ -674,43 +674,119 @@ a:focus-visible .ext {
   margin-top: clamp(56px, 8vh, 80px);
 }
 
+.gallery-group + .gallery-group {
+  margin-top: clamp(40px, 6vh, 56px);
+}
+
 .gallery-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+  margin-bottom: 22px;
   font-family: var(--font-mono);
   font-size: 12.5px;
   letter-spacing: 0.02em;
   color: var(--text-3);
-  margin-bottom: 22px;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 24px;
-  row-gap: 28px;
-  border-top: 1px solid var(--border);
-  padding-top: 28px;
+.gallery-head h2 {
+  font: inherit;
+  letter-spacing: inherit;
 }
 
-.gallery-item {
+.gallery-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.gallery-nav button {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.gallery-nav button:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-item {
+  flex: none;
+  height: clamp(320px, 44vh, 460px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
-.gallery-item img {
-  width: 100%;
-  height: auto;
+.carousel-item img {
+  height: 100%;
+  width: auto;
   border: 1px solid var(--border);
   transition: border-color 0.15s ease;
 }
 
-.gallery-item:hover img {
+.carousel.unbordered .carousel-item img {
+  border: 0;
+}
+
+.carousel-item:hover img {
   border-color: var(--border-strong);
 }
 
+.carousel.unbordered .carousel-item:hover img {
+  border-color: transparent;
+}
+
 .gallery-caption {
-  margin-top: 10px;
+  margin-top: 8px;
+  max-width: 30ch;
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gallery-video-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-video {
+  width: min(340px, 72vw);
+  height: auto;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
 }
 
 /* ---------- prev / next ---------- */
@@ -927,6 +1003,19 @@ a:focus-visible .ext {
   color: var(--text);
 }
 
+.cert-links a .ext {
+  margin-left: 4px;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.cert-links a:hover .ext,
+.cert-links a:focus-visible .ext {
+  opacity: 1;
+  transform: none;
+}
+
 .exp-foot {
   margin-top: clamp(48px, 8vh, 72px);
   padding-top: 28px;
@@ -1035,9 +1124,13 @@ a:focus-visible .ext {
     gap: 32px;
   }
 
+  .hero-tagline {
+    white-space: normal;
+  }
+
   .hero-photo {
     justify-self: start;
-    max-width: 260px;
+    max-width: 440px;
   }
 
   .split,
@@ -1063,11 +1156,6 @@ a:focus-visible .ext {
 
   .skill-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    row-gap: 24px;
   }
 
   .cert-row {
