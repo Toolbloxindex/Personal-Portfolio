@@ -15,7 +15,10 @@ export function ProjectList({ items }: { items: Project[] }) {
                   →
                 </span>
               </span>
-              <span className="tl-role">{project.role}</span>
+              <span className="tl-role">
+                {project.role}
+                {project.small && <span className="tl-small"> · small project</span>}
+              </span>
               <span className="tl-summary">{project.summary}</span>
               <span className="tl-stack">{project.stack.join(" · ")}</span>
             </span>
