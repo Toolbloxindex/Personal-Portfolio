@@ -46,6 +46,7 @@ export default async function ProjectDetail({
           <div className="page-head-main">
             <p className="eyebrow">
               {project.year} ⬩ {project.role}
+              {project.small && <span className="tl-small"> ⬩ small project</span>}
             </p>
             <h1 className="page-title">{project.title}</h1>
             <p className="sub">{project.summary}</p>
@@ -77,16 +78,18 @@ export default async function ProjectDetail({
             ))}
           </div>
           <dl className="spec">
-            <div className="spec-row">
-              <dt>Stack</dt>
-              <dd className="spec-list">
-                {project.stack.map((item) => (
-                  <span className="spec-item" key={item}>
-                    {item}
-                  </span>
-                ))}
-              </dd>
-            </div>
+            {project.stack.length > 0 && (
+              <div className="spec-row">
+                <dt>Stack</dt>
+                <dd className="spec-list">
+                  {project.stack.map((item) => (
+                    <span className="spec-item" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            )}
             {project.skills && (
               <div className="spec-row">
                 <dt>Skills</dt>

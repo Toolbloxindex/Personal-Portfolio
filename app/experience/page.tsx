@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ProofGallery } from "@/components/ProofGallery";
 import {
   certifications,
   education,
@@ -53,9 +54,9 @@ export default function Experience() {
                 ))}
               </ul>
               <p className="exp-stack">{role.stack.join(" · ")}</p>
-              {role.links && (
+              {(role.links || role.proof) && (
                 <p className="exp-project">
-                  {role.links.map((link) => (
+                  {role.links?.map((link) => (
                     <a
                       key={link.href}
                       className="link-arrow"
@@ -67,6 +68,17 @@ export default function Experience() {
                       <span aria-hidden="true">↗</span>
                     </a>
                   ))}
+                  {role.proof && (
+                    <>
+                      {role.links && (
+                        <span className="exp-sep">{" · "}</span>
+                      )}
+                      <ProofGallery
+                        label={role.proof.label}
+                        images={role.proof.images}
+                      />
+                    </>
+                  )}
                 </p>
               )}
               {role.project && (

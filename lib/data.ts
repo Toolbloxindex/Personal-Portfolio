@@ -95,6 +95,7 @@ export type Project = {
   gallery?: GalleryGroup[];
   videos?: ProjectVideo[];
   icon?: { src: string; alt: string };
+  small?: boolean;
 };
 
 export const projects: Project[] = [
@@ -227,6 +228,59 @@ images: [
       },
     ],
   },
+  {
+    slug: "toolblox-labs",
+    title: "Toolblox Labs",
+    year: "2024",
+    role: "Design, build & launch",
+    small: true,
+    summary: "A small model rocket: designed and simulated in OpenRocket, 3D-printed on a Bambu Lab A1 Mini, launched and compared against the simulation.",
+    stack: [],
+    links: [
+      { label: "github", href: "https://github.com/Toolbloxindex/Toolblox-Labs", external: true },
+    ],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "Toolblox Labs is where I run small experiments in public. Prototype 1 is a model rocket built as a personal challenge: to test aerodynamics from design to launch.",
+        ],
+      },
+      {
+        heading: "What I did",
+        paragraphs: [
+          "Designed the rocket in OpenRocket and simulated the flight before printing anything: a predicted 82.9 m apogee, a top speed of 35.9 m/s and Mach 0.105. The design was split into print-friendly segments joined with friction-fit couplers, no glue.",
+          "Sliced every part in Bambu Studio and printed them on a Bambu Lab A1 Mini in ABS. Tuned the build around a 5 Ns solid-fuel motor (average thrust 4 N), wired the pad with a 9 V electric igniter and launched twice from 10 m away.",
+          "Open-sourced the whole build: the [GitHub repository](https://github.com/Toolbloxindex/Toolblox-Labs) holds the detailed specifications, the full 3D files and instructions to replicate and launch the rocket.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "Both flights were stable and the measured performance landed close to the OpenRocket predictions, closing the loop: design, simulate, print, fly, compare. The repository carries the full 3D model, STLs, motor thrust curves and flight simulation data.",
+        ],
+      },
+    ],
+    gallery: [
+      {
+        label: "Prototype & simulation",
+        images: [
+          { src: "/images/Toolblox%20Labs/3D%20Render.png", caption: "3D render", width: 1893, height: 1024 },
+          { src: "/images/Toolblox%20Labs/Plotted%20Graph%20Simulation.png", caption: "OpenRocket flight simulation", width: 686, height: 420 },
+          { src: "/images/Toolblox%20Labs/B4-4%20Graph.png", caption: "Klima B4-4 thrust curve", width: 1120, height: 683 },
+        ],
+      },
+      {
+        label: "Launch",
+        images: [
+          { src: "/images/Toolblox%20Labs/IMG_Launch1.jpg", caption: "Launch 1", width: 2024, height: 3604 },
+          { src: "/images/Toolblox%20Labs/IMG_Launch2.jpg", caption: "Launch 2", width: 940, height: 1625 },
+          { src: "/images/Toolblox%20Labs/IMG_Launch2_Edited.png", caption: "Launch 2 (edited)", width: 1206, height: 2056 },
+          { src: "/images/Toolblox%20Labs/IMG_Launch2_Unedited.jpg", caption: "Launch 2 (original)", width: 1206, height: 2099 },
+        ],
+      },
+    ],
+  },
 ];
 
 export const aboutSub =
@@ -249,6 +303,7 @@ export type Role = {
   project?: string;
   startAge?: string;
   links?: { label: string; href: string }[];
+  proof?: { label: string; images: ProjectImage[] };
 };
 
 export const roles: Role[] = [
@@ -299,6 +354,17 @@ export const roles: Role[] = [
     ],
     stack: ["Video Editing", "Content Creation", "YouTube", "Community Building"],
     links: [{ label: "Watch the channel", href: "https://www.youtube.com/@ToolbloxChannel" }],
+    proof: {
+      label: "Show proof",
+      images: [
+        {
+          src: "/images/Youtube/Youtube%20Analytics%20.png",
+          caption: "YouTube Studio analytics",
+          width: 1908,
+          height: 1086,
+        },
+      ],
+    },
   },
   {
     period: "Jan – Dec 2021",

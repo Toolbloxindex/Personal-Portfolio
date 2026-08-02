@@ -5,7 +5,7 @@ import { projects, projectsSub } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "A timeline of what Tomás Correia has built: BookHero and Veblen.",
+    "A timeline of what Tomás Correia has built: BookHero, Veblen and Toolblox Labs.",
 };
 
 export default function Projects() {
