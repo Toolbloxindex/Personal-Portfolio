@@ -1331,7 +1331,7 @@ button {
 
 @media (max-width: 640px) {
   .container {
-    padding: 0 20px;
+    padding-inline: 20px;
   }
 
   .carousel-item img {
@@ -1358,8 +1358,8 @@ button {
   }
 
   .site-nav {
-    position: fixed;
-    top: var(--header-h);
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     z-index: 49;
@@ -1370,6 +1370,7 @@ button {
     overflow-y: auto;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
     display: none;
   }
 
