@@ -18,7 +18,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jbmono), ui-monospace, "SF Mono", Menlo, monospace;
   --container: 1080px;
-  --header-h: 70px;
+  --header-h: 80px;
   --radius: 6px;
   color-scheme: dark;
 }
@@ -1312,6 +1312,10 @@ button {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --header-h: 60px;
+  }
+
   .container {
     padding-inline: 20px;
   }
@@ -1362,11 +1366,14 @@ button {
   }
 
   .main.home {
-    padding-top: calc(var(--header-h) + 8px);
+    padding-top: calc(var(--header-h) + 16px);
   }
 
   .menu-toggle {
     display: inline-flex;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
   }
 
   .site-nav {
