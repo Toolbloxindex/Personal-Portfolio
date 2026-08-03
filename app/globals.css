@@ -1366,7 +1366,7 @@ button {
   }
 
   .main.home {
-    padding-top: calc(var(--header-h) + 16px);
+    padding-top: calc(var(--header-h) + 20px);
   }
 
   .menu-toggle {
