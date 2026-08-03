@@ -931,6 +931,32 @@ button {
   background: var(--bg-raised);
 }
 
+.gallery-embeds {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.gallery-embed {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+
+.gallery-embed-label {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (min-width: 860px) {
+  .gallery-embeds {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* ---------- prev / next ---------- */
 
 .page-nav {

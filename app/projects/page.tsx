@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { ProjectList } from "@/components/ProjectList";
-import { projects, projectsSub } from "@/lib/data";
+import { majorProjects, projects, projectsSub, sideProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "A timeline of what Tomás Correia has built: BookHero, Veblen and Toolblox Labs.",
+    "A timeline of what Tomás Correia has built: BookHero, Veblen, WHY NOT YOU?, Toolblox Labs and GFX Archive.",
 };
 
 export default function Projects() {
@@ -18,7 +18,14 @@ export default function Projects() {
         <h1 className="page-title">Projects</h1>
         <p className="sub">{projectsSub}</p>
       </header>
-      <ProjectList items={projects} />
+      <section className="exp-block">
+        <h2 className="section-head">Major Projects</h2>
+        <ProjectList items={majorProjects} />
+      </section>
+      <section className="exp-block">
+        <h2 className="section-head">Side Projects</h2>
+        <ProjectList items={sideProjects} />
+      </section>
     </main>
   );
 }

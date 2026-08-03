@@ -80,7 +80,7 @@ export default async function ProjectDetail({
           <dl className="spec">
             {project.stack.length > 0 && (
               <div className="spec-row">
-                <dt>Stack</dt>
+                <dt>Tools</dt>
                 <dd className="spec-list">
                   {project.stack.map((item) => (
                     <span className="spec-item" key={item}>
@@ -102,8 +102,9 @@ export default async function ProjectDetail({
                 </dd>
               </div>
             )}
-            <div className="spec-row">
-              <dt>Links</dt>
+            {project.links.length > 0 && (
+              <div className="spec-row">
+                <dt>Links</dt>
               <dd>
                 <span className="spec-links">
                   {project.links.map((link, i) => (
@@ -126,10 +127,15 @@ export default async function ProjectDetail({
                 </span>
               </dd>
             </div>
-          </dl>
+            )}
+        </dl>
         </div>
-        {project.gallery && (
-          <Gallery groups={project.gallery} videos={project.videos} />
+        {(project.gallery || project.youtube) && (
+          <Gallery
+            groups={project.gallery ?? []}
+            videos={project.videos}
+            youtube={project.youtube}
+          />
         )}
         <nav className="page-nav" aria-label="Project navigation">
           {prev && (

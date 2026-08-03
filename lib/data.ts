@@ -94,6 +94,7 @@ export type Project = {
   body: ProjectSection[];
   gallery?: GalleryGroup[];
   videos?: ProjectVideo[];
+  youtube?: ProjectVideo[];
   icon?: { src: string; alt: string };
   small?: boolean;
 };
@@ -254,6 +255,65 @@ images: [
     ],
   },
   {
+    slug: "why-not-you",
+    title: "WHY NOT YOU?",
+    year: "2026",
+    role: "Director & editor",
+    small: true,
+    summary: "A short film about discipline, sacrifice and the pursuit of greatness. Shot in Portugal with friends, directed and edited by me in DaVinci Resolve.",
+    stack: ["DaVinci Resolve", "DJI Drone", "GoPro", "iPhone 16 Pro (Blackmagic Camera)"],
+    skills: ["Directing", "Cinematography", "Video Editing", "Color Grading", "Storytelling", "Drone Footage"],
+    links: [
+      { label: "Teaser (recommended to watch)", href: "https://www.youtube.com/watch?v=hBklX3ouv00", external: true },
+      { label: "Full short film", href: "https://www.youtube.com/watch?v=UwMm6JbsfLU&feature=youtu.be", external: true },
+    ],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "\u201CYou are in danger of living a life so comfortable and soft that you will die without ever realizing your true potential.\u201D That's David Goggins.",
+          "WHY NOT YOU? is a short film I directed about discipline, sacrifice and the pursuit of greatness. Behind every victory are thousands of hours that nobody sees. Why not you?",
+          "Featuring Tiago Ramos, Duarte Quesado, Francisco Carvalho and Gonçalo Guerreiro.",
+        ],
+      },
+      {
+        heading: "What I did",
+        paragraphs: [
+          "I directed the short film and shot it over a few weeks in Portugal with friends, then edited it myself. Filmed on a DJI drone, a GoPro and an iPhone 16 Pro with the Blackmagic Camera app, and edited and color graded in DaVinci Resolve. The film also includes a motivational speech by Jim Rohn.",
+          "Inspired by David Goggins, it explores discipline, sacrifice and ambition through exercise.",
+        ],
+      },
+      {
+        heading: "Why I made it",
+        paragraphs: [
+          "This was just a fun personal side project, shot with some friends. I'm heavily inspired by David Goggins and others like him. I love to swim, run and cycle, I used to run half marathons, and I keep a strong gym discipline. I wanted to convey that message to other people: most of us live way below our potential because we never push past comfort.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "The teaser and the full film are live on YouTube. I did it for fun, I just decided to exercise my free will.",
+        ],
+      },
+    ],
+    youtube: [
+      { src: "https://www.youtube.com/watch?v=hBklX3ouv00", caption: "Teaser (recommended to watch)" },
+      { src: "https://www.youtube.com/watch?v=UwMm6JbsfLU&feature=youtu.be", caption: "Full short film" },
+    ],
+    gallery: [
+      {
+        label: "Stills",
+        images: [
+          { src: "/images/Short%20Film/Tom%C3%A1s%20Cycling.png", caption: "Tomás cycling", width: 1920, height: 1080 },
+          { src: "/images/Short%20Film/Duarte%20Swimming.png", caption: "Duarte swimming", width: 1920, height: 1080 },
+          { src: "/images/Short%20Film/Tiago%20Running.png", caption: "Tiago running", width: 1920, height: 1080 },
+          { src: "/images/Short%20Film/Francisco%20Working%20out.png", caption: "Francisco working out", width: 1920, height: 1080 },
+          { src: "/images/Short%20Film/movie%20poster%20A3.png", caption: "Movie poster", width: 3508, height: 4961 },
+        ],
+      },
+    ],
+  },
+  {
     slug: "toolblox-labs",
     title: "Toolblox Labs",
     year: "2024",
@@ -307,13 +367,67 @@ images: [
       },
     ],
   },
+  {
+    slug: "gfx-archive",
+    title: "GFX",
+    year: "2021",
+    role: "Freelance GFX Designer",
+    small: true,
+    summary: "A summer of freelance GFX design on Twitter: profile pictures, thumbnails and YouTuber assets for the Roblox community, made in Photoshop, Blender and Paint.NET.",
+    stack: ["Photoshop 2021", "Blender", "Paint.NET"],
+    skills: ["Graphic Design", "Freelancing", "Client Relations", "Pricing & Negotiation"],
+    links: [],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "Spent a whole summer doing nothing but graphic design. I made profile pictures and thumbnails for Roblox games and assets for Roblox YouTubers, and sold them on Twitter as GFX. Everything was made in Photoshop, Blender and Paint.NET.",
+        ],
+      },
+      {
+        heading: "What I did",
+        paragraphs: [
+          "Getting started as a freelancer was the hard part. With no clients and no reputation, there's nothing that makes someone trust you with their money. I kept showing my work anyway, and once the first few people came in the growth was fast. Happy clients brought more clients.",
+          "Each order was the same routine: build the scene in Blender, finish it in Photoshop and Paint.NET, then handle pricing, deadlines and revisions over Twitter DMs.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "I didn't make much money. Most of the summer I was working below minimum wage, and eventually I got tired of it. But it left me with a much more honest idea of what freelancing is really like.",
+        ],
+      },
+    ],
+    gallery: [
+      {
+        label: "Selected artwork",
+        images: [
+          { src: "/images/GFX/Sharkblox.png", caption: "Sharkblox", width: 1920, height: 1080 },
+          { src: "/images/GFX/Artic.png", caption: "Arctic", width: 1920, height: 1080 },
+          { src: "/images/GFX/School%20Bus.png", caption: "School bus", width: 1920, height: 1080 },
+          { src: "/images/GFX/squid%20game%201.png", caption: "Squid Game 1", width: 1920, height: 1080 },
+          { src: "/images/GFX/squid%20game%202.png", caption: "Squid Game 2", width: 1920, height: 1080 },
+          { src: "/images/GFX/Pfp%20Toolblox.png", caption: "Toolblox profile picture", width: 1500, height: 1500 },
+          { src: "/images/GFX/Supermarket%20Story%202.png", caption: "Supermarket Story 2", width: 1920, height: 1080 },
+          { src: "/images/GFX/SuperMarket%20Story.png", caption: "Supermarket Story", width: 512, height: 512 },
+          { src: "/images/GFX/Toolblox.png", caption: "Toolblox", width: 1920, height: 1080 },
+          { src: "/images/GFX/Pfp%202.png", caption: "Profile picture 2", width: 400, height: 400 },
+          { src: "/images/GFX/Police%20Scene.png", caption: "Police scene", width: 1920, height: 1080 },
+        ],
+      },
+    ],
+  },
 ];
+
+export const majorProjects: Project[] = projects.filter((p) => !p.small);
+
+export const sideProjects: Project[] = projects.filter((p) => p.small);
 
 export const aboutSub =
   "Two startups by seventeen, a CS degree in progress at TU Delft, and a habit of building things in public.";
 
 export const projectsSub =
-  "A timeline of things I've built, newest first. Earlier work is available on request.";
+  "Major products built end to end, plus smaller experiments in public. Newest first. Earlier work is available on request.";
 
 export const experienceSub =
   "Work, education and skills. The full history lives on LinkedIn.";
@@ -398,6 +512,7 @@ export const roles: Role[] = [
     company: "Self-employed",
     location: "Lisbon, PT",
     startAge: "12",
+    project: "gfx-archive",
     summary:
       "Roblox profile pictures and thumbnails for Game Developers and Content Creators in Blender, Paint.NET and Photoshop 2021.",
     highlights: [
