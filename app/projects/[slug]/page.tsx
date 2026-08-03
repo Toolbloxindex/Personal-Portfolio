@@ -59,7 +59,7 @@ export default async function ProjectDetail({
                 alt={project.icon.alt}
                 width={88}
                 height={88}
-                sizes="88px"
+                sizes="(max-width: 640px) 44px, 88px"
               />
             </div>
           )}

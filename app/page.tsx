@@ -5,7 +5,7 @@ import { hero, now, portrait, projects } from "@/lib/data";
 
 export default function Home() {
   return (
-    <main id="main" className="main container">
+    <main id="main" className="main home container">
       <section className="hero">
         <div>
           <h1 className="hero-name">{hero.name}</h1>

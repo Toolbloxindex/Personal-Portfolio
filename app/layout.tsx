@@ -41,10 +41,15 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
+      <style
+        href="critical-header-styles"
+        precedence="default"
+      >{`/* critical: applied before the main stylesheet loads, prevents the mobile header/toggle flash on refresh. Mirrors --bg, --text and --header-h in globals.css. */
+        .menu-toggle{display:none;background:transparent;border:0;color:#f2eded}
+        @media(max-width:560px){.menu-toggle{display:inline-flex}}
+        .site-header{position:fixed;top:0;left:0;right:0;height:80px;background:#131010}
+      `}</style>
       <body>
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
         <Header />
         {children}
         <Footer />

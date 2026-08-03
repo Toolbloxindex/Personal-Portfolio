@@ -18,7 +18,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jbmono), ui-monospace, "SF Mono", Menlo, monospace;
   --container: 1080px;
-  --header-h: 80px;
+  --header-h: 70px;
   --radius: 6px;
   color-scheme: dark;
 }
@@ -115,24 +115,6 @@ button {
 .main {
   padding-top: calc(var(--header-h) + clamp(48px, 10vh, 96px));
   padding-bottom: clamp(80px, 14vh, 140px);
-}
-
-.skip-link {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 100;
-  padding: 8px 14px;
-  background: var(--bg-raised);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  font-size: 14px;
-  transform: translateY(-200%);
-  transition: transform 0.2s ease;
-}
-
-.skip-link:focus {
-  transform: none;
 }
 
 /* ---------- typography ---------- */
@@ -1334,6 +1316,28 @@ button {
     padding-inline: 20px;
   }
 
+  .project-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(16px, 4vw, 24px);
+    align-items: start;
+  }
+
+  .project-head .eyebrow {
+    min-height: 40px;
+  }
+
+  .project-head-icon {
+    order: 0;
+    justify-self: start;
+    padding-top: 56px;
+    margin-bottom: 0;
+  }
+
+  .project-icon {
+    width: 44px;
+    height: 44px;
+  }
+
   .carousel-item img {
     height: clamp(240px, 40vh, 460px);
   }
@@ -1351,6 +1355,14 @@ button {
 @media (max-width: 560px) {
   body {
     font-size: 16px;
+  }
+
+  .main {
+    padding-top: calc(var(--header-h) + 60px);
+  }
+
+  .main.home {
+    padding-top: calc(var(--header-h) + 8px);
   }
 
   .menu-toggle {
