@@ -1419,7 +1419,9 @@ button {
   }
 
   .carousel-item img {
-    height: clamp(240px, 40vh, 460px);
+    height: auto;
+    max-height: clamp(240px, 40vh, 460px);
+    max-width: calc(100vw - 40px);
   }
 
   .spec-row {
