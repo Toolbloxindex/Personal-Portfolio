@@ -95,7 +95,7 @@ export type Project = {
   gallery?: GalleryGroup[];
   videos?: ProjectVideo[];
   youtube?: ProjectVideo[];
-  icon?: { src: string; alt: string };
+  icon?: { src: string; alt: string; large?: boolean };
   small?: boolean;
 };
 
@@ -104,6 +104,7 @@ export const projects: Project[] = [
     slug: "bookhero",
     title: "BookHero",
     year: "2026",
+    icon: { src: "/images/Bookhero/logo.png", alt: "BookHero logo", large: true },
     role: "Founder, product, sales & marketing",
     summary: "A B2B SaaS for small service businesses: booking pages, WhatsApp reminders, checkout and reporting, built and launched solo.",
     stack: ["TypeScript", "React", "Next.js", "Node.js", "Supabase (PostgreSQL)", "Meta WhatsApp Cloud API"],
@@ -427,10 +428,10 @@ export const aboutSub =
   "Two startups by seventeen, a CS degree in progress at TU Delft, and a habit of building things in public.";
 
 export const projectsSub =
-  "Major products built end to end, plus smaller experiments in public. Newest first. Earlier work is available on request.";
+  "Major products built end to end, plus smaller experiments in public. Newest first.";
 
 export const experienceSub =
-  "Work, education and skills. The full history lives on LinkedIn.";
+  "Work, education and skills.";
 
 export type Role = {
   period: string;

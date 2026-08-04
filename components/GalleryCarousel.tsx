@@ -60,6 +60,15 @@ function Lightbox({
   );
 }
 
+const CAROUSEL_MAX_HEIGHT = 460;
+
+function carouselSize(image: ProjectImage) {
+  const maxWidth = Math.ceil(
+    (CAROUSEL_MAX_HEIGHT * image.width) / image.height
+  );
+  return `${maxWidth}px`;
+}
+
 export function GalleryCarousel({
   label,
   images,
@@ -122,7 +131,7 @@ export function GalleryCarousel({
                 alt={image.caption}
                 width={image.width}
                 height={image.height}
-                sizes="(max-width: 860px) 180px, 240px"
+                sizes={carouselSize(image)}
               />
             </button>
             {captions && (

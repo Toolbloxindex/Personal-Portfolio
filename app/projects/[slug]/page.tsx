@@ -49,20 +49,20 @@ export default async function ProjectDetail({
               {project.small && <span className="tl-small"> ⬩ small project</span>}
             </p>
             <h1 className="page-title">{project.title}</h1>
+            {project.icon && (
+              <div className={`project-head-icon${project.icon.large ? " project-head-icon-large" : ""}`}>
+                <Image
+                  className={`project-icon${project.icon.large ? " project-icon-large" : ""}`}
+                  src={project.icon.src}
+                  alt={project.icon.alt}
+                  width={project.icon.large ? 160 : 88}
+                  height={project.icon.large ? 160 : 88}
+                  sizes={project.icon.large ? "(max-width: 640px) 80px, 160px" : "(max-width: 640px) 44px, 88px"}
+                />
+              </div>
+            )}
             <p className="sub">{project.summary}</p>
           </div>
-          {project.icon && (
-            <div className="project-head-icon">
-              <Image
-                className="project-icon"
-                src={project.icon.src}
-                alt={project.icon.alt}
-                width={88}
-                height={88}
-                sizes="(max-width: 640px) 44px, 88px"
-              />
-            </div>
-          )}
         </header>
         <div className="article-grid">
           <div className="prose">
