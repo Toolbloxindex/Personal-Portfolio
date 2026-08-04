@@ -17,6 +17,9 @@ export function Gallery({
 }) {
   return (
     <section className="gallery">
+      {groups.length > 0 && (
+        <p className="gallery-note">Selected pages galleries</p>
+      )}
       {groups.map((group) => (
         <GalleryCarousel
           key={group.label}

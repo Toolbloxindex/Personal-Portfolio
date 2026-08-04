@@ -733,6 +733,14 @@ button {
   margin-top: clamp(56px, 8vh, 80px);
 }
 
+.gallery-note {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+  margin-bottom: clamp(28px, 4vh, 40px);
+}
+
 .gallery-group + .gallery-group {
   margin-top: clamp(40px, 6vh, 56px);
 }
@@ -811,6 +819,12 @@ button {
   transition: border-color 0.15s ease;
 }
 
+.carousel-ph {
+  height: clamp(320px, 44vh, 460px);
+  width: auto;
+  background: var(--bg-raised);
+}
+
 .carousel-btn {
   display: flex;
   padding: 0;
@@ -839,13 +853,11 @@ button {
 
 .gallery-caption {
   margin-top: 8px;
-  max-width: 30ch;
+  max-width: 44ch;
   font-family: var(--font-mono);
   font-size: 11.5px;
+  line-height: 1.5;
   color: var(--text-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .lightbox {

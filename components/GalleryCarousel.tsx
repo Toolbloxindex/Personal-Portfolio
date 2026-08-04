@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import type { ProjectImage } from "@/lib/data";
 
@@ -61,12 +61,78 @@ function Lightbox({
 }
 
 const CAROUSEL_MAX_HEIGHT = 460;
+const EAGER_SLIDES = 6;
+const PRELOAD_MARGIN = "500px";
 
 function carouselSize(image: ProjectImage) {
   const maxWidth = Math.ceil(
     (CAROUSEL_MAX_HEIGHT * image.width) / image.height
   );
   return `${maxWidth}px`;
+}
+
+function CarouselSlide({
+  image,
+  caption,
+  eager,
+  scroller,
+  onOpen,
+}: {
+  image: ProjectImage;
+  caption?: string;
+  eager: boolean;
+  scroller: RefObject<HTMLDivElement | null>;
+  onOpen: () => void;
+}) {
+  const ref = useRef<HTMLElement>(null);
+  const [show, setShow] = useState(eager);
+
+  useEffect(() => {
+    if (show) return;
+    const el = ref.current;
+    const root = scroller.current;
+    if (!el || !root) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShow(true);
+          io.disconnect();
+        }
+      },
+      { root, rootMargin: PRELOAD_MARGIN }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [show, scroller]);
+
+  return (
+    <figure className="carousel-item" data-slide ref={ref}>
+      <button
+        type="button"
+        className="carousel-btn"
+        aria-label={`View ${image.caption}`}
+        onClick={onOpen}
+      >
+        {show ? (
+          <Image
+            src={image.src}
+            alt={image.caption}
+            width={image.width}
+            height={image.height}
+            sizes={carouselSize(image)}
+          />
+        ) : (
+          <div
+            className="carousel-ph"
+            style={{ aspectRatio: `${image.width} / ${image.height}` }}
+          />
+        )}
+      </button>
+      {caption && (
+        <figcaption className="gallery-caption">{caption}</figcaption>
+      )}
+    </figure>
+  );
 }
 
 export function GalleryCarousel({
@@ -118,28 +184,15 @@ export function GalleryCarousel({
         ref={scroller}
         className={framed ? "carousel" : "carousel unbordered"}
       >
-        {images.map((image) => (
-          <figure className="carousel-item" data-slide key={image.src}>
-            <button
-              type="button"
-              className="carousel-btn"
-              aria-label={`View ${image.caption}`}
-              onClick={() => setActive(image)}
-            >
-              <Image
-                src={image.src}
-                alt={image.caption}
-                width={image.width}
-                height={image.height}
-                sizes={carouselSize(image)}
-              />
-            </button>
-            {captions && (
-              <figcaption className="gallery-caption">
-                {image.caption}
-              </figcaption>
-            )}
-          </figure>
+        {images.map((image, i) => (
+          <CarouselSlide
+            key={image.src}
+            image={image}
+            caption={captions ? image.caption : undefined}
+            eager={i < EAGER_SLIDES}
+            scroller={scroller}
+            onOpen={() => setActive(image)}
+          />
         ))}
       </div>
       {active && <Lightbox image={active} onClose={() => setActive(null)} />}
