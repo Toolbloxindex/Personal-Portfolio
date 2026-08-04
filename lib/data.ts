@@ -133,11 +133,11 @@ export const projects: Project[] = [
         label: "Front Page",
         images: [
           { src: "/images/Bookhero/Screenshots%20Website%20Page/1-%20Hero%20Page.png", caption: "Hero", width: 3418, height: 2136 },
-          { src: "/images/Bookhero/Screenshots%20Website%20Page/6-%20Language%20and%20Region%20Modal.png", caption: "Language & region", width: 3418, height: 2136 },
-          { src: "/images/Bookhero/Screenshots%20Website%20Page/2-%20Problem%20Page.png", caption: "Problem", width: 3418, height: 2136 },
-          { src: "/images/Bookhero/Screenshots%20Website%20Page/3-%20Results%20Page.png", caption: "Results", width: 3418, height: 2136 },
-          { src: "/images/Bookhero/Screenshots%20Website%20Page/4-%20Pricing%20Page.png", caption: "Pricing", width: 3418, height: 2136 },
-          { src: "/images/Bookhero/Screenshots%20Website%20Page/5-%20Login%20%26%20Registration.png", caption: "Login & registration", width: 3418, height: 2136 },
+          { src: "/images/Bookhero/Screenshots%20Website%20Page/2-%20Language%20and%20Region%20Modal.png", caption: "Language & region", width: 3418, height: 2136 },
+          { src: "/images/Bookhero/Screenshots%20Website%20Page/3-%20Problem%20Page.png", caption: "Problem", width: 3418, height: 2136 },
+          { src: "/images/Bookhero/Screenshots%20Website%20Page/4-%20Results%20Page.png", caption: "Results", width: 3418, height: 2136 },
+          { src: "/images/Bookhero/Screenshots%20Website%20Page/5-%20Pricing%20Page.png", caption: "Pricing", width: 3418, height: 2136 },
+          { src: "/images/Bookhero/Screenshots%20Website%20Page/6-%20Login%20%26%20Registration.png", caption: "Login & registration", width: 3418, height: 2136 },
         ],
       },
       {
