@@ -46,6 +46,7 @@ export default async function ProjectDetail({
           <div className="page-head-main">
             <p className="eyebrow">
               {project.year} ⬩ {project.role}
+              {project.startup && <span className="tl-small"> ⬩ startup</span>}
               {project.small && <span className="tl-small"> ⬩ small project</span>}
             </p>
             <h1 className="page-title">{project.title}</h1>

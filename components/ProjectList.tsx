@@ -17,6 +17,7 @@ export function ProjectList({ items }: { items: Project[] }) {
               </span>
               <span className="tl-role">
                 {project.role}
+                {project.startup && <span className="tl-small"> · startup</span>}
                 {project.small && <span className="tl-small"> · small project</span>}
               </span>
               <span className="tl-summary">{project.summary}</span>

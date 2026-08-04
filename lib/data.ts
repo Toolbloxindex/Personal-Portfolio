@@ -97,6 +97,7 @@ export type Project = {
   youtube?: ProjectVideo[];
   icon?: { src: string; alt: string; large?: boolean };
   small?: boolean;
+  startup?: boolean;
 };
 
 export const projects: Project[] = [
@@ -106,6 +107,7 @@ export const projects: Project[] = [
     year: "2026",
     icon: { src: "/images/Bookhero/logo.png", alt: "BookHero logo", large: true },
     role: "Founder, product, sales & marketing",
+    startup: true,
     summary: "A B2B SaaS for small service businesses: booking pages, WhatsApp reminders, checkout and reporting, built and launched solo.",
     stack: ["TypeScript", "React", "Next.js", "Node.js", "Supabase (PostgreSQL)", "Meta WhatsApp Cloud API"],
     skills: [
@@ -139,7 +141,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        label: "Business End",
+        label: "Business Portal",
         images: [
           { src: "/images/Bookhero/Screenshots%20Business%20End/1-Calendar%20and%20Appointments.png", caption: "Calendar and Appointments", width: 3420, height: 2136 },
           { src: "/images/Bookhero/Screenshots%20Business%20End/2-Checkout%20Service%20Selection.png", caption: "Checkout: Service Selection", width: 3420, height: 2136 },
@@ -228,6 +230,7 @@ export const projects: Project[] = [
     title: "Veblen",
     year: "2025",
     role: "Co-founder, product, marketing & sales",
+    startup: true,
     icon: { src: "/images/Veblen/icon.png", alt: "Veblen app icon" },
     summary: "A B2C SaaS financial intelligence platform: AI-driven stock research, portfolio analytics and investment insights. Founded at sixteen.",
     stack: ["TypeScript", "React Native", "Node.js", "Supabase (PostgreSQL)", "REST APIs", "Data pipelines"],

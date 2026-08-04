@@ -74,18 +74,19 @@ function carouselSize(image: ProjectImage) {
 function CarouselSlide({
   image,
   caption,
-  eager,
+  show,
   scroller,
   onOpen,
+  onReveal,
 }: {
   image: ProjectImage;
   caption?: string;
-  eager: boolean;
+  show: boolean;
   scroller: RefObject<HTMLDivElement | null>;
   onOpen: () => void;
+  onReveal: () => void;
 }) {
   const ref = useRef<HTMLElement>(null);
-  const [show, setShow] = useState(eager);
 
   useEffect(() => {
     if (show) return;
@@ -95,7 +96,7 @@ function CarouselSlide({
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShow(true);
+          onReveal();
           io.disconnect();
         }
       },
@@ -103,7 +104,7 @@ function CarouselSlide({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [show, scroller]);
+  }, [show, scroller, onReveal]);
 
   return (
     <figure className="carousel-item" data-slide ref={ref}>
@@ -120,6 +121,7 @@ function CarouselSlide({
             width={image.width}
             height={image.height}
             sizes={carouselSize(image)}
+            loading="eager"
           />
         ) : (
           <div
@@ -148,6 +150,11 @@ export function GalleryCarousel({
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<ProjectImage | null>(null);
+  const [revealed, setRevealed] = useState(EAGER_SLIDES);
+
+  const revealFrom = (index: number) => {
+    setRevealed((r) => Math.max(r, index + 2));
+  };
 
   const scrollBySlide = (dir: 1 | -1) => {
     const el = scroller.current;
@@ -189,9 +196,10 @@ export function GalleryCarousel({
             key={image.src}
             image={image}
             caption={captions ? image.caption : undefined}
-            eager={i < EAGER_SLIDES}
+            show={i < revealed}
             scroller={scroller}
             onOpen={() => setActive(image)}
+            onReveal={() => revealFrom(i)}
           />
         ))}
       </div>
