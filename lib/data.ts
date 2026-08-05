@@ -93,6 +93,7 @@ export type Project = {
   links: { label: string; href: string; external: boolean }[];
   body: ProjectSection[];
   gallery?: GalleryGroup[];
+  galleryNote?: string;
   videos?: ProjectVideo[];
   youtube?: ProjectVideo[];
   icon?: { src: string; alt: string; large?: boolean };
@@ -128,6 +129,7 @@ export const projects: Project[] = [
     links: [
       { label: "bookhero.app", href: "https://bookhero.app", external: true },
     ],
+    galleryNote: "Key screens from the product",
     gallery: [
       {
         label: "Front Page",
@@ -492,9 +494,6 @@ export const majorProjects: Project[] = projects.filter((p) => !p.small);
 
 export const sideProjects: Project[] = projects.filter((p) => p.small);
 
-export const aboutSub =
-  "Two startups by seventeen, a CS degree in progress at TU Delft, and a habit of building things in public.";
-
 export const projectsSub =
   "Major products built end to end, plus smaller experiments in public. Newest first.";
 
@@ -722,30 +721,127 @@ export const certifications: Certification[] = [
   },
 ];
 
-export const bio = [
-  "I founded my first company at sixteen: Veblen, a financial intelligence platform covering 70,000+ assets, built end to end: pipelines, APIs, mobile apps, the Figma file and the Instagram account. At seventeen I founded BookHero, a booking platform for small service businesses, where I did everything from the database schema to the cold calls.",
-  "I care about the unglamorous parts of the job: performance budgets, error budgets, code that a colleague can still read on a Monday morning. I've written CSS by hand since browsers hyphenated vendor prefixes, and I still do.",
-  "Now I'm studying Computer Science at TU Delft, where I'm learning the theory behind the products I've already shipped. Outside work I ride a bicycle, brew espresso badly, and keep a small self-hosted homelab that my partner tolerates.",
+export type AboutBlock =
+  | { type: "p"; text: string }
+  | { type: "quote"; text: string; cite: string }
+  | { type: "modal"; label: string; body: string; cite: string; href: string };
+
+export const aboutStory: AboutBlock[] = [
+  { type: "p", text: "Hi, I'm Tomás." },
+  {
+    type: "p",
+    text: "More than anything else, I am driven by the belief that technology, science, and human ingenuity can create a future of abundance, one in which every person can live with dignity and opportunity. I want to dedicate my life to building things that matter and contribute, in whatever way I can, to humanity's progress.",
+  },
+  {
+    type: "p",
+    text: "I constantly remind myself that life is incredibly precious and that we only get one shot at it. Time, for me, is the most valuable resource there is. This is why I resonate deeply with the Latin phrase Memento Mori, meaning \"remember you must die.\" It comes from ancient Roman tradition, where it was whispered to emperors after great triumphs to remind them of their mortality. I keep a Memento Mori calendar that tracks the weeks of an average human life, and every week I cross one off. It is a simple but powerful reminder that time is finite, and that it should not be wasted.",
+  },
+  {
+    type: "p",
+    text: "That perspective has pushed me toward Computer Science and Engineering. I believe that artificial intelligence and robotics have the potential to unlock extraordinary progress for humanity, and although I do not know exactly what the future will look like, I am convinced that technological advancement will play a fundamental role in improving the human condition. My goal is to contribute, in whatever way I can, to that future.",
+  },
+  {
+    type: "p",
+    text: "I'm someone who finds a lot of meaning in building things and working towards long-term goals. I've built software, launched startups, and worked on large projects, while also constantly learning new things. I've always struggled to stay still. I feel most fulfilled when I'm creating, exploring ideas, and making progress towards something that matters.",
+  },
+  {
+    type: "p",
+    text: "Technology is at the center of many of my interests. Over the years, I've spent thousands of hours teaching myself how to code, taking courses, and building projects from my own initiative. I founded startups, experimented with different ideas, and learned far more from failures and mistakes than from successes. More than the technical side, I'm fascinated by the possibility that technology could improve people's lives and help create a world with greater opportunity and abundance.",
+  },
+  {
+    type: "p",
+    text: "Outside of technology, design is one of my biggest passions. I admire products that combine functionality with simplicity and beauty. Good design is more than aesthetics. It's a way of understanding people and creating things that genuinely improve their lives. I'm inspired by Steve Jobs' obsession with simplicity, detail, and intuitive design.",
+  },
+  {
+    type: "p",
+    text: "Outside of technology, sport has become one of the ways through which I explore my own limits. I spend much of my time in the gym, running, cycling, and swimming. Over the years, I have completed numerous races and half-marathons, including demanding routes with significant elevation. What attracts me to endurance sports is the psychological challenge, the confrontation with discomfort, doubt, and exhaustion. I used to run until I couldn't, sometimes pushing myself to the point of being unable to function properly for days afterwards. Over time, I learned to channel that intensity more intelligently, but the mindset of pushing beyond perceived limits has stayed with me.",
+  },
+  {
+    type: "p",
+    text: "I admire people who push the limits of human performance, especially David Goggins. His philosophy of embracing discomfort and constantly challenging yourself has influenced the way I approach both sport and life. One quote of his that has always stayed with me comes from Can't Hurt Me:",
+  },
+  {
+    type: "quote",
+    text: "When you think that you are done, you're only 40% into what your body's capable of doing. That's just the limits that we put on ourselves.",
+    cite: "David Goggins · Can't Hurt Me",
+  },
+  {
+    type: "p",
+    text: "At the same time, I've learned that discipline is about taking care of the only body and mind you'll ever have. I try to take good care of my body. Warren Buffett often uses a similar idea, and I like his analogy, when talking about how we should think about our bodies and minds.",
+  },
+  {
+    type: "p",
+    text: "Like a car you are given at birth that you have to drive for the rest of your life, with no possibility of replacement. You can invest in better maintenance, better fuel, and better habits, but you only ever get one vehicle.",
+  },
+  {
+    type: "modal",
+    label: "Read Warren Buffett's original quote",
+    body: "When I was sixteen, I had just two things on my mind - girls and cars. I wasn't very good with girls. So I thought about cars. I thought about girls, too, but I had more luck with cars.\n\nLet's say that when I turned sixteen, a genie had appeared to me. And that genie said, 'Warren, I'm going to give you the car of your choice. It'll be here tomorrow morning with a big bow tied on it. Brand-new. And it's all yours.'\n\nHaving heard all the genie stories, I would say, 'What's the catch?' And the genie would answer, 'There's only one catch. This is the last car you're ever going to get in your life. So it's got to last a lifetime.'\n\nIf that had happened, I would have picked out that car. But, can you imagine, knowing it had to last a lifetime, what I would do with it?\n\nI would read the manual about five times. I would always keep it garaged. If there was the least little dent or scratch, I'd have it fixed right away because I wouldn't want it rusting. I would baby that car, because it would have to last a lifetime.\n\nThat's exactly the position you are in concerning your mind and body. You only get one mind and one body. And it's got to last a lifetime. Now, it's very easy to let them ride for many years. But if you don't take care of that mind and that body, they'll be a wreck forty years later, just like the car would be.\n\nIt's what you do right now, today, that determines how your mind and body will operate ten, twenty, and thirty years from now.",
+    cite: "Warren Buffett",
+    href: "https://www.goodreads.com/quotes/587506-when-i-was-sixteen-i-had-just-two-things-on",
+  },
+  {
+    type: "p",
+    text: "I have very big dreams and I aim to create transformative work that has a real impact on the world. I hope to contribute towards a future of abundance for all, where technological progress enables every person to live with dignity and opportunity. This is not just a vague ambition for me. It is a core part of my purpose and the reason I wake up and choose work hard every day.",
+  },
+  {
+    type: "p",
+    text: "I also try to live by a principle of working with extreme intensity and volume, to the point where failure becomes statistically unlikely, as Alex Hormozi has described. If I want to achieve something meaningful, I need to act accordingly. I recognize that behind every victory are thousands of hours of work.",
+  },
+  {
+    type: "p",
+    text: "I try to remain deeply self-critical and intellectually honest. I have no problem admitting when I am wrong, and I constantly question my own assumptions. I am heavily influenced by the philosophy of Karl Popper and his idea that knowledge grows through criticism, experimentation, and the elimination of error. I try to reject intuition before confirming it, and I strive to be as truth-seeking as possible. I am extremely careful with my statements and prefer to think in terms of first principles rather than assumptions. In that sense, I see thinking itself as a process of continuous correction rather than certainty. I also try to stay humble in how I think about my own ideas, actively exposing my thinking to criticism and resisting the urge to defend my intuition. I see myself as a work in progress, constantly being refined through experience, feedback, and error correction.",
+  },
+  {
+    type: "quote",
+    text: "It is easy to obtain confirmations, or verifications, for nearly every theory—if we look for confirmations. Confirmations should count only if they are the result of risky predictions... A theory which is not refutable by any conceivable event is non-scientific. Irrefutability is not a virtue of a theory (as people often think) but a vice. Every genuine test of a theory is an attempt to falsify it, or refute it.",
+    cite: "Karl Raimund Popper · Conjectures and Refutations: The Growth of Scientific Knowledge (1963), 36",
+  },
+  {
+    type: "p",
+    text: "I am also very inspired by successful people, not in a superficial way, but because I am interested in understanding how they think and what patterns led to their outcomes. Some of the books that have influenced me the most are Steve Jobs by Walter Isaacson, Elon Musk by Walter Isaacson, and Shoe Dog by Phil Knight. I also read widely outside my main field, especially in history, physics, and economics, to fill gaps in my understanding of the world.",
+  },
+  {
+    type: "p",
+    text: "In terms of personality, I try to be highly focused. I prefer depth over breadth and try to concentrate my energy on a small number of meaningful goals rather than spreading myself too thin. At the same time, it would be easy to assume that this makes me isolated or overly self-focused, but that is not the case. I genuinely enjoy meeting new people and learning from different perspectives. I often attend run clubs, networking events, and social environments where I can connect with people from different countries, backgrounds, and interests.",
+  },
+  {
+    type: "p",
+    text: "I believe soft skills are extremely important in any career, and I have actively worked on developing them by stepping outside my comfort zone. I have done door-to-door sales, cold calls, client meetings, and managed relationships in professional contexts. These experiences have made me more confident, but also more aware of how much there is still to learn.",
+  },
+  {
+    type: "p",
+    text: "For all my interest in technology, ambition, and performance, the people around me matter deeply. I value my family and friends a great deal, and some of my happiest moments come from simple conversations, shared experiences, and learning from others. A few years ago, I struggled with social anxiety and tended to be more self-centered in how I viewed the world. Over time, I learned to listen more, to appreciate others more, and to understand that ambition is meaningless if it is not shared.",
+  },
+  {
+    type: "p",
+    text: "Space is another obsession of mine. I spend hours watching Starship and NASA launches. As I'm Portuguese, I like to make an analogy to the Era of Discoveries, when sailing ships ventured into the unknown oceans. They feel like modern-day epics. I also find deep meaning in looking at the night sky, thinking about distant galaxies, the possibility of life beyond Earth, and how much of the universe remains unknown. In a world that often feels focused on immediate problems, space is a reminder of scale, mystery, and how much there still is to discover. I would be honored to contribute in any way to the ultimate question of life.",
+  },
+  {
+    type: "p",
+    text: "At my core, I am someone who wants to understand how the world works and contribute to building things that improve it. I am deeply entrepreneurial, highly curious, and probably more ambitious than is reasonable. I don't know exactly where my path will lead, but I hope that, over time, I can look back and say that I used my time well, contributing to something larger than myself.",
+  },
+  {
+    type: "p",
+    text: "If you've made it this far, thank you for reading. I hope this offers a glimpse into who I am, my mission and values.",
+  },
 ];
 
-export const howIWork = [
-  "Talk to customers before writing code. Sales is a design tool.",
-  "Design and engineering are the same discipline.",
-  "Ship in small increments, in public, and let users shape the roadmap.",
-  "Use boring infrastructure so the product can be ambitious.",
+export const aboutGallery: ProjectImage[] = [
+  { src: "/images/About%20Me/0f05a0e6-37e8-42fa-ab56-7adaa4f0fee1%202.jpg", caption: "Tomás Correia", width: 1200, height: 1600 },
+  { src: "/images/About%20Me/IMG_2156.jpeg", caption: "Tomás Correia", width: 4032, height: 3024 },
+  { src: "/images/About%20Me/IMG_2461.jpeg", caption: "Tomás Correia", width: 2322, height: 3401 },
+  { src: "/images/About%20Me/IMG_3754.jpeg", caption: "Tomás Correia", width: 2830, height: 3877 },
+  { src: "/images/About%20Me/IMG_3963.jpg", caption: "Tomás Correia", width: 2125, height: 1206 },
+  { src: "/images/About%20Me/IMG_4096.JPG", caption: "Tomás Correia", width: 4000, height: 3159 },
+  { src: "/images/About%20Me/IMG_5649.JPG", caption: "Tomás Correia", width: 3648, height: 5472 },
+  { src: "/images/About%20Me/IMG_5653.JPG", caption: "Tomás Correia", width: 6000, height: 4000 },
+  { src: "/images/About%20Me/IMG_5931.jpg", caption: "Tomás Correia", width: 1206, height: 2116 },
+  { src: "/images/About%20Me/IMG_5932.jpg", caption: "Tomás Correia", width: 1206, height: 1874 },
+  { src: "/images/About%20Me/IMG_0299.jpeg", caption: "Tomás Correia", width: 3024, height: 4032 },
 ];
 
-export const currentlyUsing = [
-  "TypeScript",
-  "Next.js",
-  "React Native",
-  "Supabase",
-  "Figma",
-  "Java",
-];
-
-export const aboutSite =
-  "This site is hand-built with Next.js and a single stylesheet, no UI libraries, no client-side JavaScript. The design leans on type, spacing and thin rules; it should feel calm, even a little quiet.";
+export const photography: ProjectImage[] = [];
 
 export const contact = {
   title: "Working on something interesting? I'd like to hear about it.",

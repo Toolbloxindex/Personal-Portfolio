@@ -7,19 +7,19 @@ function youtubeId(url: string) {
 }
 
 export function Gallery({
+  note,
   groups,
   videos,
   youtube,
 }: {
+  note?: string;
   groups: GalleryGroup[];
   videos?: ProjectVideo[];
   youtube?: ProjectVideo[];
 }) {
   return (
     <section className="gallery">
-      {groups.length > 0 && (
-        <p className="gallery-note">Selected pages galleries</p>
-      )}
+      {note && <p className="gallery-note">{note}</p>}
       {groups.map((group) => (
         <GalleryCarousel
           key={group.label}

@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import {
-  aboutSite,
-  aboutSub,
-  bio,
-  currentlyUsing,
-  howIWork,
-  photo,
-  profile,
-} from "@/lib/data";
+import { Gallery } from "@/components/Gallery";
+import { QuoteModal } from "@/components/QuoteModal";
+import { aboutGallery, aboutStory, photography, photo } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Tomás Correia founded Veblen at sixteen and BookHero at seventeen; now studying Computer Science at TU Delft.",
+    "Tomás Correia — a letter about technology, science, endurance sport, space, and the pursuit of abundance.",
 };
 
 export default function About() {
@@ -21,65 +15,51 @@ export default function About() {
     <main id="main" className="main container">
       <header className="page-head">
         <h1 className="page-title">About</h1>
-        <p className="sub">{aboutSub}</p>
       </header>
-      <div className="about-grid">
-        <div className="prose">
-          {bio.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-          ))}
-        </div>
-        <aside className="about-side">
-          <Image
-            src={photo.src}
-            alt={photo.alt}
-            width={photo.width}
-            height={photo.height}
-            sizes="(max-width: 860px) 100vw, 340px"
-            className="about-photo"
-          />
-          <section>
-            <h2 className="section-head">How I work</h2>
-            <ul className="star-list">
-              {howIWork.map((item) => (
-                <li key={item.slice(0, 24)}>{item}</li>
-              ))}
-            </ul>
-          </section>
-          <section>
-            <h2 className="section-head">Currently using</h2>
-            <p className="text-line">{currentlyUsing.join(" · ")}</p>
-          </section>
-          <section>
-            <h2 className="section-head">Elsewhere</h2>
-            <ul className="plain-links">
-              {profile.socials.map((social) => (
-                <li key={social.id}>
-                  <a
-                    href={social.href}
-                    target={social.external ? "_blank" : undefined}
-                    rel={social.external ? "noopener noreferrer" : undefined}
-                  >
-                    <span>{social.label}</span>
-                    <span className="handle">
-                      {social.handle}
-                      {social.external && (
-                        <span className="ext" aria-hidden="true">
-                          ↗
-                        </span>
-                      )}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </aside>
+
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        sizes="(max-width: 600px) 90vw, 340px"
+        className="about-photo"
+      />
+
+      <div className="prose about-story">
+        {aboutStory.map((block, i) =>
+          block.type === "quote" ? (
+            <blockquote key={i} className="about-quote">
+              {block.text}
+              <cite>— {block.cite}</cite>
+            </blockquote>
+          ) : block.type === "modal" ? (
+            <QuoteModal
+              key={i}
+              label={block.label}
+              body={block.body}
+              cite={block.cite}
+              href={block.href}
+            />
+          ) : (
+            <p key={i}>{block.text}</p>
+          )
+        )}
       </div>
-      <section className="split">
-        <h2 className="split-label">About this site</h2>
-        <p className="split-body">{aboutSite}</p>
-      </section>
+
+      {aboutGallery.length > 0 && (
+        <Gallery
+          note="A few photos"
+          groups={[{ label: "Photos", images: aboutGallery, captions: false }]}
+        />
+      )}
+
+      {photography.length > 0 && (
+        <Gallery
+          note="Photography, just for fun"
+          groups={[{ label: "Photos", images: photography }]}
+        />
+      )}
     </main>
   );
 }

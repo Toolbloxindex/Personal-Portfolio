@@ -133,6 +133,7 @@ export default async function ProjectDetail({
         </div>
         {(project.gallery || project.youtube) && (
           <Gallery
+            note={project.galleryNote}
             groups={project.gallery ?? []}
             videos={project.videos}
             youtube={project.youtube}
