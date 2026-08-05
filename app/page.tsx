@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ProjectList } from "@/components/ProjectList";
-import { hero, now, portrait, projects } from "@/lib/data";
+import { contact, hero, majorProjects, now, portrait, profile } from "@/lib/data";
 
 export default function Home() {
   return (
@@ -46,7 +46,7 @@ export default function Home() {
       <section className="split">
         <h2 className="split-label">Selected projects</h2>
         <div className="split-body">
-          <ProjectList items={projects} />
+          <ProjectList items={majorProjects} />
           <nav className="more-links" aria-label="More pages">
             <Link className="link-arrow" href="/projects">
               All projects <span aria-hidden="true">→</span>
@@ -54,10 +54,38 @@ export default function Home() {
             <Link className="link-arrow" href="/experience">
               Experience <span aria-hidden="true">→</span>
             </Link>
-            <Link className="link-arrow" href="/contact">
-              Contact <span aria-hidden="true">→</span>
+            <Link className="link-arrow" href="/about">
+              About <span aria-hidden="true">→</span>
             </Link>
           </nav>
+        </div>
+      </section>
+
+      <section className="split">
+        <h2 className="split-label">Contact</h2>
+        <div className="split-body">
+          <p>{contact.text}</p>
+          <a className="contact-email" href={`mailto:${profile.email}`}>
+            {profile.email}
+          </a>
+          <ul className="contact-list contact-list-home">
+            {profile.socials.map((social) => (
+              <li key={social.id}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="contact-label">{social.label}</span>
+                  <span className="contact-sep"> · </span>
+                  <span className="contact-handle">{social.handle}</span>
+                  <span className="ext" aria-hidden="true">
+                    {" "}↗
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { profile } from "@/lib/data";
 
 const links = [
   { href: "/", label: "Home" },
@@ -43,6 +44,9 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container site-header-inner">
+        <Link href="/" className="site-brand">
+          {profile.name}
+        </Link>
         <button
           type="button"
           className="menu-toggle"

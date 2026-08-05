@@ -17,24 +17,20 @@ export default function Contact() {
       <a className="contact-email" href={`mailto:${profile.email}`}>
         {profile.email}
       </a>
-      <p className="contact-response">{contact.response}</p>
       <div className="contact-socials">
-        <ul className="plain-links">
+        <ul className="contact-list">
           {profile.socials.map((social) => (
             <li key={social.id}>
               <a
                 href={social.href}
-                target={social.external ? "_blank" : undefined}
-                rel={social.external ? "noopener noreferrer" : undefined}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <span>{social.label}</span>
-                <span className="handle">
-                  {social.handle}
-                  {social.external && (
-                    <span className="ext" aria-hidden="true">
-                      ↗
-                    </span>
-                  )}
+                <span className="contact-label">{social.label}</span>
+                <span className="contact-sep"> · </span>
+                <span className="contact-handle">{social.handle}</span>
+                <span className="ext" aria-hidden="true">
+                  {" "}↗
                 </span>
               </a>
             </li>

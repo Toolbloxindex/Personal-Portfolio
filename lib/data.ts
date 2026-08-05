@@ -5,15 +5,36 @@ export const profile = {
   tagline: "Toward a future of abundance.",
   location: "Delft, NL",
   timezone: "UTC+1",
-  email: "jfjsc.taba@gmail.com",
+  email: "thomas.correia.dc@gmail.com",
   source: "https://github.com/thomascorreia/termfolio",
   linkedin: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/",
   socials: [
     {
+      id: "whatsapp-phone",
+      label: "whatsapp",
+      handle: "+351 913 609 469",
+      href: "https://wa.me/351913609469",
+      external: true,
+    },
+    {
+      id: "whatsapp-username",
+      label: "whatsapp",
+      handle: "@tomdco",
+      href: "https://wa.me/tomdco",
+      external: true,
+    },
+    {
+      id: "x",
+      label: "x",
+      handle: "@tomdcore",
+      href: "https://x.com/tomdcore",
+      external: true,
+    },
+    {
       id: "github",
       label: "github",
-      handle: "@thomascorreia",
-      href: "https://github.com/thomascorreia",
+      handle: "@toolbloxindex",
+      href: "https://github.com/toolbloxindex",
       external: true,
     },
     {
@@ -22,13 +43,6 @@ export const profile = {
       handle: "in/tomás-correia-367810278",
       href: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/",
       external: true,
-    },
-    {
-      id: "email",
-      label: "email",
-      handle: "jfjsc.taba@gmail.com",
-      href: "mailto:jfjsc.taba@gmail.com",
-      external: false,
     },
   ],
 };
@@ -828,23 +842,49 @@ export const aboutStory: AboutBlock[] = [
 ];
 
 export const aboutGallery: ProjectImage[] = [
-  { src: "/images/About%20Me/0f05a0e6-37e8-42fa-ab56-7adaa4f0fee1%202.jpg", caption: "Tomás Correia", width: 1200, height: 1600 },
-  { src: "/images/About%20Me/IMG_2156.jpeg", caption: "Tomás Correia", width: 4032, height: 3024 },
-  { src: "/images/About%20Me/IMG_2461.jpeg", caption: "Tomás Correia", width: 2322, height: 3401 },
-  { src: "/images/About%20Me/IMG_3754.jpeg", caption: "Tomás Correia", width: 2830, height: 3877 },
   { src: "/images/About%20Me/IMG_3963.jpg", caption: "Tomás Correia", width: 2125, height: 1206 },
-  { src: "/images/About%20Me/IMG_4096.JPG", caption: "Tomás Correia", width: 4000, height: 3159 },
-  { src: "/images/About%20Me/IMG_5649.JPG", caption: "Tomás Correia", width: 3648, height: 5472 },
+  { src: "/images/About%20Me/IMG_3754.jpeg", caption: "Tomás Correia", width: 2830, height: 3877 },
+  { src: "/images/About%20Me/0f05a0e6-37e8-42fa-ab56-7adaa4f0fee1%202.jpg", caption: "Tomás Correia", width: 1200, height: 1600 },
   { src: "/images/About%20Me/IMG_5653.JPG", caption: "Tomás Correia", width: 6000, height: 4000 },
-  { src: "/images/About%20Me/IMG_5931.jpg", caption: "Tomás Correia", width: 1206, height: 2116 },
+  { src: "/images/About%20Me/IMG_2156.jpeg", caption: "Tomás Correia", width: 4032, height: 3024 },
+  { src: "/images/About%20Me/IMG_5649.JPG", caption: "Tomás Correia", width: 3648, height: 5472 },
   { src: "/images/About%20Me/IMG_5932.jpg", caption: "Tomás Correia", width: 1206, height: 1874 },
+  { src: "/images/About%20Me/IMG_4096.JPG", caption: "Tomás Correia", width: 4000, height: 3159 },
+  { src: "/images/About%20Me/IMG_5931.jpg", caption: "Tomás Correia", width: 1206, height: 2116 },
+  { src: "/images/About%20Me/IMG_2461.jpeg", caption: "Tomás Correia", width: 2322, height: 3401 },
   { src: "/images/About%20Me/IMG_0299.jpeg", caption: "Tomás Correia", width: 3024, height: 4032 },
 ];
 
-export const photography: ProjectImage[] = [];
+export const photography: ProjectImage[] = [
+  { src: "/images/Photography/dji_fly_20241207_180426_129_1750016746337_photo_optimized.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/dji_fly_20241207_180032_125_1750016825049_photo_optimized.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0376.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0379.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/IMG_2739.jpeg", caption: "Photography by Tomás Correia", width: 2800, height: 3910 },
+  { src: "/images/Photography/IMG_2734.jpeg", caption: "Photography by Tomás Correia", width: 4032, height: 3024 },
+  { src: "/images/Photography/IMG_2733.jpeg", caption: "Photography by Tomás Correia", width: 4032, height: 3024 },
+  { src: "/images/Photography/IMG_2732.jpeg", caption: "Photography by Tomás Correia", width: 4032, height: 3024 },
+  { src: "/images/Photography/IMG_2730.jpeg", caption: "Photography by Tomás Correia", width: 3534, height: 2650 },
+  { src: "/images/Photography/IMG_2729.jpeg", caption: "Photography by Tomás Correia", width: 4032, height: 3024 },
+  { src: "/images/Photography/IMG_2599.jpeg", caption: "Photography by Tomás Correia", width: 2647, height: 1557 },
+  { src: "/images/Photography/IMG_2597.jpeg", caption: "Photography by Tomás Correia", width: 3024, height: 4032 },
+  { src: "/images/Photography/IMG_2595.jpeg", caption: "Photography by Tomás Correia", width: 2944, height: 3926 },
+  { src: "/images/Photography/IMG_2593.jpeg", caption: "Photography by Tomás Correia", width: 3024, height: 4032 },
+  { src: "/images/Photography/CITY%20PHOTO%204x%20%20EDITED%20.jpg", caption: "Photography by Tomás Correia", width: 3764, height: 8192 },
+  { src: "/images/Photography/dji_export_20250615_202203_1750015323949_sphere_screenshot.JPG", caption: "Photography by Tomás Correia", width: 3820, height: 2048 },
+  { src: "/images/Photography/dji_fly_20250101_001124_278_1735690488705_photo_optimized.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/dji_fly_20241231_235240_260_1735689846761_photo_optimized.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0248.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/dji_fly_20241230_125052_242_1735566350345_photo_optimized.jpg", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0239.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0234.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0211.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/dji_fly_20241225_171512_185_1735147198766_photo_optimized.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/DJI_0164.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+  { src: "/images/Photography/dji_fly_20241123_133824_23_1750016841963_photo_optimized.JPG", caption: "Photography by Tomás Correia", width: 4000, height: 2250 },
+];
 
 export const contact = {
   title: "Working on something interesting? I'd like to hear about it.",
   text: "Best reached by email; I read everything and answer within a day or two.",
-  response: "Delft, NL ⬩ UTC+1 ⬩ replies within a day",
 };

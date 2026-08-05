@@ -1,5 +1,7 @@
 import { profile } from "@/lib/data";
 
+const socialLink = (id: string) => profile.socials.find((s) => s.id === id)?.href;
+
 export function Footer() {
   return (
     <footer className="site-footer">
@@ -7,7 +9,7 @@ export function Footer() {
         <span>&copy; 2026 {profile.name} ⬩ {profile.location} ⬩ {profile.timezone}</span>
         <nav className="footer-links" aria-label="Footer">
           <a
-            href={profile.socials[0].href}
+            href={socialLink("github")}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -17,7 +19,7 @@ export function Footer() {
             </span>
           </a>
           <a
-            href={profile.socials[1].href}
+            href={socialLink("linkedin")}
             target="_blank"
             rel="noopener noreferrer"
           >

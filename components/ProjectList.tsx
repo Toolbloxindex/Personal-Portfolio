@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/data";
 
@@ -10,7 +11,19 @@ export function ProjectList({ items }: { items: Project[] }) {
             <span className="tl-year">{project.year}</span>
             <span>
               <span className="tl-title-line">
-                <span className="tl-title">{project.title}</span>
+                <span className="tl-title-wrap">
+                  {project.icon && (
+                    <Image
+                      className="tl-icon"
+                      src={project.icon.src}
+                      alt=""
+                      width={36}
+                      height={36}
+                      sizes="36px"
+                    />
+                  )}
+                  <span className="tl-title">{project.title}</span>
+                </span>
                 <span className="tl-arrow" aria-hidden="true">
                   →
                 </span>

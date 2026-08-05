@@ -5,7 +5,7 @@ import { QuoteModal } from "@/components/QuoteModal";
 import { aboutGallery, aboutStory, photography, photo } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About me",
   description:
     "Tomás Correia — a letter about technology, science, endurance sport, space, and the pursuit of abundance.",
 };
@@ -14,7 +14,7 @@ export default function About() {
   return (
     <main id="main" className="main container">
       <header className="page-head">
-        <h1 className="page-title">About</h1>
+        <h1 className="page-title">About me</h1>
       </header>
 
       <Image
@@ -49,7 +49,7 @@ export default function About() {
 
       {aboutGallery.length > 0 && (
         <Gallery
-          note="A few photos"
+          note="A few photos of me"
           groups={[{ label: "Photos", images: aboutGallery, captions: false }]}
         />
       )}
@@ -57,8 +57,14 @@ export default function About() {
       {photography.length > 0 && (
         <Gallery
           note="Photography, just for fun"
-          groups={[{ label: "Photos", images: photography }]}
+          groups={[{ label: "Photos", images: photography, captions: false }]}
         />
+      )}
+
+      {(aboutGallery.length > 0 || photography.length > 0) && (
+        <p className="gallery-note gallery-rights">
+          © Tomás Correia. All rights reserved — ask for permission to use.
+        </p>
       )}
     </main>
   );

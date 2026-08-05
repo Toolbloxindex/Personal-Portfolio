@@ -180,8 +180,22 @@ button {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 24px;
+}
+
+.site-brand {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  transition: color 0.15s ease;
+}
+
+.site-brand:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .site-nav {
@@ -438,6 +452,21 @@ button {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
+}
+
+.tl-title-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tl-icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  align-self: center;
 }
 
 .tl-title {
@@ -738,7 +767,11 @@ button {
   font-size: 12.5px;
   letter-spacing: 0.02em;
   color: var(--text-3);
-  margin-bottom: clamp(28px, 4vh, 40px);
+  margin-top: clamp(56px, 8vh, 80px);
+}
+
+.gallery-rights {
+  margin-top: clamp(72px, 10vh, 96px);
 }
 
 .gallery-group + .gallery-group {
@@ -1277,7 +1310,7 @@ button {
   width: min(340px, 100%);
   height: auto;
   border: 1px solid var(--border);
-  margin: clamp(28px, 5vh, 44px) auto;
+  margin: clamp(28px, 5vh, 44px) 0;
 }
 
 .about-story p {
@@ -1387,7 +1420,7 @@ button {
 
 .contact-email {
   display: inline-block;
-  margin-top: clamp(40px, 7vh, 64px);
+  margin-top: clamp(20px, 4vh, 28px);
   font-size: clamp(1.15rem, 2.6vw, 1.6rem);
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -1410,9 +1443,45 @@ button {
 }
 
 .contact-socials {
-  margin: clamp(40px, 7vh, 56px) auto 0;
-  max-width: 420px;
-  text-align: left;
+  margin-top: clamp(40px, 7vh, 56px);
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-list-home {
+  align-items: flex-start;
+  margin-top: 24px;
+}
+
+.contact-list a {
+  font-size: 15.5px;
+  color: var(--text-2);
+  transition: color 0.15s ease;
+}
+
+.contact-list a:hover {
+  color: var(--text);
+}
+
+.contact-list .contact-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.contact-list .contact-handle {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+.contact-list .ext {
+  font-size: 13px;
+  color: var(--text-3);
 }
 
 /* ---------- responsive ---------- */
