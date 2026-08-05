@@ -6,15 +6,24 @@ import { createPortal } from "react-dom";
 import type { ProjectImage } from "@/lib/data";
 
 function Lightbox({
-  image,
+  images,
+  index,
   onClose,
+  onIndex,
 }: {
-  image: ProjectImage;
+  images: ProjectImage[];
+  index: number;
   onClose: () => void;
+  onIndex: (i: number) => void;
 }) {
+  const total = images.length;
+  const image = images[index];
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight" && total > 1) onIndex((index + 1) % total);
+      if (e.key === "ArrowLeft" && total > 1) onIndex((index - 1 + total) % total);
     };
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -23,7 +32,7 @@ function Lightbox({
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [onClose]);
+  }, [onClose, onIndex, index, total]);
 
   return createPortal(
     <div
@@ -55,6 +64,26 @@ function Lightbox({
           <figcaption className="gallery-caption">{image.caption}</figcaption>
         )}
       </figure>
+      {total > 1 && (
+        <>
+          <button
+            type="button"
+            className="lightbox-prev"
+            aria-label="Previous image"
+            onClick={() => onIndex((index - 1 + total) % total)}
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            className="lightbox-next"
+            aria-label="Next image"
+            onClick={() => onIndex((index + 1) % total)}
+          >
+            →
+          </button>
+        </>
+      )}
     </div>,
     document.body
   );
@@ -200,7 +229,7 @@ export function GalleryCarousel({
   captions?: boolean;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState<ProjectImage | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(EAGER_SLIDES);
   const imageHeight = useCarouselHeight(images);
 
@@ -255,12 +284,19 @@ export function GalleryCarousel({
             show={i < revealed}
             height={imageHeight}
             scroller={scroller}
-            onOpen={() => setActive(image)}
+            onOpen={() => setActiveIndex(i)}
             onReveal={() => revealFrom(i)}
           />
         ))}
       </div>
-      {active && <Lightbox image={active} onClose={() => setActive(null)} />}
+      {activeIndex !== null && (
+        <Lightbox
+          images={images}
+          index={activeIndex}
+          onClose={() => setActiveIndex(null)}
+          onIndex={setActiveIndex}
+        />
+      )}
     </div>
   );
 }

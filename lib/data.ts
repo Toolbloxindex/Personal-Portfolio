@@ -797,7 +797,7 @@ export const aboutStory: AboutBlock[] = [
   },
   {
     type: "p",
-    text: "Outside of technology, sport has become one of the ways through which I explore my own limits. I spend much of my time in the gym, running, cycling, and swimming. Over the years, I have completed numerous races and half-marathons, including demanding routes with significant elevation. What attracts me to endurance sports is the psychological challenge, the confrontation with discomfort, doubt, and exhaustion. I used to run until I couldn't, sometimes pushing myself to the point of being unable to function properly for days afterwards. Over time, I learned to channel that intensity more intelligently, but the mindset of pushing beyond perceived limits has stayed with me.",
+    text: "Sport, too, has become one of the ways through which I explore my own limits. I spend much of my time in the gym, running, cycling, and swimming. Over the years, I have completed numerous races and half-marathons, including demanding routes across hills with significant elevation. What attracts me to endurance sports is the psychological challenge, the confrontation with discomfort, doubt, and exhaustion. I used to run until I couldn't, sometimes pushing myself to the point of being unable to function properly for days afterwards. Over time, I learned to channel that intensity more intelligently, but the mindset of pushing beyond perceived limits has stayed with me.",
   },
   {
     type: "p",
@@ -862,7 +862,7 @@ export const aboutStory: AboutBlock[] = [
   },
   {
     type: "p",
-    text: "At my core, I am someone who wants to understand how the world works and contribute to building things that improve it. I am deeply entrepreneurial, highly curious, and probably more ambitious than is reasonable. I don't know exactly where my path will lead, but I hope that, over time, I can look back and say that I used my time well, contributing to something larger than myself.",
+    text: "At my core, I am someone who wants to understand how the world works and contribute to building things that improve it. I am deeply entrepreneurial, highly curious, ambitious, and hardcore. I don't know exactly where my path will lead, but I hope that, over time, I can look back and say that I used my time well, contributing to something larger than myself.",
   },
   {
     type: "p",
