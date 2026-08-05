@@ -6,7 +6,7 @@ export const profile = {
   location: "Delft, NL",
   timezone: "UTC+1",
   email: "thomas.correia.dc@gmail.com",
-  source: "https://github.com/thomascorreia/termfolio",
+  source: "https://github.com/Toolbloxindex/Personal-Portfolio",
   linkedin: "https://www.linkedin.com/in/tom%C3%A1s-correia-367810278/",
   socials: [
     {
@@ -619,38 +619,67 @@ export const education = [
     title: "Colégio Pedro Arrupe",
     company: "High school",
     location: "Lisbon, PT",
-    summary: "Graduated with a 19.44 average, among the best in the year.",
+    summary: "Graduated with a 19.44/20 average, among the best in the year.",
   },
 ];
 
-export const skills = [
-  "TypeScript",
-  "JavaScript",
-  "Java",
-  "React",
-  "Next.js",
-  "React Native",
-  "Node.js",
-  "iOS Development",
-  "Android Development",
-  "REST APIs",
-  "Figma",
+export type SkillGroup = { category: string; items: string[] };
+
+export const skillGroups: SkillGroup[] = [
+  {
+    category: "Engineering & Development",
+    items: [
+      "Full-stack Development",
+      "TypeScript",
+      "JavaScript",
+      "Java",
+      "React",
+      "Next.js",
+      "React Native",
+      "Node.js",
+      "iOS Development",
+      "Android Development",
+      "REST APIs",
+    ],
+  },
+  {
+    category: "Design",
+    items: [
+      "Product Design",
+      "UX & UI Design",
+      "User Research",
+      "Web Design",
+      "Graphic Design",
+      "Branding",
+      "Figma",
+    ],
+  },
+  {
+    category: "Media & Content",
+    items: ["Video Editing", "Content Creation", "DaVinci Resolve", "Affinity"],
+  },
+  {
+    category: "Business & Growth",
+    items: [
+      "Start-up Ventures",
+      "Product Management",
+      "Sales",
+      "Growth Marketing",
+      "Marketing",
+      "Partnerships",
+      "Data Analysis",
+      "Community Building",
+    ],
+  },
+];
+
+export const keySkills = [
+  "Full-stack Development",
   "Product Design",
   "UX & UI Design",
-  "Web Design",
-  "Graphic Design",
-  "Branding",
-  "DaVinci Resolve",
-  "Video Editing",
-  "Affinity",
-  "Sales",
   "Start-up Ventures",
+  "Product Management",
   "Growth Marketing",
-  "Marketing",
-  "Partnerships",
-  "Data Analysis",
-  "Content Creation",
-  "Community Building",
 ];
 
 export const languages = [
@@ -697,10 +726,10 @@ export const certifications: Certification[] = [
     ],
   },
   {
-    name: "IELTS: Overall Score 8.0",
+    name: "IELTS Academic: Overall Score 8.0",
     issuer: "IELTS Official",
     issued: "Dec 2025",
-    skills: "English",
+    skills: "English — 8.0/9",
     credentialId: "25PT502694DUAT008A",
   },
   {

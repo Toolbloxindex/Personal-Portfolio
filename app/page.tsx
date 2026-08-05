@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ProjectList } from "@/components/ProjectList";
-import { contact, hero, majorProjects, now, portrait, profile } from "@/lib/data";
+import { contact, hero, keySkills, majorProjects, now, portrait, profile } from "@/lib/data";
 
 export default function Home() {
   return (
@@ -41,6 +41,22 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="split">
+        <h2 className="split-label">Key skills</h2>
+        <div className="split-body">
+          <ul className="skill-chips">
+            {keySkills.map((skill) => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </ul>
+          <nav className="more-links" aria-label="Skills">
+            <Link className="link-arrow" href="/experience#skills">
+              All skills <span aria-hidden="true">→</span>
+            </Link>
+          </nav>
+        </div>
       </section>
 
       <section className="split">

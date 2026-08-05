@@ -185,7 +185,7 @@ button {
 }
 
 .site-brand {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -193,9 +193,7 @@ button {
 }
 
 .site-brand:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  color: var(--text);
 }
 
 .site-nav {
@@ -454,21 +452,6 @@ button {
   gap: 16px;
 }
 
-.tl-title-wrap {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-
-.tl-icon {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  align-self: center;
-}
-
 .tl-title {
   font-size: 1.02rem;
   font-weight: 600;
@@ -614,6 +597,21 @@ button {
   flex-wrap: wrap;
   gap: 28px;
   margin-top: 36px;
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-chips li {
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
 }
 
 /* ---------- article (work detail) ---------- */
@@ -1186,6 +1184,27 @@ button {
   font-size: 15px;
 }
 
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 40px;
+}
+
+.skill-group-cat {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-3);
+}
+
+.skill-group .skill-grid {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+}
+
 .cert-list {
   border-bottom: 1px solid var(--border);
 }
@@ -1544,6 +1563,14 @@ button {
   }
 
   .skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-group .skill-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

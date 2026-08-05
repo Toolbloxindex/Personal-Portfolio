@@ -8,7 +8,7 @@ import {
   languages,
   profile,
   roles,
-  skills,
+  skillGroups,
 } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -116,13 +116,20 @@ export default function Experience() {
         ))}
       </section>
 
-      <section className="exp-block">
+      <section className="exp-block" id="skills">
         <h2 className="section-head">Skills</h2>
-        <ul className="skill-grid">
-          {skills.map((skill) => (
-            <li key={skill}>{skill}</li>
+        <div className="skill-groups">
+          {skillGroups.map((group) => (
+            <div className="skill-group" key={group.category}>
+              <h3 className="skill-group-cat">{group.category}</h3>
+              <ul className="skill-grid">
+                {group.items.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className="exp-block">
