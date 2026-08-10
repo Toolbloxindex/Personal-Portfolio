@@ -48,10 +48,10 @@ export const profile = {
 };
 
 export const photo = {
-  src: "/images/Home/Photo_Tomas.jpeg",
+  src: "/images/About%20Me/IMG_6059.jpeg",
   alt: "Portrait of Tomás Correia",
-  width: 3024,
-  height: 2715,
+  width: 3017,
+  height: 3186,
 };
 
 export const portrait = {
@@ -619,7 +619,7 @@ export const education = [
     title: "Colégio Pedro Arrupe",
     company: "High school",
     location: "Lisbon, PT",
-    summary: "Graduated with a 19.44/20 average, among the best in the year.",
+    summary: "Graduated with a 19.6/20 average and 19.3/20 weighted average, among the best in the year.",
   },
 ];
 
@@ -880,8 +880,8 @@ export const aboutGallery: ProjectImage[] = [
   { src: "/images/About%20Me/IMG_5932.jpg", caption: "Tomás Correia", width: 1206, height: 1874 },
   { src: "/images/About%20Me/IMG_4096.JPG", caption: "Tomás Correia", width: 4000, height: 3159 },
   { src: "/images/About%20Me/IMG_5931.jpg", caption: "Tomás Correia", width: 1206, height: 2116 },
-  { src: "/images/About%20Me/IMG_2461.jpeg", caption: "Tomás Correia", width: 2322, height: 3401 },
   { src: "/images/About%20Me/IMG_0299.jpeg", caption: "Tomás Correia", width: 3024, height: 4032 },
+  { src: "/images/About%20Me/IMG_6059.jpeg", caption: "Tomás Correia", width: 3017, height: 3186 }
 ];
 
 export const photography: ProjectImage[] = [
