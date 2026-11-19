@@ -94,6 +94,7 @@ export type GalleryGroup = {
 export type ProjectVideo = {
   src: string;
   caption: string;
+  poster?: string;
 };
 
 export type Project = {
@@ -109,6 +110,7 @@ export type Project = {
   gallery?: GalleryGroup[];
   galleryNote?: string;
   videos?: ProjectVideo[];
+  videoBeforeImages?: boolean;
   youtube?: ProjectVideo[];
   icon?: { src: string; alt: string; large?: boolean };
   small?: boolean;
@@ -399,6 +401,70 @@ images: [
     ],
   },
   {
+    slug: "echoes-of-the-forgotten",
+    title: "Echoes of the Forgotten",
+    year: "2024",
+    role: "Co-creator, programming & level design",
+    small: true,
+    summary: "An eerie Roblox horror game made with a friend under Dot Works. We built an early alpha of Chapter 1.",
+    stack: ["Roblox Studio", "Luau"],
+    skills: ["Game Development", "Gameplay Programming", "Level Design", "Asset Creation", "Story Writing", "Team Coordination"],
+    links: [],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "In the summer of 2024, a friend and I wanted to make a serious Roblox game, so we started a small game studio called **Dot Works**. We spent a few months working on an eerie horror game, creating assets, programming, building levels, coordinating the work, and writing the story.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "We finished the first version of Chapter 1, though it was still a very early alpha and very much unfinished. In the end, the vision was too big and the game was too ambitious. Each minute of gameplay took us several hours of work, which was unsustainable for us at the time, so we ended development and moved on to other projects. We're still very proud of what we made, and we had fun making it.",
+        ],
+      },
+      {
+        heading: "Game story",
+        paragraphs: [
+          "The game takes place in a futuristic city with enormous, abandoned skyscrapers that are old and damaged. Nothing works. The network is down, and phones and computers all show a red error screen. In this universe, robots rebelled against humanity and tried to destroy us, starting a war between humans and robots. The player wakes up in the future in a machine that has somehow kept their body cryogenically preserved. They see no signs of life. The player looks for answers by solving puzzles until they come across a half-destroyed robot that chases them and tries to kill them. As the player progresses, the building starts to collapse, revealing that they were at the top of a skyscraper.",
+          "Throughout the game, there are scenes in the building where the player sees themselves in saturated colors, talking about their past.",
+        ],
+      },
+      {
+        heading: "Gameplay",
+        paragraphs: ["Watch the gameplay video below to see our work."],
+      },
+    ],
+    videos: [
+      {
+        src: "/videos/echoes-of-the-forgotten/chapter-1-alpha.mp4",
+        caption: "Chapter 1 gameplay (early alpha)",
+        poster: "/videos/echoes-of-the-forgotten/chapter-1-alpha-poster.jpg",
+      },
+    ],
+    videoBeforeImages: true,
+    galleryNote: "I've also included some gameplay stills and development screenshots in the gallery below.",
+    gallery: [
+      {
+        label: "Gameplay & development",
+        images: [
+          { src: "/images/Echoes%20of%20The%20Forgotten/1-Menu.png", caption: "Main menu", width: 2547, height: 1271 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/2-%20Corridor.png", caption: "Corridor", width: 2547, height: 1270 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/3-%20Dark%20Room.png", caption: "Dark room", width: 2542, height: 1269 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/4-Tower%201.png", caption: "Tower", width: 1874, height: 1033 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/5-%20Early%20Brainstorming%20sketches.png", caption: "Early brainstorming sketches", width: 621, height: 563 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/6-%20Early%20Plans.png", caption: "Early plans", width: 846, height: 708 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/7-%20Development%20main%20room.png", caption: "Developing the main room", width: 1280, height: 611 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/8-%20Development%20chase%20scene%20(unfinished).png", caption: "Developing the unfinished chase scene", width: 1280, height: 611 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/9-%20Arraging%20rooms%20and%20layouts.png", caption: "Arranging rooms and layouts", width: 1280, height: 611 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/10-%20Creating%20floors.png", caption: "Creating the floors", width: 1280, height: 611 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/11-%20Creating%20Tower1.png", caption: "Creating the tower", width: 1280, height: 611 },
+          { src: "/images/Echoes%20of%20The%20Forgotten/12-%20Creating%20assets%20picture.png", caption: "Creating game assets", width: 1280, height: 611 },
+        ],
+      },
+    ],
+  },
+  {
     slug: "toolblox-labs",
     title: "Toolblox Labs",
     year: "2024",
@@ -507,12 +573,6 @@ images: [
 export const majorProjects: Project[] = projects.filter((p) => !p.small);
 
 export const sideProjects: Project[] = projects.filter((p) => p.small);
-
-export const projectsSub =
-  "Major products built end to end, plus smaller experiments in public. Newest first.";
-
-export const experienceSub =
-  "Work, education and skills.";
 
 export type Role = {
   period: string;

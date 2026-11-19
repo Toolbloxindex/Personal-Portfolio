@@ -4,7 +4,6 @@ import { ProofGallery } from "@/components/ProofGallery";
 import {
   certifications,
   education,
-  experienceSub,
   languages,
   profile,
   roles,
@@ -22,7 +21,6 @@ export default function Experience() {
     <main id="main" className="main container">
       <header className="page-head">
         <h1 className="page-title">Experience</h1>
-        <p className="sub">{experienceSub}</p>
       </header>
 
       <section className="exp-block">

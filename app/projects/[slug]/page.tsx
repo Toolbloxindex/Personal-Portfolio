@@ -131,11 +131,12 @@ export default async function ProjectDetail({
             )}
         </dl>
         </div>
-        {(project.gallery || project.youtube) && (
+        {(project.gallery || project.videos || project.youtube) && (
           <Gallery
             note={project.galleryNote}
             groups={project.gallery ?? []}
             videos={project.videos}
+            videoBeforeImages={project.videoBeforeImages}
             youtube={project.youtube}
           />
         )}

@@ -10,15 +10,41 @@ export function Gallery({
   note,
   groups,
   videos,
+  videoBeforeImages,
   youtube,
 }: {
   note?: string;
   groups: GalleryGroup[];
   videos?: ProjectVideo[];
+  videoBeforeImages?: boolean;
   youtube?: ProjectVideo[];
 }) {
+  const videoGroup = videos && videos.length > 0 && (
+    <div className="gallery-group">
+      <h2 className="gallery-head">Demo</h2>
+      <div className="gallery-videos">
+        {videos.map((video) => (
+          <figure key={video.src} className="gallery-video-wrap">
+            <video
+              src={video.src}
+              poster={video.poster}
+              controls
+              playsInline
+              preload="metadata"
+              className="gallery-video"
+            />
+            <figcaption className="gallery-caption">
+              {video.caption}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <section className="gallery">
+      {videoBeforeImages && videoGroup}
       {note && <p className="gallery-note">{note}</p>}
       {groups.map((group) => (
         <GalleryCarousel
@@ -29,27 +55,7 @@ export function Gallery({
           captions={group.captions}
         />
       ))}
-      {videos && videos.length > 0 && (
-        <div className="gallery-group">
-          <h2 className="gallery-head">Demo</h2>
-          <div className="gallery-videos">
-            {videos.map((video) => (
-              <figure key={video.src} className="gallery-video-wrap">
-                <video
-                  src={video.src}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="gallery-video"
-                />
-                <figcaption className="gallery-caption">
-                  {video.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      )}
+      {!videoBeforeImages && videoGroup}
       {youtube && youtube.length > 0 && (
         <div className="gallery-group">
           <h2 className="gallery-head">Watch</h2>
