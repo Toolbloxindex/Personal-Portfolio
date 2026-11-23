@@ -675,7 +675,7 @@ export const education = [
     summary: "Bachelor's degree in progress at one of Europe's leading engineering universities.",
     award: {
       placement: "1st place",
-      description: "in the Brainfuck interpreter competition for TU Delft’s Computer Organisation course.",
+      description: "in the Brainfuck assembly interpreter competition for TU Delft’s Computer Organisation course.",
     },
   },
   {
