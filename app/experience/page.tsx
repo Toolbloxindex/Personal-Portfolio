@@ -109,6 +109,14 @@ export default function Experience() {
                 </span>
               </p>
               <p className="exp-summary">{row.summary}</p>
+              {row.award && (
+                <ul className="exp-points">
+                  <li>
+                    <strong>{row.award.placement}</strong>{" "}
+                    {row.award.description}
+                  </li>
+                </ul>
+              )}
             </div>
           </article>
         ))}

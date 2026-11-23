@@ -673,6 +673,10 @@ export const education = [
     company: "TU Delft",
     location: "Delft, NL",
     summary: "Bachelor's degree in progress at one of Europe's leading engineering universities.",
+    award: {
+      placement: "1st place",
+      description: "in the Brainfuck interpreter competition for TU Delft’s Computer Organisation course.",
+    },
   },
   {
     period: "2013 – 2026",
