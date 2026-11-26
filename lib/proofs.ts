@@ -38,3 +38,19 @@ export async function getProofText(release: ProofRelease) {
   if (!response.ok) throw new Error("Cannot load the tagged proof");
   return response.text();
 }
+
+export async function getProofDoi(release: ProofRelease): Promise<string | null> {
+  const endpoint = `https://solved-problems.178-62-4-68.sslip.io/citations/${encodeURIComponent(release.result)}.json`;
+  try {
+    const response = await fetch(endpoint, {
+      next: { revalidate: 600 },
+      signal: AbortSignal.timeout(4000),
+    });
+    if (!response.ok) return null;
+    const record = await response.json();
+    return record.version === release.version && typeof record.doi === "string"
+      && /^10\.5281\/zenodo\.\d+$/.test(record.doi) ? record.doi : null;
+  } catch {
+    return null;
+  }
+}

@@ -6,7 +6,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import remarkGfm from "remark-gfm";
-import { getProofText, getReleases, proofRepository } from "@/lib/proofs";
+import { getProofDoi, getProofText, getReleases, proofRepository } from "@/lib/proofs";
 
 type Params = { version: string; slug: string };
 
@@ -29,13 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 export default async function ProofPage({ params }: { params: Promise<Params> }) {
   const release = await findRelease(params);
   const source = `${proofRepository}/tree/${release.version}/results/${release.result}`;
-  const text = await getProofText(release);
+  const [text, doi] = await Promise.all([getProofText(release), getProofDoi(release)]);
   return (
     <main id="main" className="main container">
       <Link className="crumb" href="/proofs">Proof catalogue</Link>
       <header className="page-head">
         <h1 className="page-title">{release.title}</h1>
         <p className="sub"><strong>Verification.</strong> {release.verification}</p>
+        {doi && <p className="sub"><a className="project-action" href={`https://doi.org/${doi}`}>Cite this result · {doi}</a></p>}
         <a className="project-action" href={source}>Proof files and verification code ↗</a>
       </header>
       <article className="prose proof-text">
