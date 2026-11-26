@@ -14,7 +14,7 @@ const value = (param: Filters[string]) => typeof param === "string" ? param.trim
 
 export default async function ProofDirectory({ searchParams }: { searchParams: Promise<Filters> }) {
   const [releases, params] = await Promise.all([getReleases(), searchParams]);
-  const entries = releases.map(release => ({ ...release, ...classify(release.result) }));
+  const entries = releases.map(release => ({ ...classify(release.result), ...release }));
   const subjects = [...new Set(entries.map(entry => entry.subject).filter(Boolean))].sort();
   const kinds = [...new Set(entries.map(entry => entry.kind))].sort();
   const query = value(params.q);
