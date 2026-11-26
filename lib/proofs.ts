@@ -24,14 +24,14 @@ export async function getReleases(): Promise<ProofRelease[]> {
   return releases.toReversed();
 }
 
-const typesetEditions: Record<string, string> = {
-  "/proofs/v1.0.0/first-column": path.join(process.cwd(), "content/proofs/v1.0.0/first-column.md"),
-  "/proofs/v1.1.0/wowii-138": path.join(process.cwd(), "content/proofs/v1.1.0/wowii-138.md"),
+const typesetEditions: Record<string, () => Promise<string>> = {
+  "/proofs/v1.0.0/first-column": () => readFile(path.join(process.cwd(), "content/proofs/v1.0.0/first-column.md"), "utf8"),
+  "/proofs/v1.1.0/wowii-138": () => readFile(path.join(process.cwd(), "content/proofs/v1.1.0/wowii-138.md"), "utf8"),
 };
 
 export async function getProofText(release: ProofRelease) {
   const edition = typesetEditions[proofPath(release)];
-  if (edition) return readFile(edition, "utf8");
+  if (edition) return edition();
 
   const url = `${raw}/${release.version}/results/${release.result}/README.md`;
   const response = await fetch(url, { cache: "force-cache" });
