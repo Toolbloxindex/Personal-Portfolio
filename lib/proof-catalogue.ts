@@ -3,6 +3,9 @@ export const catalogueName = "Proofs & Counterexamples";
 type Classification = { subject: string; kind: string; keywords: string };
 
 const classifications: Record<string, Classification> = {
+  "graffiti-pc-392b-two-domination": {
+    subject: "Graph theory", kind: "Theorem", keywords: "Graffiti.pc Written on the Wall II DeLaViña 392b matching",
+  },
   "first-column": {
     subject: "Algebraic combinatorics",
     kind: "Theorem",

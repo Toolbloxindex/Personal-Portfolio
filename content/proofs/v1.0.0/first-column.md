@@ -6,7 +6,7 @@ For the type-B q-Stirling polynomial of the second kind with column index $k=1$,
 
 **Theorem.** For $n\ge 2$, all interior coefficients satisfy $a(d)^2>a(d-1)a(d+1)$ exactly when $n\ge 6$. At $n=5$ there is exactly one equality, at degree 1. At $n=2,3,4$ the inequality fails at degree 1. The row $n=1$ is constant and has no interior degrees.
 
-Sagan and Swanson ask for weak log-concavity within each parity class for both type-B families and all columns. This result classifies the stronger adjacent-coefficient property in one column of one family. The wider conjecture remains outside this proof. The earlier VPS proof established the weak first-column classification. This note adds the strict threshold and determines the equality case. Priority in the literature is unestablished. [Sagan and Swanson, Definition 1.5 and Conjecture 7.5](https://users.math.msu.edu/users/bsagan/Papers/Old/qStB-pub.pdf)
+Sagan and Swanson ask for weak log-concavity within each parity class for both type-B families and all columns. This result classifies the stronger adjacent-coefficient property in one column of one family. The wider conjecture remains outside this proof. [Sagan and Swanson, Definition 1.5 and Conjecture 7.5](https://users.math.msu.edu/users/bsagan/Papers/Old/qStB-pub.pdf)
 
 ## Proof
 
@@ -46,16 +46,3 @@ b(d)^2-b(d-1)b(d+1)
 $$
 
 Every term is nonnegative by the ratio inequality. Write $D=2n-2$. When $2\le d<D$, the last term is the positive gap of $a$ at $d$. At $d=D$ the last term equals $a(D)^2>0$. At $d=D+1$ the first term is the positive gap at $D-1$. This covers the entire new interior from degree two onward. The extra constant $1$ in $F_{n+1}$ affects only degree zero and hence leaves these gaps intact. The explicit degree-one formula is strictly positive in every new row $n+1\ge 6$. Induction proves the classification.
-
-## Reproduce
-
-From the repository root, run the following commands. The pinned Lean version uses its standard library. The Python replay uses only the standard library.
-
-```sh
-lean results/first-column/FirstColumn.lean
-python3 results/first-column/check.py
-```
-
-The Lean file identifies the polynomial with the original second-kind recurrence. Its theorems `original_column_strict_iff` and `original_column_five_equality_iff` establish the two strictness claims. The printed axiom lists contain propext, Classical.choice and Quot.sound. The Python check calculates rows through $n=256$ and independently reconstructs the first eighteen rows by multinomial expansion. Only the induction and Lean proof cover all n.
-
-The project used AI to develop the proof and formalization. The verification records a Lean kernel check and a separate integer computation. External peer review and a priority determination are open.

@@ -27,10 +27,4 @@ Take the path with consecutive vertices 0 through 14. Give vertex 0 two addition
 
 Use a spine of $2m$ edges and two extra leaves at each end, for any integer $m\ge7$. The same argument gives a unique maximum independent set, and the two square-degree maximizers are 1 and $2m-1$. Their square distance is $m-1$. The path number is $2m+3$, and the conjecture requires $3m-3$. The shortfall $m-6$ can be arbitrarily large.
 
-## Reproduce the finite witness
-
-Run `python3 verify.py` from this directory. The standard-library checker builds the graph from its edges, enumerates independent sets by decreasing size until it finds all largest sets, enumerates induced paths, constructs the square from shortest-path distances, and evaluates both sides. The checker returned one largest independent set of size 11 and the inequality $17\ge18$.
-
-## Status and attribution
-
-The catalogue snapshot lists this entry as open. A targeted search by catalogue name, entry number, statement and graph construction found no earlier disproof. Priority is undetermined. This note gives a direct argument and an executable check. It has not received external review.
+EvanDashRust previously published the same finite counterexample and a formal verification. [Earlier Lean proof](https://github.com/EvanDashRust/Conjecture-Killers/tree/5ea46d1651c936693b8332082de8b45f9c670fab/Results/Graffiti138)

@@ -2,8 +2,6 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 export const proofRepository = "https://github.com/Toolbloxindex/solved-problems";
-const raw = "https://raw.githubusercontent.com/Toolbloxindex/solved-problems";
-
 export type ProofRelease = {
   version: string;
   result: string;
@@ -11,46 +9,40 @@ export type ProofRelease = {
   date: string;
   summary: string;
   verification: string;
+  doi?: string;
 };
 
 export function proofPath(release: ProofRelease) {
   return `/proofs/${release.version}/${release.result}`;
 }
 
-export async function getReleases(): Promise<ProofRelease[]> {
-  const response = await fetch(`${raw}/main/publications.json`, { next: { revalidate: 60 } });
-  if (!response.ok) throw new Error("Cannot load the public proof directory");
-  const releases: ProofRelease[] = await response.json();
-  return releases.toReversed();
+// Only entries and articles edited for this catalogue are published on the portfolio.
+const releases: ProofRelease[] = [
+  {
+    version: "v1.2.0", result: "graffiti-pc-392b-two-domination", date: "2026-11-26",
+    title: "Graffiti.pc 392b on 2-domination and matchings",
+    summary: "A matching bound on the number of vertices needed to give every unmarked vertex two marked neighbors.",
+    verification: "The full theorem was formally checked in Lean.",
+    doi: "10.5281/zenodo.24571980",
+  },
+  {
+    version: "v1.1.0", result: "wowii-138", date: "2026-11-26",
+    title: "A 19-vertex counterexample to Graffiti.pc 138",
+    summary: "A tree whose longest path has 17 vertices, one fewer than the conjecture requires.",
+    verification: "Direct proof and an exhaustive check of the 19-vertex tree.",
+  },
+  {
+    version: "v1.0.0", result: "first-column", date: "2026-11-26",
+    title: "Strict log-concavity in the first type-B q-Stirling column",
+    summary: "In the first column of the second-kind array, strict log-concavity begins at row six.",
+    verification: "The classification was formally checked in Lean.",
+  },
+];
+
+export function getReleases() {
+  return releases;
 }
 
-const typesetEditions: Record<string, () => Promise<string>> = {
-  "/proofs/v1.0.0/first-column": () => readFile(path.join(process.cwd(), "content/proofs/v1.0.0/first-column.md"), "utf8"),
-  "/proofs/v1.1.0/wowii-138": () => readFile(path.join(process.cwd(), "content/proofs/v1.1.0/wowii-138.md"), "utf8"),
-};
-
-export async function getProofText(release: ProofRelease) {
-  const edition = typesetEditions[proofPath(release)];
-  if (edition) return edition();
-
-  const url = `${raw}/${release.version}/results/${release.result}/README.md`;
-  const response = await fetch(url, { cache: "force-cache" });
-  if (!response.ok) throw new Error("Cannot load the tagged proof");
-  return response.text();
-}
-
-export async function getProofDoi(release: ProofRelease): Promise<string | null> {
-  const endpoint = `https://solved-problems.178-62-4-68.sslip.io/citations/${encodeURIComponent(release.result)}.json`;
-  try {
-    const response = await fetch(endpoint, {
-      next: { revalidate: 60 },
-      signal: AbortSignal.timeout(4000),
-    });
-    if (!response.ok) return null;
-    const record = await response.json();
-    return record.version === release.version && typeof record.doi === "string"
-      && /^10\.5281\/zenodo\.\d+$/.test(record.doi) ? record.doi : null;
-  } catch {
-    return null;
-  }
+export function getProofText(release: ProofRelease) {
+  return readFile(path.join(process.cwd(), "content", proofPath(release) + ".md"), "utf8");
 }
