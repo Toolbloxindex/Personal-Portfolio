@@ -1731,3 +1731,10 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+.proof-text { max-width: 72ch; overflow-wrap: anywhere; }
+.proof-text > * + * { margin-top: 1rem; }
+.proof-text h2 { margin-top: 2rem; font-size: 1.35rem; }
+.proof-text pre { padding: 1rem; overflow-x: auto; background: var(--bg-hover); }
+.proof-text ol, .proof-text ul { padding-left: 1.5rem; }
+.proof-text li + li { margin-top: .6rem; }

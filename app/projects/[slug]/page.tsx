@@ -65,7 +65,7 @@ export default async function ProjectDetail({
             <p className="sub">{project.summary}</p>
             {project.primaryLink && (
               <a className="project-action" href={project.primaryLink.href}>
-                {project.primaryLink.label} <span aria-hidden="true">↗</span>
+                {project.primaryLink.label} <span aria-hidden="true">→</span>
               </a>
             )}
           </div>

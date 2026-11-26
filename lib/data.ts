@@ -348,7 +348,7 @@ images: [
     year: "2026",
     role: "Independent mathematics research",
     summary: "I use AI to look for proofs and counterexamples to published conjectures in graph theory and combinatorics.",
-    primaryLink: { label: "Explore the proofs", href: "https://solved-problems.178-62-4-68.sslip.io/" },
+    primaryLink: { label: "Explore the proofs", href: "/proofs" },
     stack: ["Python", "Lean"],
     links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
     body: [
