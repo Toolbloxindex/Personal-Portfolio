@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Markdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import remarkGfm from "remark-gfm";
 import { getProofText, getReleases, proofRepository } from "@/lib/proofs";
 
@@ -32,10 +35,11 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
       <Link className="crumb" href="/proofs">Proof catalogue</Link>
       <header className="page-head">
         <h1 className="page-title">{release.title}</h1>
+        <p className="sub"><strong>Verification.</strong> {release.verification}</p>
         <a className="project-action" href={source}>Proof files and verification code ↗</a>
       </header>
       <article className="prose proof-text">
-        <Markdown remarkPlugins={[remarkGfm]} components={{
+        <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={{
           a: ({ href, children }) => <a href={href && !href.startsWith("#") ? new URL(href, source + "/").href : href}>{children}</a>,
         }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown>
       </article>

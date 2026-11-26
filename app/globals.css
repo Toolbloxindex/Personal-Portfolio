@@ -1759,3 +1759,6 @@ button {
 @media (max-width: 640px) {
   .proof-filters { display: grid; grid-template-columns: minmax(0, 1fr); }
 }
+
+.proof-text .katex-display { overflow-x: auto; overflow-y: hidden; padding-block: .4rem; }
+.proof-text .katex { font-size: 1.08em; }
