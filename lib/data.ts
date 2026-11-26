@@ -103,6 +103,7 @@ export type Project = {
   year: string;
   role: string;
   summary: string;
+  primaryLink?: { label: string; href: string };
   stack: string[];
   skills?: string[];
   links: { label: string; href: string; external: boolean }[];
@@ -338,6 +339,31 @@ images: [
       {
         src: "/videos/Veblen/veblenAd.mp4",
         caption: "Promo ad",
+      },
+    ],
+  },
+  {
+    slug: "solved-problems",
+    title: "Solved Problems",
+    year: "2026",
+    role: "Independent mathematics research",
+    summary: "I use AI to look for proofs and counterexamples to published conjectures in graph theory and combinatorics.",
+    primaryLink: { label: "Explore the proofs", href: "https://solved-problems.178-62-4-68.sslip.io/" },
+    stack: ["Python", "Lean"],
+    links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
+    body: [
+      {
+        heading: "What I’m looking for",
+        paragraphs: [
+          "I start with a published question and search for existing solutions. Then I try to prove the statement for every case it covers, or find one example that contradicts it.",
+          "One note studies a tree you can draw on paper. A conjecture predicts that it must contain a path through at least 18 vertices. Its longest path visits only 17. The proof explains why and shows how to build a whole family of examples.",
+        ],
+      },
+      {
+        heading: "Reading the proofs",
+        paragraphs: [
+          "Each note links the original question, gives the mathematical argument, and includes code you can run. I record what was checked and whether earlier work or independent review is known.",
+        ],
       },
     ],
   },

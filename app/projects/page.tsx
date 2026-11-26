@@ -5,7 +5,7 @@ import { majorProjects, sideProjects } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "A timeline of what Tomás Correia has built: BookHero, Veblen, WHY NOT YOU?, Echoes of the Forgotten, Toolblox Labs and GFX Archive.",
+    "A timeline of what Tomás Correia has built: BookHero, Veblen, Solved Problems, WHY NOT YOU?, Echoes of the Forgotten, Toolblox Labs and GFX Archive.",
 };
 
 export default function Projects() {

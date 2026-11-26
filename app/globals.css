@@ -586,6 +586,21 @@ button {
 
 /* ---------- inline links ---------- */
 
+.project-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: 1rem;
+  padding: 0.6em 1em;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.project-action:hover, .project-action:focus-visible {
+  border-color: var(--text);
+}
+
 .link-arrow {
   display: inline-flex;
   align-items: baseline;
