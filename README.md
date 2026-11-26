@@ -26,11 +26,9 @@ All rights reserved. The code, design, images, videos, and content in this repos
 
 ### Publishing a proof on the portfolio
 
-Edit the public catalogue entry in `lib/proofs.ts` and its matching article in
-`content/proofs/<version>/<result>.md`. The catalogue, search results, metadata
-and RSS feed use this edition. A research release alone does not create a page.
-
-Write for a reader arriving from outside the project. Give the result, scope,
-attribution, verification and links to the proof or DOI. Keep operational
-details, draft evaluations and private correspondence out of the article,
-metadata, commit message and staged diff. Read the rendered page before release.
+The release publisher adds each verified result to the public portfolio manifest.
+The site refreshes that manifest automatically. Each entry includes the result,
+its scope, verification and a link to the tagged reproduction instructions.
+An optional local edition in `content/proofs` can add a short argument or example.
+Only public-facing copy belongs in the manifest. Keep working notes and
+infrastructure details in the private research record.

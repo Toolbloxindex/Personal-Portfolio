@@ -9,3 +9,19 @@ $$
 The proof marks the vertices in $A$ and $X$ first. A two-coloring then ensures that each remaining vertex has two neighbors that are already marked or have the opposite color. Marking a minimum vertex cover of the remaining edges between colors completes the construction. By König’s theorem, this last step costs at most $\mu(G-A)$ marks.
 
 [Original conjecture, entry 392b](https://www.uhd.edu/academics/sciences/mathematics-statistics/wowii/files/conjectures.json) · [Earlier bound by DeLaViña and coauthors](https://doi.org/10.1016/j.aml.2011.01.013)
+
+## An example you can check
+
+Start with six vertices, join every pair, insert one new vertex in each edge, and attach a leaf to one original vertex. Mark the six original vertices and the leaf. Every unmarked vertex now has two marked neighbors. Seven marks are optimal for this graph. The earlier 392a bound gives 16, while 392b gives exactly 7.
+
+## Reproduce the result
+
+With Git and Python 3 installed, run the example checker from the tagged release.
+
+```sh
+git clone --depth 1 --branch v1.2.0 https://github.com/Toolbloxindex/solved-problems.git
+cd solved-problems/results/graffiti-pc-392b-two-domination
+python3 check_examples.py
+```
+
+For the six-vertex starting graph, look for the values 7, 7 and 16. To check the theorem for all graphs in its scope, use the [pinned Lean build instructions](https://github.com/Toolbloxindex/solved-problems/blob/v1.2.0/results/graffiti-pc-392b-two-domination/README.md).

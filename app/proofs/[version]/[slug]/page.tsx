@@ -8,6 +8,8 @@ import "katex/dist/katex.min.css";
 import remarkGfm from "remark-gfm";
 import { getProofText, getReleases, proofRepository } from "@/lib/proofs";
 
+export const revalidate = 60;
+
 type Params = { version: string; slug: string };
 
 export async function generateStaticParams() {
@@ -41,9 +43,14 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
         <a className="project-action" href={source}>Proof files and verification code ↗</a>
       </header>
       <article className="prose proof-text">
-        <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={{
+        {text ? <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={{
           a: ({ href, children }) => <a href={href && !href.startsWith("#") ? new URL(href, source + "/").href : href}>{children}</a>,
-        }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown>
+        }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown> : <>
+          <p>{release.summary}</p>
+          <h2>Reproduce the proof</h2>
+          <p>Use the sources pinned to {release.version}. The tagged note lists the toolchain
+            and commands for checking this result. <a href={source.replace("/tree/", "/blob/") + "/README.md"}>Read the reproduction instructions</a>.</p>
+        </>}
       </article>
     </main>
   );
