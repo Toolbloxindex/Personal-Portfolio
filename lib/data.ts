@@ -1,3 +1,5 @@
+import { catalogueName } from "./proof-catalogue";
+
 export const profile = {
   name: "Tomás Correia",
   handle: "tomas-correia",
@@ -344,11 +346,11 @@ images: [
   },
   {
     slug: "solved-problems",
-    title: "Solved Problems",
+    title: catalogueName,
     year: "2026",
     role: "Independent mathematics research",
-    summary: "I use AI to look for proofs and counterexamples to published conjectures in graph theory and combinatorics.",
-    primaryLink: { label: "Explore the proofs", href: "/proofs" },
+    summary: "I investigate published conjectures in graph theory and combinatorics with AI assistance. Each research note states the result, gives the argument, and records how it was checked.",
+    primaryLink: { label: "Search the proof catalogue", href: "/proofs" },
     stack: ["Python", "Lean"],
     links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
     body: [

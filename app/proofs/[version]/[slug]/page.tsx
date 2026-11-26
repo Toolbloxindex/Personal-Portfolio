@@ -29,7 +29,7 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
   const text = await getProofText(release);
   return (
     <main id="main" className="main container">
-      <Link className="crumb" href="/proofs">← Proof directory</Link>
+      <Link className="crumb" href="/proofs">Proof catalogue</Link>
       <header className="page-head">
         <h1 className="page-title">{release.title}</h1>
         <a className="project-action" href={source}>Proof files and verification code ↗</a>

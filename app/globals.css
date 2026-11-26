@@ -1738,3 +1738,24 @@ button {
 .proof-text pre { padding: 1rem; overflow-x: auto; background: var(--bg-hover); }
 .proof-text ol, .proof-text ul { padding-left: 1.5rem; }
 .proof-text li + li { margin-top: .6rem; }
+
+.proof-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; padding-block: 1.5rem; border-block: 1px solid var(--border); }
+.proof-filters label { display: grid; gap: .4rem; color: var(--text-2); font-size: .9rem; }
+.proof-filters label:first-child { flex: 1 1 16rem; }
+.proof-filters :is(input, select, button) { height: 2.85rem; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--bg-raised); color: var(--text); padding-inline: .75rem; font: inherit; font-size: 1rem; }
+.proof-filters input { width: 100%; min-width: 0; }
+.proof-filters button { background: var(--text); color: var(--bg); padding-inline: 1.4rem; cursor: pointer; }
+.proof-count, .proof-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; font-size: .9rem; }
+.proof-count { padding-block: 1.25rem; }
+.proof-count a, .proof-actions a, .proof-index .more-links a { text-decoration: underline; text-underline-offset: .2em; }
+.proof-entry { border-top: 1px solid var(--border); padding-block: 1.8rem; }
+.proof-entry h2 { margin-block: .4rem .65rem; font-size: clamp(1.25rem, 3vw, 1.65rem); font-weight: 500; line-height: 1.25; }
+.proof-entry h2 a:hover { text-decoration: underline; }
+.proof-entry p, .proof-empty { max-width: 75ch; color: var(--text-2); }
+.proof-meta, .proof-check, .proof-actions span { font-size: .9rem; }
+.proof-check { margin-block: .8rem 1.2rem; }
+.proof-check strong { color: var(--text); margin-right: .35rem; }
+.proof-actions span { color: var(--text-2); }
+@media (max-width: 640px) {
+  .proof-filters { display: grid; grid-template-columns: minmax(0, 1fr); }
+}
