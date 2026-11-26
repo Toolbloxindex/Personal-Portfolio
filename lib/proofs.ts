@@ -18,7 +18,7 @@ export function proofPath(release: ProofRelease) {
 }
 
 export async function getReleases(): Promise<ProofRelease[]> {
-  const response = await fetch(`${raw}/main/publications.json`, { next: { revalidate: 600 } });
+  const response = await fetch(`${raw}/main/publications.json`, { next: { revalidate: 60 } });
   if (!response.ok) throw new Error("Cannot load the public proof directory");
   const releases: ProofRelease[] = await response.json();
   return releases.toReversed();
@@ -43,7 +43,7 @@ export async function getProofDoi(release: ProofRelease): Promise<string | null>
   const endpoint = `https://solved-problems.178-62-4-68.sslip.io/citations/${encodeURIComponent(release.result)}.json`;
   try {
     const response = await fetch(endpoint, {
-      next: { revalidate: 600 },
+      next: { revalidate: 60 },
       signal: AbortSignal.timeout(4000),
     });
     if (!response.ok) return null;
