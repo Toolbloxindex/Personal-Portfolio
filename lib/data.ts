@@ -349,16 +349,22 @@ images: [
     title: catalogueName,
     year: "2026",
     role: "Independent mathematics research",
-    summary: "I investigate published conjectures in graph theory and combinatorics with AI assistance. Each research note states the result, gives the argument, and records how it was checked.",
+    summary: "I’m building an autonomous math research lab to explore how AI agents can tackle open conjectures.",
     primaryLink: { label: "Browse mathematical results", href: "/proofs" },
     stack: ["Python", "Lean"],
     links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
     body: [
       {
-        heading: "What I’m looking for",
+        heading: "How it started",
         paragraphs: [
-          "I start with a published question and search for existing solutions. Then I try to prove the statement for every case it covers, or find one example that contradicts it.",
-          "One note studies a tree you can draw on paper. A conjecture predicts that it must contain a path through at least 18 vertices. Its longest path visits only 17. The proof explains why and shows how to build a whole family of examples.",
+          "I decided to go on a sidequest after seeing the work of [@1337isnot1337](https://github.com/1337isnot1337/solved-conjectures). I wanted to understand how people outside professional mathematics were using AI to prove and disprove major conjectures, so I dug into how they worked and which models performed best on math at the time.",
+        ],
+      },
+      {
+        heading: "Building the lab",
+        paragraphs: [
+          "I took a leap and decided to build my own autonomous math research lab, starting with a custom harness for GPT-6.2 Astra. I’m refining the workflow to get better results while keeping model usage in check. That means deciding which problems to pursue, how much time to spend on each one, which model to use, how many agents to assign, and how those agents should collaborate and log their work.",
+          "It’s far more intricate than I imagined. The project is still in progress, and I’ll share updates as it develops.",
         ],
       },
       {
