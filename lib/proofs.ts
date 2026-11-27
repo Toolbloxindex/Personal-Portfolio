@@ -1,3 +1,4 @@
+import { classify } from "./proof-catalogue";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -22,17 +23,26 @@ const editions = new Set([
   "/proofs/v1.2.0/graffiti-pc-392b-two-domination",
 ]);
 
-export async function getReleases(): Promise<ProofRelease[]> {
-  const response = await fetch(
-    "https://raw.githubusercontent.com/Toolbloxindex/solved-problems/main/portfolio.json",
-    { next: { revalidate: 60 } },
-  );
-  if (!response.ok) throw new Error("Could not load the public proof catalogue");
-  const rows: ProofRelease[] = await response.json();
+type LedgerEntry = { version: string; result: string; kind?: string; keywords?: string; subject?: string };
+
+const rawSource = "https://raw.githubusercontent.com/Toolbloxindex/solved-problems";
+
+async function loadManifest<T>(file: string): Promise<T[]> {
+  const response = await fetch(`${rawSource}/main/${file}`, { next: { revalidate: 60 } });
+  if (!response.ok) throw new Error(`Could not load ${file}`);
+  return response.json();
+}
+
+export async function getReleases() {
+  const [rows, ledger] = await Promise.all([
+    loadManifest<ProofRelease>("portfolio.json"),
+    loadManifest<LedgerEntry>("publications.json"),
+  ]);
   return rows.map(({ version, result, title, date, summary, verification, doi }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
-    return { version, result, title, date, summary, verification,
+    const classification = classify(result, ledger.find(row => row.version === version && row.result === result));
+    return { ...classification, version, result, title, date, summary, verification,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }).reverse();
 }

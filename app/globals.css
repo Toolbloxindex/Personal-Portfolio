@@ -1748,9 +1748,11 @@ button {
 .proof-count, .proof-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; font-size: .9rem; }
 .proof-count { padding-block: 1.25rem; }
 .proof-count a, .proof-actions a, .proof-index .more-links a { text-decoration: underline; text-underline-offset: .2em; }
+.proof-group { margin-block: 1.5rem 2.5rem; }
+.proof-group > h2 { font-size: 1.45rem; margin-bottom: 1rem; }
 .proof-entry { border-top: 1px solid var(--border); padding-block: 1.8rem; }
-.proof-entry h2 { margin-block: .4rem .65rem; font-size: clamp(1.25rem, 3vw, 1.65rem); font-weight: 500; line-height: 1.25; }
-.proof-entry h2 a:hover { text-decoration: underline; }
+.proof-entry h3 { margin-block: .4rem .65rem; font-size: clamp(1.25rem, 3vw, 1.65rem); font-weight: 500; line-height: 1.25; }
+.proof-entry h3 a:hover { text-decoration: underline; }
 .proof-entry p, .proof-empty { max-width: 75ch; color: var(--text-2); }
 .proof-meta, .proof-check, .proof-actions span { font-size: .9rem; }
 .proof-check { margin-block: .8rem 1.2rem; }

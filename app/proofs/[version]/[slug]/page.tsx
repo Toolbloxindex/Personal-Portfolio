@@ -35,8 +35,9 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
   const doi = release.doi;
   return (
     <main id="main" className="main container">
-      <Link className="crumb" href="/proofs">Proof catalogue</Link>
+      <Link className="crumb" href="/proofs">Mathematical results</Link>
       <header className="page-head">
+        <p className="proof-meta">{release.section} · {release.kind}</p>
         <h1 className="page-title">{release.title}</h1>
         <p className="sub"><strong>Verification.</strong> {release.verification}</p>
         {doi && <p className="sub"><a className="project-action" href={`https://doi.org/${doi}`}>Cite this result · {doi}</a></p>}
@@ -47,7 +48,7 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
           a: ({ href, children }) => <a href={href && !href.startsWith("#") ? new URL(href, source + "/").href : href}>{children}</a>,
         }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown> : <>
           <p>{release.summary}</p>
-          <h2>Reproduce the proof</h2>
+          <h2>Reproduce the result</h2>
           <p>Use the sources pinned to {release.version}. The tagged note lists the toolchain
             and commands for checking this result. <a href={source.replace("/tree/", "/blob/") + "/README.md"}>Read the reproduction instructions</a>.</p>
         </>}

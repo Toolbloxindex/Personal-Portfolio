@@ -350,7 +350,7 @@ images: [
     year: "2026",
     role: "Independent mathematics research",
     summary: "I investigate published conjectures in graph theory and combinatorics with AI assistance. Each research note states the result, gives the argument, and records how it was checked.",
-    primaryLink: { label: "Search the proof catalogue", href: "/proofs" },
+    primaryLink: { label: "Browse mathematical results", href: "/proofs" },
     stack: ["Python", "Lean"],
     links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
     body: [
@@ -362,7 +362,7 @@ images: [
         ],
       },
       {
-        heading: "Reading the proofs",
+        heading: "Reading the research notes",
         paragraphs: [
           "Each note links the original question, gives the mathematical argument, and includes code you can run. I record what was checked and whether earlier work or independent review is known.",
         ],

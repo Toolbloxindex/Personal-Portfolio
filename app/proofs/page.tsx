@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { catalogueName, classify, searchable } from "@/lib/proof-catalogue";
+import { catalogueName, resultSections, searchable } from "@/lib/proof-catalogue";
 import { getReleases, proofPath, proofRepository } from "@/lib/proofs";
 
 export const metadata: Metadata = {
   title: catalogueName,
-  description: "Search mathematical proofs and counterexamples by conjecture, author, subject, or verification method.",
+  description: "Search proofs, counterexamples and progress on open problems by conjecture, author, subject, or verification method.",
   alternates: { types: { "application/rss+xml": "/proofs/feed.xml" } },
 };
 
@@ -13,8 +13,7 @@ type Filters = Record<string, string | string[] | undefined>;
 const value = (param: Filters[string]) => typeof param === "string" ? param.trim() : "";
 
 export default async function ProofDirectory({ searchParams }: { searchParams: Promise<Filters> }) {
-  const [releases, params] = await Promise.all([getReleases(), searchParams]);
-  const entries = releases.map(release => ({ ...classify(release.result), ...release }));
+  const [entries, params] = await Promise.all([getReleases(), searchParams]);
   const subjects = [...new Set(entries.map(entry => entry.subject).filter(Boolean))].sort();
   const kinds = [...new Set(entries.map(entry => entry.kind))].sort();
   const query = value(params.q);
@@ -32,7 +31,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
       <Link className="crumb" href="/projects/solved-problems">About the project</Link>
       <header className="page-head">
         <h1 className="page-title">{catalogueName}</h1>
-        <p className="sub">Research notes on published conjectures. Read the argument, inspect the code, or reproduce a check.</p>
+        <p className="sub">Browse resolutions of published conjectures and partial results on questions that remain open.</p>
       </header>
       <form action="/proofs" role="search" className="proof-filters" key={JSON.stringify([query, subject, kind])}>
         <label>Search notes<input name="q" type="search" defaultValue={query} placeholder="Conjecture, author, or keyword" /></label>
@@ -44,18 +43,28 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         {(query || subject || kind) && <Link href="/proofs">Clear search and filters</Link>}
       </div>
       {matches.length === 0 && <p className="proof-empty">No notes match this search. Try a broader term or clear the filters.</p>}
-      <ul>{matches.map(entry => (
-        <li className="proof-entry" key={proofPath(entry)}>
-          <p className="proof-meta">{[entry.subject, entry.kind].filter(Boolean).join(" · ")}</p>
-          <h2><Link href={proofPath(entry)}>{entry.title}</Link></h2>
-          <p>{entry.summary}</p>
-          <p className="proof-check"><strong>Verification</strong> {entry.verification}</p>
-          <div className="proof-actions"><Link href={proofPath(entry)}>Read proof</Link>
-            <a href={`${proofRepository}/tree/${entry.version}/results/${entry.result}`}>Verification files</a>
-            <span><time dateTime={entry.date}>{entry.date}</time> · {entry.version}</span>
-          </div>
-        </li>
-      ))}</ul>
+      {resultSections.map(section => {
+        const group = matches.filter(entry => entry.section === section);
+        if (!group.length) return null;
+        return (
+          <section key={section} className="proof-group">
+            <h2>{section}</h2>
+            <ul>{group.map(entry => (
+              <li className="proof-entry" key={proofPath(entry)}>
+                <p className="proof-meta">{[entry.subject, entry.kind].filter(Boolean).join(" · ")}</p>
+                <h3><Link href={proofPath(entry)}>{entry.title}</Link></h3>
+                <p>{entry.summary}</p>
+                <p className="proof-check"><strong>Verification</strong> {entry.verification}</p>
+                <div className="proof-actions">
+                  <Link href={proofPath(entry)}>Read note</Link>
+                  <a href={`${proofRepository}/tree/${entry.version}/results/${entry.result}`}>Verification files</a>
+                  <span><time dateTime={entry.date}>{entry.date}</time> · {entry.version}</span>
+                </div>
+              </li>
+            ))}</ul>
+          </section>
+        );
+      })}
       <div className="more-links"><a href="/proofs/feed.xml">Release feed (RSS)</a></div>
     </main>
   );
