@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
-import { resultSections, searchable } from "@/lib/proof-catalogue";
+import { resultSections, searchable, verificationMethods } from "@/lib/proof-catalogue";
 
 const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", verification: "" };
 type Filters = typeof emptyFilters;
@@ -99,9 +99,9 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
           onChange={event => applyFilters({ ...filters, significance: event.target.value })}>
           <option value="">All assessments</option>{levels.map(level => <option key={level}>{level}</option>)}
         </select></label>
-        <label>Verification<select name="verification" value={filters.verification}
+        <label>Verification status<select name="verification" value={filters.verification}
           onChange={event => applyFilters({ ...filters, verification: event.target.value })}>
-          <option value="">All verification methods</option>{[...new Set(notes.map(n => n.verification).filter(Boolean))].sort().map(v => <option key={v}>{v}</option>)}
+          <option value="">All verification methods</option>{[...new Set([...verificationMethods, ...notes.flatMap(n => n.verification ? [n.verification] : [])])].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
         <button type="submit">Search</button>

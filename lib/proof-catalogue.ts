@@ -1,3 +1,4 @@
+export const verificationMethods = ["Written proof", "Computer-assisted proof", "Lean-verified proof"];
 export const catalogueName = "Mathematical results";
 export const resultSections = ["Proofs and counterexamples", "Progress on open problems", "Research notes"] as const;
 
