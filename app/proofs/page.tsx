@@ -34,7 +34,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
   };
   const notes = entries.map(entry => ({
     path: proofPath(entry),
-    difficulty: difficultyLabel(entry.difficulty),
+    difficulty: entry.difficulty ? `L${entry.difficulty}` : undefined,
     section: entry.section,
     subject: entry.subject,
     kind: entry.kind,

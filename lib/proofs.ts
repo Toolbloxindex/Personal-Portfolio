@@ -32,7 +32,7 @@ export const difficultyDescriptions = [
 
 export function difficultyLabel(level?: number) {
   if (!level || !Number.isInteger(level) || !difficultyDescriptions[level - 1]) return undefined;
-  return `L${level}`;
+  return `L${level} · ${difficultyDescriptions[level - 1]}`;
 }
 
 export function proofPath(release: ProofRelease) {
