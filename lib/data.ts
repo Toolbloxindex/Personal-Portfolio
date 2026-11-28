@@ -435,6 +435,48 @@ images: [
     ],
   },
   {
+    slug: "instagram-unreeled",
+    title: "Instagram Unreeled",
+    year: "2026",
+    role: "Design & build",
+    small: true,
+    summary: "A userscript that turns Instagram into a distraction-free messenger: no Reels, no Explore, no feed. Just messages, stories and your profile.",
+    stack: [],
+    links: [
+      { label: "github", href: "https://github.com/Toolbloxindex/instagram-unreeled", external: true },
+    ],
+    body: [
+      {
+        heading: "Context",
+        paragraphs: [
+          "I was tired of getting hooked on Reels after checking my messages. Instagram is a very important networking tool, but it's terribly addictive, and as of now it's not possible to turn Reels off.",
+        ],
+      },
+      {
+        heading: "What I did",
+        paragraphs: [
+          "Built a small userscript that runs on instagram.com and keeps only what I actually use: **Direct Messages, Stories and my profile**. Reels, Explore, Search and the Home feed are blocked, and Reel links redirect to the inbox. A simple bottom bar replaces Instagram's own: Messages, Account, Stories.",
+          "It works on iPhone and iPad through Safari, and on desktop in Chrome, Edge, Firefox and Safari. Everything runs locally in the browser, with no data sent anywhere.",
+          "Open-sourced it on [GitHub](https://github.com/Toolbloxindex/instagram-unreeled) with install guides for every platform.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        paragraphs: [
+          "I found it very useful: my Instagram usage has gone down, and I can still reply to messages and keep up with friends' stories.",
+          "If you find it interesting or useful, give it a star on [GitHub](https://github.com/Toolbloxindex/instagram-unreeled) or contribute. ⭐️",
+        ],
+      },
+    ],
+    videos: [
+      {
+        src: "/videos/instagram-unreeled/demo.mp4",
+        caption: "Messages, Stories and profile on iPhone Safari",
+        poster: "/videos/instagram-unreeled/demo-poster.jpg",
+      },
+    ],
+  },
+  {
     slug: "echoes-of-the-forgotten",
     title: "Echoes of the Forgotten",
     year: "2024",
