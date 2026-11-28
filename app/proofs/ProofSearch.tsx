@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
 import { resultSections, searchable, verificationMethods } from "@/lib/proof-catalogue";
 
@@ -129,13 +128,12 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
           <option value="">All verification methods</option>{[...new Set([...verificationMethods, ...notes.flatMap(n => n.verification)])].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
+        <button className="clear-filters" type="button" disabled={!Object.values(filters).some(Boolean)}
+          onClick={() => applyFilters(emptyFilters)}>Clear filters</button>
       </form>
       <div className="proof-count">
         <strong role="status">{summary.join(" · ")}</strong>
-        {Object.values(filters).some(Boolean) && <Link href="/proofs" prefetch={false} onNavigate={event => {
-          event.preventDefault();
-          applyFilters(emptyFilters);
-        }}>Clear search and filters</Link>}
+
       </div>
       {matches.length === 0 && <p className="proof-empty">No notes match this search. Try a broader term or clear the filters.</p>}
       {resultSections.map(section => {
