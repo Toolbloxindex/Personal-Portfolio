@@ -42,6 +42,12 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
     terms.every(term => note.searchIndex.includes(term))
   );
 
+  const summary = [`${matches.length} research ${matches.length === 1 ? "entry" : "entries"}`];
+  for (const status of leanStatuses) {
+    const count = matches.filter(note => note.lean === status).length;
+    if (count) summary.push(`${count} ${status.toLowerCase()}`);
+  }
+
   useEffect(() => {
     function restoreFilters() {
       if (window.location.pathname !== "/proofs") return;
@@ -81,8 +87,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
 
   return (
     <>
-      <p className="proof-meta">{notes.length} research entries · {leanStatuses.map(status =>
-        notes.filter(note => note.lean === status).length + " " + status.toLowerCase()).join(" · ")}</p>
       <form action="/proofs" role="search" className="proof-filters" onSubmit={event => {
         event.preventDefault();
         applyFilters(filters);
@@ -115,7 +119,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
       </form>
       <div className="proof-count">
-        <strong role="status">{matches.length} {matches.length === 1 ? "note" : "notes"}</strong>
+        <strong role="status">{summary.join(" · ")}</strong>
         {Object.values(filters).some(Boolean) && <Link href="/proofs" prefetch={false} onNavigate={event => {
           event.preventDefault();
           applyFilters(emptyFilters);
