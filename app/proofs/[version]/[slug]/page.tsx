@@ -1,11 +1,7 @@
+import ProofMarkdown from "../../ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Markdown from "react-markdown";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import "katex/dist/katex.min.css";
-import remarkGfm from "remark-gfm";
 import { getProofText, getReleases, proofRepository } from "@/lib/proofs";
 
 export const revalidate = 60;
@@ -39,8 +35,9 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
       <header className="page-head">
         <p className="proof-meta">{[release.resultType, release.scope].filter(Boolean).join(" · ")} · <time dateTime={release.date}>{release.date}</time></p>
         <h1 className="page-title">{release.title}</h1>
-        <p className="sub"><strong>What this settles</strong> {release.what_this_settles ?? release.summary}</p>
+        <p className="sub"><strong>What this settles</strong> <ProofMarkdown inline>{release.what_this_settles ?? release.summary}</ProofMarkdown></p>
         <p className="sub"><strong>Verification.</strong> {release.verificationLabel}</p>
+        {release.checks.length > 1 && <p className="proof-meta">{release.checks.slice(1).map((check, index) => <span key={check}>{index > 0 && " · "}<Link href={`/proofs?verification=${encodeURIComponent(check)}`}>{check}</Link></span>)}</p>}
         {release.previous_version && <p><Link href={`/proofs/${release.previous_version}/${release.result}`}>Earlier written release</Link></p>}
         {doi && <p className="sub"><a className="project-action" href={`https://doi.org/${doi}`}>Cite this result · {doi}</a></p>}
         <a className="project-action" href={source}>Proof files and verification code ↗</a>
@@ -49,12 +46,10 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
         {release.significance && release.why_it_matters && <section>
           <h2>Why it matters</h2>
           <p className="proof-meta">Significance · our assessment · {release.significance}</p>
-          <p>{release.why_it_matters}</p>
+          <p><ProofMarkdown inline>{release.why_it_matters}</ProofMarkdown></p>
           {release.significance_source?.startsWith("https://") && <p><a href={release.significance_source}>Independent source on significance</a></p>}
         </section>}
-        {text ? <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={{
-          a: ({ href, children }) => <a href={href && !href.startsWith("#") ? new URL(href, source + "/").href : href}>{children}</a>,
-        }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown> : <p>{release.summary}</p>}
+        {text ? <ProofMarkdown source={source}>{text.replace(/^# [^\n]+\n/, "")}</ProofMarkdown> : <p><ProofMarkdown inline>{release.summary}</ProofMarkdown></p>}
         <h2>Reproduce the result</h2>
         <p>Use the sources pinned to {release.version}. The tagged note lists the toolchain
             and commands for checking this result. <a href={source.replace("/tree/", "/blob/") + "/README.md"}>Read the reproduction instructions</a>.</p>

@@ -1,4 +1,4 @@
-import { classify } from "./proof-catalogue";
+import { classify, verificationChecks } from "./proof-catalogue";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -49,9 +49,10 @@ export async function getReleases() {
     if (!record) throw new Error(`Missing publication record for ${version}/${result}`);
     const classification = classify(result, record);
     const method = verification_method ?? (result === "wowii-138" ? "Written proof" : /\bLean\b/i.test(verification) ? "Lean-verified proof" : undefined);
+    const checks = verificationChecks(method, verification, version, result);
     const verificationLabel = method && verification !== method && !verification.startsWith(method + " · ")
       ? method + " · " + verification : verification;
-    return { ...classification, method, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
+    return { ...classification, checks, method, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }));
   return releases.reverse();

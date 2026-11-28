@@ -1,4 +1,14 @@
 export const verificationMethods = ["Written proof", "Computer-assisted proof", "Lean-verified proof"];
+export function verificationChecks(method: string | undefined, evidence: string, version: string, result: string) {
+  const checks = method ? [method] : [];
+  if (evidence.includes("independent AI mathematical review")) checks.push("Independent AI review");
+  if (evidence.includes("independent exact computation")) checks.push("Independent exact computation");
+  if (evidence.includes("exhaustive check of the")) checks.push("Exhaustive check");
+  if (evidence.includes("finite state checks on")) checks.push("Finite-case check");
+  if (version === "v1.13.0" && result === "armstrong-odd-two-ribbons") checks.push("Partial Lean formalization");
+  return [...new Set(checks)];
+}
+
 export const catalogueName = "Mathematical results";
 export const resultSections = ["Proofs and counterexamples", "Progress on open problems", "Research notes"] as const;
 

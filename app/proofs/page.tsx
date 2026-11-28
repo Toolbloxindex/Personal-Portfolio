@@ -1,3 +1,4 @@
+import ProofMarkdown from "./ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { catalogueName, searchable } from "@/lib/proof-catalogue";
@@ -35,7 +36,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
     subject: entry.subject,
     kind: entry.kind,
     types: entry.types,
-    verification: entry.method,
+    verification: entry.checks,
     scope: entry.scope,
     significance: entry.significance,
     searchIndex: searchable(Object.values(entry).join(" ")),
@@ -43,7 +44,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
       <li className="proof-entry">
         <p className="proof-meta">{[entry.subject, entry.resultType, entry.scope].filter(Boolean).join(" · ")} · <time dateTime={entry.date}>{entry.date}</time></p>
         <h3><Link href={proofPath(entry)}>{entry.title}</Link></h3>
-        <p><strong>What this settles</strong> {entry.what_this_settles ?? entry.summary}</p>
+        <p><strong>What this settles</strong> <ProofMarkdown inline>{entry.what_this_settles ?? entry.summary}</ProofMarkdown></p>
         {entry.significance && <p className="proof-check"><strong>Significance · our assessment</strong> {entry.significance}</p>}
         <p className="proof-check"><strong>Verification</strong> {entry.verificationLabel}</p>
         <div className="proof-actions">

@@ -14,7 +14,7 @@ type Note = {
   kind: string;
   types: string[];
   scope?: string;
-  verification?: string;
+  verification: string[];
   significance?: string;
   searchIndex: string;
   card: ReactNode;
@@ -33,7 +33,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
     (!filters.subject || note.subject === filters.subject) &&
     (!filters.kind || note.kind === filters.kind) &&
     (!filters.type || note.types.includes(filters.type)) &&
-    (!filters.verification || note.verification === filters.verification) &&
+    (!filters.verification || note.verification.includes(filters.verification)) &&
     (!filters.scope || note.scope === filters.scope) &&
     (!filters.significance || note.significance === filters.significance) &&
     terms.every(term => note.searchIndex.includes(term))
@@ -101,7 +101,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         </select></label>
         <label>Verification status<select name="verification" value={filters.verification}
           onChange={event => applyFilters({ ...filters, verification: event.target.value })}>
-          <option value="">All verification methods</option>{[...new Set([...verificationMethods, ...notes.flatMap(n => n.verification ? [n.verification] : [])])].sort().map(v => <option key={v}>{v}</option>)}
+          <option value="">All verification methods</option>{[...new Set([...verificationMethods, ...notes.flatMap(n => n.verification)])].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
         <button type="submit">Search</button>
