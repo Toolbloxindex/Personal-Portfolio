@@ -37,7 +37,7 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
     <main id="main" className="main container">
       <Link className="crumb" href="/proofs">Mathematical results</Link>
       <header className="page-head">
-        <p className="proof-meta">{release.section} · {release.kind}</p>
+        <p className="proof-meta">{[release.resultType, release.scope].filter(Boolean).join(" · ")} · <time dateTime={release.date}>{release.date}</time></p>
         <h1 className="page-title">{release.title}</h1>
         <p className="sub"><strong>Verification.</strong> {release.verification}</p>
         {doi && <p className="sub"><a className="project-action" href={`https://doi.org/${doi}`}>Cite this result · {doi}</a></p>}

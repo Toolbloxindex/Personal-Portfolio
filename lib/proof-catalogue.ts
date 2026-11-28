@@ -24,15 +24,13 @@ export function classify(result: string, record?: Partial<Classification>) {
   // special cases of Conjecture 7.5.
   const kind = result === "type-b-q-stirling-coefficients"
     ? "Partial result" : type || "Research note";
-  let section: ResultSection = "Research notes";
-  // A theorem may settle only a special case. The historical 392b entry
-  // explicitly proves its source conjecture despite its generic kind.
-  if (kind === "Proof" || kind === "Counterexample" ||
-      (kind === "Theorem" && result === "graffiti-pc-392b-two-domination")) {
-    section = "Proofs and counterexamples";
-  }
-  if (kind === "Partial result") section = "Progress on open problems";
-  return { subject, keywords, kind, section };
+  const partial = ["Partial result", "Partial proof", "Partial counterexample"].includes(kind);
+  const resultType = kind === "Counterexample" || kind === "Partial counterexample" ? "Counterexample"
+    : partial || kind === "Proof" || kind === "Theorem" ? "Proof" : "Research note";
+  const scope = partial ? "Partial" : resultType === "Research note" ? undefined : "Full";
+  const section: ResultSection = scope === "Partial" ? "Progress on open problems"
+    : scope === "Full" ? "Proofs and counterexamples" : "Research notes";
+  return { subject, keywords, kind, section, resultType, scope };
 }
 
 export function searchable(text: string) {
