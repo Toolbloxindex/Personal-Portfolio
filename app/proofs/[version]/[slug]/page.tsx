@@ -1,3 +1,4 @@
+import { graffiti138Formalization } from "@/lib/proof-catalogue";
 import ProofMarkdown from "../../ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -37,6 +38,7 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
         <h1 className="page-title">{release.title}</h1>
         <p className="sub"><strong>What this settles</strong> <ProofMarkdown inline>{release.what_this_settles ?? release.summary}</ProofMarkdown></p>
         <p className="sub"><strong>Verification.</strong> {release.verificationLabel}</p>
+        {release.result === "wowii-138" && release.version === "v1.1.0" && <p><a href={graffiti138Formalization}>EvanDashRust’s Lean verification of the same 19-vertex counterexample</a></p>}
         {release.checks.length > 1 && <p className="proof-meta">{release.checks.slice(1).map((check, index) => <span key={check}>{index > 0 && " · "}<Link href={`/proofs?verification=${encodeURIComponent(check)}`}>{check}</Link></span>)}</p>}
         {release.previous_version && <p><Link href={`/proofs/${release.previous_version}/${release.result}`}>Earlier written release</Link></p>}
         {doi && <p className="sub"><a className="project-action" href={`https://doi.org/${doi}`}>Cite this result · {doi}</a></p>}

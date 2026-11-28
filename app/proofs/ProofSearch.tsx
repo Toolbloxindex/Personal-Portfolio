@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
-import { resultSections, searchable, leanStatuses, verificationMethods } from "@/lib/proof-catalogue";
+import { resultSections, searchable, verificationMethods } from "@/lib/proof-catalogue";
 
 const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", lean: "", verification: "" };
 type Filters = typeof emptyFilters;
@@ -29,6 +29,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
   levels: string[];
 }) {
   const [filters, setFilters] = useState(initialFilters);
+  const leanStatuses = [...new Set(notes.flatMap(note => note.lean ? [note.lean] : []))];
   const terms = searchable(filters.q).split(/\s+/);
   const matches = notes.filter(note =>
     (!filters.subject || note.subject === filters.subject) &&

@@ -1,11 +1,12 @@
 export const verificationMethods = ["Written proof", "Computer-assisted proof", "Lean-verified proof"];
-export const leanStatuses = ["Formalized stated result", "Partial formalization", "Not formalized"];
+export const graffiti138Formalization = "https://github.com/EvanDashRust/Conjecture-Killers/tree/5ea46d1651c936693b8332082de8b45f9c670fab/Results/Graffiti138";
 
 export function releaseLeanStatus(version: string, result: string, method?: string, reported?: string) {
-  if (reported && leanStatuses.includes(reported)) return reported;
+  if (reported?.trim()) return reported.trim();
+  if (version === "v1.1.0" && result === "wowii-138") return "External Lean formalization";
   if (version === "v1.13.0" && result === "armstrong-odd-two-ribbons") return "Partial formalization";
   if (method === "Lean-verified proof") return "Formalized stated result";
-  if (method === "Written proof" || method === "Computer-assisted proof") return "Not formalized";
+  if (method === "Written proof" || method === "Computer-assisted proof") return "No Lean proof in release";
   return undefined;
 }
 
