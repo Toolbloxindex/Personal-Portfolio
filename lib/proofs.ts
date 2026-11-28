@@ -22,7 +22,7 @@ export type ProofRelease = {
   significance_source?: string;
 };
 
-const difficultyDescriptions = [
+export const difficultyDescriptions = [
   "Tractable with standard techniques",
   "Requires mathematical background and a tailored argument",
   "Requires specialist methods",
@@ -32,7 +32,7 @@ const difficultyDescriptions = [
 
 export function difficultyLabel(level?: number) {
   if (!level || !Number.isInteger(level) || !difficultyDescriptions[level - 1]) return undefined;
-  return `L${level} · ${difficultyDescriptions[level - 1]}`;
+  return `L${level}`;
 }
 
 export function proofPath(release: ProofRelease) {

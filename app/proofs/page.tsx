@@ -2,7 +2,7 @@ import ProofMarkdown from "./ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { catalogueName, searchable } from "@/lib/proof-catalogue";
-import { difficultyLabel, getReleases, proofPath, proofRepository } from "@/lib/proofs";
+import { difficultyDescriptions, difficultyLabel, getReleases, proofPath, proofRepository } from "@/lib/proofs";
 import ProofSearch from "./ProofSearch";
 
 export const metadata: Metadata = {
@@ -23,6 +23,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
   const levels = [...new Set(entries.map(entry => entry.significance).filter(level => level !== undefined))];
   const initialFilters = {
     q: value(params.q),
+    difficulty: value(params.difficulty),
     subject: value(params.subject),
     kind: value(params.kind),
     type: value(params.type),
@@ -33,6 +34,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
   };
   const notes = entries.map(entry => ({
     path: proofPath(entry),
+    difficulty: difficultyLabel(entry.difficulty),
     section: entry.section,
     subject: entry.subject,
     kind: entry.kind,
@@ -73,6 +75,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         subjects={subjects}
         types={types}
         levels={levels}
+        difficultyDescriptions={difficultyDescriptions}
       />
       <div className="more-links"><a href="/proofs/feed.xml">Release feed (RSS)</a></div>
     </main>
