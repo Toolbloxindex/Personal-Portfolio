@@ -1744,8 +1744,7 @@ button {
 .proof-filters label:first-child { flex: 1 1 16rem; }
 .proof-filters :is(input, select, button) { height: 2.85rem; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--bg-raised); color: var(--text); padding-inline: .75rem; font: inherit; font-size: 1rem; }
 .proof-filters :is(input, select) { width: 100%; min-width: 0; }
-.proof-filters .clear-filters { justify-self: start; width: fit-content; height: 2rem; padding-inline: .65rem; background: transparent; font-size: .85rem; cursor: pointer; }
-.proof-filters .clear-filters:disabled { color: var(--text-2); border-color: var(--border); cursor: default; }
+.proof-filters button { background: var(--text); color: var(--bg); padding-inline: 1.4rem; cursor: pointer; }
 .proof-count, .proof-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; font-size: .9rem; }
 .proof-count { padding-block: 1.25rem; }
 .proof-count a, .proof-actions a, .proof-index .more-links a { text-decoration: underline; text-underline-offset: .2em; }
