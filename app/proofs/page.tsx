@@ -18,7 +18,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
   const superseded = new Set(releases.filter(row => row.previous_version).map(row => row.previous_version + "/" + row.result));
   const entries = releases.filter(row => !superseded.has(row.version + "/" + row.result));
   const subjects = [...new Set(entries.map(entry => entry.subject).filter(Boolean))].sort();
-  const types = [...new Set(entries.map(entry => entry.resultType))].sort();
+  const types = [...new Set(entries.flatMap(entry => entry.types))].sort();
   const levels = [...new Set(entries.map(entry => entry.significance).filter(level => level !== undefined))];
   const initialFilters = {
     q: value(params.q),
@@ -26,7 +26,6 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
     kind: value(params.kind),
     type: value(params.type),
     verification: value(params.verification),
-    palomar: value(params.palomar),
     scope: value(params.scope),
     significance: value(params.significance),
   };
@@ -35,12 +34,11 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
     section: entry.section,
     subject: entry.subject,
     kind: entry.kind,
-    type: entry.resultType,
+    types: entry.types,
     verification: entry.method,
-    palomar: entry.palomar.status,
     scope: entry.scope,
     significance: entry.significance,
-    searchIndex: searchable([...Object.values(entry), entry.palomar.status].join(" ")),
+    searchIndex: searchable(Object.values(entry).join(" ")),
     card: (
       <li className="proof-entry">
         <p className="proof-meta">{[entry.subject, entry.resultType, entry.scope].filter(Boolean).join(" · ")} · <time dateTime={entry.date}>{entry.date}</time></p>
@@ -48,7 +46,6 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         <p><strong>What this settles</strong> {entry.what_this_settles ?? entry.summary}</p>
         {entry.significance && <p className="proof-check"><strong>Significance · our assessment</strong> {entry.significance}</p>}
         <p className="proof-check"><strong>Verification</strong> {entry.verificationLabel}</p>
-        <p className="proof-check"><strong>Palomar</strong> {entry.palomar.status}</p>
         <div className="proof-actions">
           <Link href={proofPath(entry)}>Read note</Link>
           <a href={`${proofRepository}/tree/${entry.version}/results/${entry.result}`}>Verification files</a>

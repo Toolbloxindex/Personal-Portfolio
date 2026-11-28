@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
 import { resultSections, searchable } from "@/lib/proof-catalogue";
 
-const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", verification: "", palomar: "" };
+const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", verification: "" };
 type Filters = typeof emptyFilters;
 
 type Note = {
@@ -12,10 +12,9 @@ type Note = {
   section: (typeof resultSections)[number];
   subject: string;
   kind: string;
-  type: string;
+  types: string[];
   scope?: string;
   verification?: string;
-  palomar: string;
   significance?: string;
   searchIndex: string;
   card: ReactNode;
@@ -33,9 +32,8 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
   const matches = notes.filter(note =>
     (!filters.subject || note.subject === filters.subject) &&
     (!filters.kind || note.kind === filters.kind) &&
-    (!filters.type || note.type === filters.type) &&
+    (!filters.type || note.types.includes(filters.type)) &&
     (!filters.verification || note.verification === filters.verification) &&
-    (!filters.palomar || note.palomar === filters.palomar) &&
     (!filters.scope || note.scope === filters.scope) &&
     (!filters.significance || note.significance === filters.significance) &&
     terms.every(term => note.searchIndex.includes(term))
@@ -56,7 +54,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         type: read("type"),
         scope: read("scope"),
         verification: read("verification"),
-        palomar: read("palomar"),
         significance: read("significance"),
       });
     }
@@ -92,7 +89,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         </select></label>
         <label>Scope<select name="scope" value={filters.scope}
           onChange={event => applyFilters({ ...filters, scope: event.target.value })}>
-          <option value="">Full and partial</option><option>Full</option><option>Partial</option>
+          <option value="">Full and partial</option><option>Full</option><option>Partial</option><option>Supporting work</option>
         </select></label>
         <label>Subject<select name="subject" value={filters.subject}
           onChange={event => applyFilters({ ...filters, subject: event.target.value })}>
@@ -105,10 +102,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         <label>Verification<select name="verification" value={filters.verification}
           onChange={event => applyFilters({ ...filters, verification: event.target.value })}>
           <option value="">All verification methods</option>{[...new Set(notes.map(n => n.verification).filter(Boolean))].sort().map(v => <option key={v}>{v}</option>)}
-        </select></label>
-        <label>Palomar status<select name="palomar" value={filters.palomar}
-          onChange={event => applyFilters({ ...filters, palomar: event.target.value })}>
-          <option value="">All registry statuses</option>{[...new Set(notes.map(n => n.palomar))].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
         <button type="submit">Search</button>

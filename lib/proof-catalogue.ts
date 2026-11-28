@@ -16,6 +16,16 @@ const legacy: Record<string, Classification> = {
   },
 };
 
+const contributions: Record<string, string[]> = {
+  "nineteen-letter-subsequence-cover": ["Proof", "New proof of a known result"],
+  "unicyclic-independence-breaks": ["Proof", "Construction"],
+  "moll-signed-real-periods": ["Counterexample", "Corrected theorem"],
+  "consecutive-231-stack-delay": ["Proof", "Improved bound"],
+  "sparsity-of-integral-arctangent-sums": ["Proof", "Improved bound"],
+  "armstrong-six-ribbons": ["Proof", "Special case"],
+  "armstrong-odd-two-ribbons": ["Proof", "Special case"],
+};
+
 export function classify(result: string, record?: Partial<Classification>) {
   const subject = record?.subject || legacy[result]?.subject || "";
   const keywords = record?.keywords || legacy[result]?.keywords || "";
@@ -25,12 +35,14 @@ export function classify(result: string, record?: Partial<Classification>) {
   const kind = result === "type-b-q-stirling-coefficients"
     ? "Partial result" : type || "Research note";
   const partial = ["Partial result", "Partial proof", "Partial counterexample"].includes(kind);
-  const resultType = kind === "Counterexample" || kind === "Partial counterexample" ? "Counterexample"
-    : partial || kind === "Proof" || kind === "Theorem" ? "Proof" : "Research note";
-  const scope = partial ? "Partial" : resultType === "Research note" ? undefined : "Full";
+  const baseType = kind === "Counterexample" || kind === "Partial counterexample" ? "Counterexample"
+    : partial || kind === "Proof" || kind === "Theorem" ? "Proof" : kind;
+  const types = contributions[result] ?? [baseType];
+  const resultType = types.join(" · ");
+  const scope = partial ? "Partial" : ["Proof", "Counterexample"].includes(baseType) ? "Full" : "Supporting work";
   const section: ResultSection = scope === "Partial" ? "Progress on open problems"
     : scope === "Full" ? "Proofs and counterexamples" : "Research notes";
-  return { subject, keywords, kind, section, resultType, scope };
+  return { subject, keywords, kind, section, resultType, types, scope };
 }
 
 export function searchable(text: string) {
