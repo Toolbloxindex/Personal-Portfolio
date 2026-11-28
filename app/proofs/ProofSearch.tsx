@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
-import { resultSections, searchable, verificationMethods } from "@/lib/proof-catalogue";
+import { resultSections, searchable, leanStatuses, verificationMethods } from "@/lib/proof-catalogue";
 
-const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", verification: "" };
+const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", lean: "", verification: "" };
 type Filters = typeof emptyFilters;
 
 type Note = {
@@ -14,6 +14,7 @@ type Note = {
   kind: string;
   types: string[];
   scope?: string;
+  lean?: string;
   verification: string[];
   significance?: string;
   searchIndex: string;
@@ -33,6 +34,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
     (!filters.subject || note.subject === filters.subject) &&
     (!filters.kind || note.kind === filters.kind) &&
     (!filters.type || note.types.includes(filters.type)) &&
+    (!filters.lean || note.lean === filters.lean) &&
     (!filters.verification || note.verification.includes(filters.verification)) &&
     (!filters.scope || note.scope === filters.scope) &&
     (!filters.significance || note.significance === filters.significance) &&
@@ -53,6 +55,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         kind: read("kind"),
         type: read("type"),
         scope: read("scope"),
+        lean: read("lean"),
         verification: read("verification"),
         significance: read("significance"),
       });
@@ -77,6 +80,8 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
 
   return (
     <>
+      <p className="proof-meta">{notes.length} research entries · {leanStatuses.map(status =>
+        notes.filter(note => note.lean === status).length + " " + status.toLowerCase()).join(" · ")}</p>
       <form action="/proofs" role="search" className="proof-filters" onSubmit={event => {
         event.preventDefault();
         applyFilters(filters);
@@ -99,7 +104,10 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
           onChange={event => applyFilters({ ...filters, significance: event.target.value })}>
           <option value="">All assessments</option>{levels.map(level => <option key={level}>{level}</option>)}
         </select></label>
-        <label>Verification status<select name="verification" value={filters.verification}
+        <label>Lean status<select name="lean" value={filters.lean} onChange={event => applyFilters({ ...filters, lean: event.target.value })}>
+          <option value="">All statuses</option>{leanStatuses.map(status => <option key={status}>{status}</option>)}
+        </select></label>
+        <label>Verification method<select name="verification" value={filters.verification}
           onChange={event => applyFilters({ ...filters, verification: event.target.value })}>
           <option value="">All verification methods</option>{[...new Set([...verificationMethods, ...notes.flatMap(n => n.verification)])].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>

@@ -1,4 +1,4 @@
-import { classify, verificationChecks } from "./proof-catalogue";
+import { classify, verificationChecks, releaseLeanStatus } from "./proof-catalogue";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -12,6 +12,7 @@ export type ProofRelease = {
   what_this_settles?: string;
   verification: string;
   verification_method?: string;
+  lean_status?: string;
   previous_version?: string;
   doi?: string;
   explainer?: string;
@@ -39,7 +40,7 @@ export async function getReleases() {
     loadManifest<ProofRelease>("portfolio.json"),
     loadManifest<LedgerEntry>("publications.json"),
   ]);
-  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, what_this_settles, verification, verification_method, previous_version, doi, explainer, significance, why_it_matters, significance_source }) => {
+  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, what_this_settles, verification, verification_method, lean_status, previous_version, doi, explainer, significance, why_it_matters, significance_source }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
     const matchesRelease = (row: LedgerEntry) => row.version === version && row.result === result;
@@ -49,10 +50,10 @@ export async function getReleases() {
     if (!record) throw new Error(`Missing publication record for ${version}/${result}`);
     const classification = classify(result, record);
     const method = verification_method ?? (result === "wowii-138" ? "Written proof" : /\bLean\b/i.test(verification) ? "Lean-verified proof" : undefined);
-    const checks = verificationChecks(method, verification, version, result);
+    const checks = verificationChecks(method, verification);
     const verificationLabel = method && verification !== method && !verification.startsWith(method + " · ")
       ? method + " · " + verification : verification;
-    return { ...classification, checks, method, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
+    return { ...classification, leanStatus: releaseLeanStatus(version, result, method, lean_status), checks, method, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }));
   return releases.reverse();

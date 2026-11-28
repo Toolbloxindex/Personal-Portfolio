@@ -1,11 +1,20 @@
 export const verificationMethods = ["Written proof", "Computer-assisted proof", "Lean-verified proof"];
-export function verificationChecks(method: string | undefined, evidence: string, version: string, result: string) {
+export const leanStatuses = ["Formalized stated result", "Partial formalization", "Not formalized"];
+
+export function releaseLeanStatus(version: string, result: string, method?: string, reported?: string) {
+  if (reported && leanStatuses.includes(reported)) return reported;
+  if (version === "v1.13.0" && result === "armstrong-odd-two-ribbons") return "Partial formalization";
+  if (method === "Lean-verified proof") return "Formalized stated result";
+  if (method === "Written proof" || method === "Computer-assisted proof") return "Not formalized";
+  return undefined;
+}
+
+export function verificationChecks(method: string | undefined, evidence: string) {
   const checks = method ? [method] : [];
   if (evidence.includes("independent AI mathematical review")) checks.push("Independent AI review");
   if (evidence.includes("independent exact computation")) checks.push("Independent exact computation");
   if (evidence.includes("exhaustive check of the")) checks.push("Exhaustive check");
   if (evidence.includes("finite state checks on")) checks.push("Finite-case check");
-  if (version === "v1.13.0" && result === "armstrong-odd-two-ribbons") checks.push("Partial Lean formalization");
   return [...new Set(checks)];
 }
 

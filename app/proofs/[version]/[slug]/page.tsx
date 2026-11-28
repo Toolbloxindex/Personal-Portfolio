@@ -33,7 +33,7 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
     <main id="main" className="main container">
       <Link className="crumb" href="/proofs">Mathematical results</Link>
       <header className="page-head">
-        <p className="proof-meta">{[release.resultType, release.scope].filter(Boolean).join(" · ")} · <time dateTime={release.date}>{release.date}</time></p>
+        <p className="proof-meta">{[release.resultType, release.scope, release.leanStatus].filter(Boolean).join(" · ")} · <time dateTime={release.date}>{release.date}</time></p>
         <h1 className="page-title">{release.title}</h1>
         <p className="sub"><strong>What this settles</strong> <ProofMarkdown inline>{release.what_this_settles ?? release.summary}</ProofMarkdown></p>
         <p className="sub"><strong>Verification.</strong> {release.verificationLabel}</p>
