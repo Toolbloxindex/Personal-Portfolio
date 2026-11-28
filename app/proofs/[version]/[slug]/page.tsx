@@ -46,12 +46,10 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
       <article className="prose proof-text">
         {text ? <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={{
           a: ({ href, children }) => <a href={href && !href.startsWith("#") ? new URL(href, source + "/").href : href}>{children}</a>,
-        }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown> : <>
-          <p>{release.summary}</p>
+        }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown> : <p>{release.summary}</p>}
           <h2>Reproduce the result</h2>
           <p>Use the sources pinned to {release.version}. The tagged note lists the toolchain
             and commands for checking this result. <a href={source.replace("/tree/", "/blob/") + "/README.md"}>Read the reproduction instructions</a>.</p>
-        </>}
       </article>
     </main>
   );

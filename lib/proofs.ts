@@ -11,17 +11,12 @@ export type ProofRelease = {
   summary: string;
   verification: string;
   doi?: string;
+  explainer?: string;
 };
 
 export function proofPath(release: ProofRelease) {
   return `/proofs/${release.version}/${release.result}`;
 }
-
-const editions = new Set([
-  "/proofs/v1.0.0/first-column",
-  "/proofs/v1.1.0/wowii-138",
-  "/proofs/v1.2.0/graffiti-pc-392b-two-domination",
-]);
 
 type LedgerEntry = { version: string; result: string; kind?: string; keywords?: string; subject?: string };
 
@@ -38,7 +33,7 @@ export async function getReleases() {
     loadManifest<ProofRelease>("portfolio.json"),
     loadManifest<LedgerEntry>("publications.json"),
   ]);
-  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, verification, doi }) => {
+  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, verification, doi, explainer }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
     const matchesRelease = (row: LedgerEntry) => row.version === version && row.result === result;
@@ -47,13 +42,18 @@ export async function getReleases() {
       (await loadManifest<LedgerEntry>("publications.json", version)).find(matchesRelease);
     if (!record) throw new Error(`Missing publication record for ${version}/${result}`);
     const classification = classify(result, record);
-    return { ...classification, version, result, title, date, summary, verification,
+    return { ...classification, version, result, title, date, summary, verification, explainer,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }));
   return releases.reverse();
 }
 
-export function getProofText(release: ProofRelease) {
-  if (!editions.has(proofPath(release))) return null;
-  return readFile(path.join(process.cwd(), "content", proofPath(release) + ".md"), "utf8");
+export async function getProofText(release: ProofRelease) {
+  if (release.explainer?.trim()) return release.explainer;
+  try {
+    return await readFile(path.join(process.cwd(), "content", proofPath(release) + ".md"), "utf8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+    throw error;
+  }
 }
