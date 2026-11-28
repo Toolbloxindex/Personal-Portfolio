@@ -2,7 +2,7 @@ import ProofMarkdown from "./ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { catalogueName, searchable } from "@/lib/proof-catalogue";
-import { getReleases, proofPath, proofRepository } from "@/lib/proofs";
+import { difficultyLabel, getReleases, proofPath, proofRepository } from "@/lib/proofs";
 import ProofSearch from "./ProofSearch";
 
 export const metadata: Metadata = {
@@ -47,7 +47,8 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         <p className="proof-meta">{[entry.subject, entry.resultType, entry.scope, entry.leanStatus].filter(Boolean).join(" · ")} · <time dateTime={entry.date}>{entry.date}</time></p>
         <h3><Link href={proofPath(entry)}>{entry.title}</Link></h3>
         <p><strong>What this settles</strong> <ProofMarkdown inline>{entry.what_this_settles ?? entry.summary}</ProofMarkdown></p>
-        {entry.significance && <p className="proof-check"><strong>Significance · our assessment</strong> {entry.significance}</p>}
+        {entry.significance && <p className="proof-check"><strong>Significance (our assessment)</strong> {entry.significance}</p>}
+        {entry.difficulty && <p className="proof-check"><strong>Difficulty (our assessment)</strong> {difficultyLabel(entry.difficulty)}</p>}
         <p className="proof-check"><strong>Verification</strong> {entry.verificationLabel}</p>
         <div className="proof-actions">
           <Link href={proofPath(entry)}>Read note</Link>

@@ -101,7 +101,7 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
           onChange={event => applyFilters({ ...filters, subject: event.target.value })}>
           <option value="">All subjects</option>{subjects.map(subject => <option key={subject}>{subject}</option>)}
         </select></label>
-        <label>Significance · our assessment<select name="significance" value={filters.significance}
+        <label>Significance (our assessment)<select name="significance" value={filters.significance}
           onChange={event => applyFilters({ ...filters, significance: event.target.value })}>
           <option value="">All assessments</option>{levels.map(level => <option key={level}>{level}</option>)}
         </select></label>
@@ -113,7 +113,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
           <option value="">All verification methods</option>{[...new Set([...verificationMethods, ...notes.flatMap(n => n.verification)])].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
-        <button type="submit">Search</button>
       </form>
       <div className="proof-count">
         <strong role="status">{matches.length} {matches.length === 1 ? "note" : "notes"}</strong>
