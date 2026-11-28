@@ -2,7 +2,7 @@ import ProofMarkdown from "./ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { catalogueName, searchable } from "@/lib/proof-catalogue";
-import { difficultyDescriptions, difficultyLabel, getReleases, proofPath, proofRepository } from "@/lib/proofs";
+import { getReleases, proofPath, proofRepository } from "@/lib/proofs";
 import ProofSearch from "./ProofSearch";
 
 export const metadata: Metadata = {
@@ -23,7 +23,6 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
   const levels = [...new Set(entries.map(entry => entry.significance).filter(level => level !== undefined))];
   const initialFilters = {
     q: value(params.q),
-    difficulty: value(params.difficulty),
     subject: value(params.subject),
     kind: value(params.kind),
     type: value(params.type),
@@ -34,7 +33,6 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
   };
   const notes = entries.map(entry => ({
     path: proofPath(entry),
-    difficulty: entry.difficulty ? `L${entry.difficulty}` : undefined,
     section: entry.section,
     subject: entry.subject,
     kind: entry.kind,
@@ -50,7 +48,6 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         <h3><Link href={proofPath(entry)}>{entry.title}</Link></h3>
         <p><strong>What this settles</strong> <ProofMarkdown inline>{entry.what_this_settles ?? entry.summary}</ProofMarkdown></p>
         {entry.significance && <p className="proof-check"><strong>Significance (our assessment)</strong> {entry.significance}</p>}
-        {entry.difficulty && <p className="proof-check"><strong>Difficulty (our assessment)</strong> {difficultyLabel(entry.difficulty)}</p>}
         <p className="proof-check"><strong>Verification</strong> {entry.verificationLabel}</p>
         <div className="proof-actions">
           <Link href={proofPath(entry)}>Read note</Link>
@@ -75,7 +72,6 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         subjects={subjects}
         types={types}
         levels={levels}
-        difficultyDescriptions={difficultyDescriptions}
       />
       <div className="more-links"><a href="/proofs/feed.xml">Release feed (RSS)</a></div>
     </main>

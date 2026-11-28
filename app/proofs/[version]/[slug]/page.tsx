@@ -3,7 +3,7 @@ import ProofMarkdown from "../../ProofMarkdown";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { difficultyLabel, getProofText, getReleases, proofRepository } from "@/lib/proofs";
+import { getProofText, getReleases, proofRepository } from "@/lib/proofs";
 
 export const revalidate = 60;
 
@@ -37,7 +37,6 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
         <p className="proof-meta">{[release.resultType, release.scope, release.leanStatus].filter(Boolean).join(" · ")} · <time dateTime={release.date}>{release.date}</time></p>
         <h1 className="page-title">{release.title}</h1>
         <p className="sub"><strong>What this settles</strong> <ProofMarkdown inline>{release.what_this_settles ?? release.summary}</ProofMarkdown></p>
-        {release.difficulty && <p className="proof-check"><strong>Difficulty (our assessment)</strong> {difficultyLabel(release.difficulty)}</p>}
         <p className="sub"><strong>Verification.</strong> {release.verificationLabel}</p>
         {release.result === "wowii-138" && release.version === "v1.1.0" && <p><a href={graffiti138Formalization}>EvanDashRust’s Lean verification of the same 19-vertex counterexample</a></p>}
         {release.checks.length > 1 && <p className="proof-meta">{release.checks.slice(1).map((check, index) => <span key={check}>{index > 0 && " · "}<Link href={`/proofs?verification=${encodeURIComponent(check)}`}>{check}</Link></span>)}</p>}

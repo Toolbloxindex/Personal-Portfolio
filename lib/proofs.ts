@@ -16,24 +16,10 @@ export type ProofRelease = {
   previous_version?: string;
   doi?: string;
   explainer?: string;
-  difficulty?: number;
   significance?: "Focused contribution" | "Substantial advance" | "Major advance";
   why_it_matters?: string;
   significance_source?: string;
 };
-
-export const difficultyDescriptions = [
-  "Tractable with standard techniques",
-  "Requires mathematical background and a tailored argument",
-  "Requires specialist methods",
-  "Expert-level frontier problem",
-  "Millennium Prize problem or comparable difficulty"
-];
-
-export function difficultyLabel(level?: number) {
-  if (!level || !Number.isInteger(level) || !difficultyDescriptions[level - 1]) return undefined;
-  return `L${level} · ${difficultyDescriptions[level - 1]}`;
-}
 
 export function proofPath(release: ProofRelease) {
   return `/proofs/${release.version}/${release.result}`;
@@ -54,7 +40,7 @@ export async function getReleases() {
     loadManifest<ProofRelease>("portfolio.json"),
     loadManifest<LedgerEntry>("publications.json"),
   ]);
-  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, what_this_settles, verification, verification_method, lean_status, previous_version, doi, explainer, difficulty, significance, why_it_matters, significance_source }) => {
+  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, what_this_settles, verification, verification_method, lean_status, previous_version, doi, explainer, significance, why_it_matters, significance_source }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
     const matchesRelease = (row: LedgerEntry) => row.version === version && row.result === result;
@@ -67,7 +53,7 @@ export async function getReleases() {
     const checks = verificationChecks(method, verification);
     const verificationLabel = method && verification !== method && !verification.startsWith(method + " · ")
       ? method + " · " + verification : verification;
-    return { ...classification, leanStatus: releaseLeanStatus(version, result, method, lean_status), checks, method, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, difficulty, significance, why_it_matters, significance_source,
+    return { ...classification, leanStatus: releaseLeanStatus(version, result, method, lean_status), checks, method, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }));
   return releases.reverse();

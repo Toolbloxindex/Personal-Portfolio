@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
 import { resultSections, searchable, verificationMethods } from "@/lib/proof-catalogue";
 
-const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", difficulty: "", significance: "", lean: "", verification: "" };
+const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", lean: "", verification: "" };
 type Filters = typeof emptyFilters;
 
 type Note = {
@@ -17,18 +17,16 @@ type Note = {
   lean?: string;
   verification: string[];
   significance?: string;
-  difficulty?: string;
   searchIndex: string;
   card: ReactNode;
 };
 
-export default function ProofSearch({ initialFilters, notes, subjects, types, levels, difficultyDescriptions }: {
+export default function ProofSearch({ initialFilters, notes, subjects, types, levels }: {
   initialFilters: Filters;
   notes: Note[];
   subjects: string[];
   types: string[];
   levels: string[];
-  difficultyDescriptions: string[];
 }) {
   const [filters, setFilters] = useState(initialFilters);
   const leanStatuses = [...new Set(notes.flatMap(note => note.lean ? [note.lean] : []))];
@@ -39,7 +37,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
     (!filters.type || note.types.includes(filters.type)) &&
     (!filters.lean || note.lean === filters.lean) &&
     (!filters.verification || note.verification.includes(filters.verification)) &&
-    (!filters.difficulty || note.difficulty === filters.difficulty) &&
     (!filters.scope || note.scope === filters.scope) &&
     (!filters.significance || note.significance === filters.significance) &&
     terms.every(term => note.searchIndex.includes(term))
@@ -65,7 +62,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         kind: read("kind"),
         type: read("type"),
         scope: read("scope"),
-        difficulty: read("difficulty"),
         lean: read("lean"),
         verification: read("verification"),
         significance: read("significance"),
@@ -112,14 +108,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         <label>Significance (our assessment)<select name="significance" value={filters.significance}
           onChange={event => applyFilters({ ...filters, significance: event.target.value })}>
           <option value="">All assessments</option>{levels.map(level => <option key={level}>{level}</option>)}
-        </select></label>
-        <label>Difficulty (our assessment)<select name="difficulty" value={filters.difficulty}
-          onChange={event => applyFilters({ ...filters, difficulty: event.target.value })}>
-          <option value="">All levels</option>
-          {difficultyDescriptions.map((description, index) => {
-            const level = `L${index + 1}`;
-            return <option key={level} value={level}>{level} · {description}</option>;
-          })}
         </select></label>
         <label>Lean status<select name="lean" value={filters.lean} onChange={event => applyFilters({ ...filters, lean: event.target.value })}>
           <option value="">All statuses</option>{leanStatuses.map(status => <option key={status}>{status}</option>)}
