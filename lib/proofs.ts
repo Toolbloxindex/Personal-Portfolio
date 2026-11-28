@@ -9,6 +9,7 @@ export type ProofRelease = {
   title: string;
   date: string;
   summary: string;
+  what_this_settles?: string;
   verification: string;
   verification_method?: string;
   previous_version?: string;
@@ -33,12 +34,25 @@ async function loadManifest<T>(file: string, revision = "main"): Promise<T[]> {
   return response.json();
 }
 
+type PalomarRecord = { status: string; url?: string; id?: string };
+
+async function loadPalomar(): Promise<Record<string, PalomarRecord>> {
+  try {
+    const response = await fetch(rawSource + "/main/palomar-status.json", { next: { revalidate: 60 } });
+    if (response.ok) return await response.json();
+  } catch {
+    // Registry visibility is independent of availability of the proof itself.
+  }
+  return {};
+}
+
 export async function getReleases() {
-  const [rows, ledger] = await Promise.all([
+  const [rows, ledger, registry] = await Promise.all([
     loadManifest<ProofRelease>("portfolio.json"),
     loadManifest<LedgerEntry>("publications.json"),
+    loadPalomar(),
   ]);
-  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, verification, verification_method, previous_version, doi, explainer, significance, why_it_matters, significance_source }) => {
+  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, what_this_settles, verification, verification_method, previous_version, doi, explainer, significance, why_it_matters, significance_source }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
     const matchesRelease = (row: LedgerEntry) => row.version === version && row.result === result;
@@ -50,7 +64,8 @@ export async function getReleases() {
     const method = verification_method ?? (result === "wowii-138" ? "Written proof" : /\bLean\b/i.test(verification) ? "Lean-verified proof" : undefined);
     const verificationLabel = method && verification !== method && !verification.startsWith(method + " · ")
       ? method + " · " + verification : verification;
-    return { ...classification, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
+    const palomar = registry[version + "/" + result] ?? { status: "Status unavailable" };
+    return { ...classification, method, palomar, what_this_settles, previous_version, verificationLabel, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }));
   return releases.reverse();

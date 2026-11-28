@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Fragment, useEffect, useState, type ReactNode } from "react";
 import { resultSections, searchable } from "@/lib/proof-catalogue";
 
-const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "" };
+const emptyFilters = { q: "", subject: "", kind: "", type: "", scope: "", significance: "", verification: "", palomar: "" };
 type Filters = typeof emptyFilters;
 
 type Note = {
@@ -14,6 +14,8 @@ type Note = {
   kind: string;
   type: string;
   scope?: string;
+  verification?: string;
+  palomar: string;
   significance?: string;
   searchIndex: string;
   card: ReactNode;
@@ -32,6 +34,8 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
     (!filters.subject || note.subject === filters.subject) &&
     (!filters.kind || note.kind === filters.kind) &&
     (!filters.type || note.type === filters.type) &&
+    (!filters.verification || note.verification === filters.verification) &&
+    (!filters.palomar || note.palomar === filters.palomar) &&
     (!filters.scope || note.scope === filters.scope) &&
     (!filters.significance || note.significance === filters.significance) &&
     terms.every(term => note.searchIndex.includes(term))
@@ -51,6 +55,8 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
         kind: read("kind"),
         type: read("type"),
         scope: read("scope"),
+        verification: read("verification"),
+        palomar: read("palomar"),
         significance: read("significance"),
       });
     }
@@ -80,10 +86,6 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
       }}>
         <label>Search notes<input name="q" type="search" value={filters.q} placeholder="Conjecture, author, or keyword"
           onChange={event => applyFilters({ ...filters, q: event.target.value })} /></label>
-        <label>Subject<select name="subject" value={filters.subject}
-          onChange={event => applyFilters({ ...filters, subject: event.target.value })}>
-          <option value="">All subjects</option>{subjects.map(subject => <option key={subject}>{subject}</option>)}
-        </select></label>
         <label>Result type<select name="type" value={filters.type}
           onChange={event => applyFilters({ ...filters, type: event.target.value })}>
           <option value="">All types</option>{types.map(type => <option key={type}>{type}</option>)}
@@ -92,9 +94,21 @@ export default function ProofSearch({ initialFilters, notes, subjects, types, le
           onChange={event => applyFilters({ ...filters, scope: event.target.value })}>
           <option value="">Full and partial</option><option>Full</option><option>Partial</option>
         </select></label>
+        <label>Subject<select name="subject" value={filters.subject}
+          onChange={event => applyFilters({ ...filters, subject: event.target.value })}>
+          <option value="">All subjects</option>{subjects.map(subject => <option key={subject}>{subject}</option>)}
+        </select></label>
         <label>Significance · our assessment<select name="significance" value={filters.significance}
           onChange={event => applyFilters({ ...filters, significance: event.target.value })}>
           <option value="">All assessments</option>{levels.map(level => <option key={level}>{level}</option>)}
+        </select></label>
+        <label>Verification<select name="verification" value={filters.verification}
+          onChange={event => applyFilters({ ...filters, verification: event.target.value })}>
+          <option value="">All verification methods</option>{[...new Set(notes.map(n => n.verification).filter(Boolean))].sort().map(v => <option key={v}>{v}</option>)}
+        </select></label>
+        <label>Palomar status<select name="palomar" value={filters.palomar}
+          onChange={event => applyFilters({ ...filters, palomar: event.target.value })}>
+          <option value="">All registry statuses</option>{[...new Set(notes.map(n => n.palomar))].sort().map(v => <option key={v}>{v}</option>)}
         </select></label>
         {filters.kind && <input type="hidden" name="kind" value={filters.kind} />}
         <button type="submit">Search</button>

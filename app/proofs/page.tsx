@@ -25,6 +25,8 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
     subject: value(params.subject),
     kind: value(params.kind),
     type: value(params.type),
+    verification: value(params.verification),
+    palomar: value(params.palomar),
     scope: value(params.scope),
     significance: value(params.significance),
   };
@@ -34,16 +36,19 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
     subject: entry.subject,
     kind: entry.kind,
     type: entry.resultType,
+    verification: entry.method,
+    palomar: entry.palomar.status,
     scope: entry.scope,
     significance: entry.significance,
-    searchIndex: searchable(Object.values(entry).join(" ")),
+    searchIndex: searchable([...Object.values(entry), entry.palomar.status].join(" ")),
     card: (
       <li className="proof-entry">
         <p className="proof-meta">{[entry.subject, entry.resultType, entry.scope].filter(Boolean).join(" · ")} · <time dateTime={entry.date}>{entry.date}</time></p>
         <h3><Link href={proofPath(entry)}>{entry.title}</Link></h3>
-        <p>{entry.summary}</p>
+        <p><strong>What this settles</strong> {entry.what_this_settles ?? entry.summary}</p>
         {entry.significance && <p className="proof-check"><strong>Significance · our assessment</strong> {entry.significance}</p>}
         <p className="proof-check"><strong>Verification</strong> {entry.verificationLabel}</p>
+        <p className="proof-check"><strong>Palomar</strong> {entry.palomar.status}</p>
         <div className="proof-actions">
           <Link href={proofPath(entry)}>Read note</Link>
           <a href={`${proofRepository}/tree/${entry.version}/results/${entry.result}`}>Verification files</a>
