@@ -27,8 +27,8 @@ type LedgerEntry = { version: string; result: string; kind?: string; keywords?: 
 
 const rawSource = "https://raw.githubusercontent.com/Toolbloxindex/solved-problems";
 
-async function loadManifest<T>(file: string): Promise<T[]> {
-  const response = await fetch(`${rawSource}/main/${file}`, { next: { revalidate: 60 } });
+async function loadManifest<T>(file: string, revision = "main"): Promise<T[]> {
+  const response = await fetch(`${rawSource}/${revision}/${file}`, { next: { revalidate: 60 } });
   if (!response.ok) throw new Error(`Could not load ${file}`);
   return response.json();
 }
@@ -38,13 +38,19 @@ export async function getReleases() {
     loadManifest<ProofRelease>("portfolio.json"),
     loadManifest<LedgerEntry>("publications.json"),
   ]);
-  return rows.map(({ version, result, title, date, summary, verification, doi }) => {
+  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, verification, doi }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
-    const classification = classify(result, ledger.find(row => row.version === version && row.result === result));
+    const matchesRelease = (row: LedgerEntry) => row.version === version && row.result === result;
+    // The two main-branch manifests can refresh at different times after a release.
+    const record = ledger.find(matchesRelease) ??
+      (await loadManifest<LedgerEntry>("publications.json", version)).find(matchesRelease);
+    if (!record) throw new Error(`Missing publication record for ${version}/${result}`);
+    const classification = classify(result, record);
     return { ...classification, version, result, title, date, summary, verification,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
-  }).reverse();
+  }));
+  return releases.reverse();
 }
 
 export function getProofText(release: ProofRelease) {
