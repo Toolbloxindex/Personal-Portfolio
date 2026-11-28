@@ -39,7 +39,8 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
       <header className="page-head">
         <p className="proof-meta">{[release.resultType, release.scope].filter(Boolean).join(" · ")} · <time dateTime={release.date}>{release.date}</time></p>
         <h1 className="page-title">{release.title}</h1>
-        <p className="sub"><strong>Verification.</strong> {release.verification}</p>
+        <p className="sub"><strong>Verification.</strong> {release.verificationLabel}</p>
+        {release.previous_version && <p><Link href={`/proofs/${release.previous_version}/${release.result}`}>Earlier written release</Link></p>}
         {doi && <p className="sub"><a className="project-action" href={`https://doi.org/${doi}`}>Cite this result · {doi}</a></p>}
         <a className="project-action" href={source}>Proof files and verification code ↗</a>
       </header>

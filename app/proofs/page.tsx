@@ -14,7 +14,9 @@ type Filters = Record<string, string | string[] | undefined>;
 const value = (param: Filters[string]) => typeof param === "string" ? param.trim() : "";
 
 export default async function ProofDirectory({ searchParams }: { searchParams: Promise<Filters> }) {
-  const [entries, params] = await Promise.all([getReleases(), searchParams]);
+  const [releases, params] = await Promise.all([getReleases(), searchParams]);
+  const superseded = new Set(releases.filter(row => row.previous_version).map(row => row.previous_version + "/" + row.result));
+  const entries = releases.filter(row => !superseded.has(row.version + "/" + row.result));
   const subjects = [...new Set(entries.map(entry => entry.subject).filter(Boolean))].sort();
   const types = [...new Set(entries.map(entry => entry.resultType))].sort();
   const levels = [...new Set(entries.map(entry => entry.significance).filter(level => level !== undefined))];
@@ -41,7 +43,7 @@ export default async function ProofDirectory({ searchParams }: { searchParams: P
         <h3><Link href={proofPath(entry)}>{entry.title}</Link></h3>
         <p>{entry.summary}</p>
         {entry.significance && <p className="proof-check"><strong>Significance · our assessment</strong> {entry.significance}</p>}
-        <p className="proof-check"><strong>Verification</strong> {entry.verification}</p>
+        <p className="proof-check"><strong>Verification</strong> {entry.verificationLabel}</p>
         <div className="proof-actions">
           <Link href={proofPath(entry)}>Read note</Link>
           <a href={`${proofRepository}/tree/${entry.version}/results/${entry.result}`}>Verification files</a>
