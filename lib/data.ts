@@ -1,5 +1,3 @@
-import { catalogueName } from "./proof-catalogue";
-
 export const profile = {
   name: "Tomás Correia",
   handle: "tomas-correia",
@@ -121,6 +119,37 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "solved-problems",
+    title: "Agentic Math Research",
+    year: "2026",
+    role: "Independent mathematics research",
+    summary: "I’m building an autonomous math research lab to explore how AI agents can tackle open conjectures.",
+    primaryLink: { label: "Browse mathematical results", href: "/proofs" },
+    stack: ["Python", "Lean"],
+    links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
+    body: [
+      {
+        heading: "How it started",
+        paragraphs: [
+          "I decided to go on a sidequest after seeing the work of [@1337isnot1337](https://github.com/1337isnot1337/solved-conjectures). I wanted to understand how people outside professional mathematics were using AI to prove and disprove major conjectures, so I dug into how they worked and which models performed best on math at the time.",
+        ],
+      },
+      {
+        heading: "Building the lab",
+        paragraphs: [
+          "I took a leap and decided to build my own autonomous math research lab, starting with a custom harness for GPT-6.2 Astra. I’m refining the workflow to get better results while keeping model usage in check. That means deciding which problems to pursue, how much time to spend on each one, which model to use, how many agents to assign, and how those agents should collaborate and log their work.",
+          "It’s far more intricate than I imagined. The project is still in progress, and I’ll share updates as it develops.",
+        ],
+      },
+      {
+        heading: "Reading the research notes",
+        paragraphs: [
+          "Each note links the original question, gives the mathematical argument, and includes code you can run. I record what was checked and whether earlier work or independent review is known.",
+        ],
+      },
+    ],
+  },
   {
     slug: "bookhero",
     title: "BookHero",
@@ -341,37 +370,6 @@ images: [
       {
         src: "/videos/Veblen/veblenAd.mp4",
         caption: "Promo ad",
-      },
-    ],
-  },
-  {
-    slug: "solved-problems",
-    title: catalogueName,
-    year: "2026",
-    role: "Independent mathematics research",
-    summary: "I’m building an autonomous math research lab to explore how AI agents can tackle open conjectures.",
-    primaryLink: { label: "Browse mathematical results", href: "/proofs" },
-    stack: ["Python", "Lean"],
-    links: [{ label: "Source and verification code", href: "https://github.com/Toolbloxindex/solved-problems", external: true }],
-    body: [
-      {
-        heading: "How it started",
-        paragraphs: [
-          "I decided to go on a sidequest after seeing the work of [@1337isnot1337](https://github.com/1337isnot1337/solved-conjectures). I wanted to understand how people outside professional mathematics were using AI to prove and disprove major conjectures, so I dug into how they worked and which models performed best on math at the time.",
-        ],
-      },
-      {
-        heading: "Building the lab",
-        paragraphs: [
-          "I took a leap and decided to build my own autonomous math research lab, starting with a custom harness for GPT-6.2 Astra. I’m refining the workflow to get better results while keeping model usage in check. That means deciding which problems to pursue, how much time to spend on each one, which model to use, how many agents to assign, and how those agents should collaborate and log their work.",
-          "It’s far more intricate than I imagined. The project is still in progress, and I’ll share updates as it develops.",
-        ],
-      },
-      {
-        heading: "Reading the research notes",
-        paragraphs: [
-          "Each note links the original question, gives the mathematical argument, and includes code you can run. I record what was checked and whether earlier work or independent review is known.",
-        ],
       },
     ],
   },
