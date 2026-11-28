@@ -12,6 +12,9 @@ export type ProofRelease = {
   verification: string;
   doi?: string;
   explainer?: string;
+  significance?: "Focused contribution" | "Substantial advance" | "Major advance";
+  why_it_matters?: string;
+  significance_source?: string;
 };
 
 export function proofPath(release: ProofRelease) {
@@ -33,7 +36,7 @@ export async function getReleases() {
     loadManifest<ProofRelease>("portfolio.json"),
     loadManifest<LedgerEntry>("publications.json"),
   ]);
-  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, verification, doi, explainer }) => {
+  const releases = await Promise.all(rows.map(async ({ version, result, title, date, summary, verification, doi, explainer, significance, why_it_matters, significance_source }) => {
     if (!/^v\d+\.\d+\.\d+$/.test(version) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(result))
       throw new Error("Invalid proof address");
     const matchesRelease = (row: LedgerEntry) => row.version === version && row.result === result;
@@ -42,7 +45,7 @@ export async function getReleases() {
       (await loadManifest<LedgerEntry>("publications.json", version)).find(matchesRelease);
     if (!record) throw new Error(`Missing publication record for ${version}/${result}`);
     const classification = classify(result, record);
-    return { ...classification, version, result, title, date, summary, verification, explainer,
+    return { ...classification, version, result, title, date, summary, verification, explainer, significance, why_it_matters, significance_source,
       doi: doi && /^10\.5281\/zenodo\.\d+$/.test(doi) ? doi : undefined };
   }));
   return releases.reverse();

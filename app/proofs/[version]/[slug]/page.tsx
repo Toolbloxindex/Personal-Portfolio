@@ -44,11 +44,17 @@ export default async function ProofPage({ params }: { params: Promise<Params> })
         <a className="project-action" href={source}>Proof files and verification code ↗</a>
       </header>
       <article className="prose proof-text">
+        {release.significance && release.why_it_matters && <section>
+          <h2>Why it matters</h2>
+          <p className="proof-meta">Significance · our assessment · {release.significance}</p>
+          <p>{release.why_it_matters}</p>
+          {release.significance_source?.startsWith("https://") && <p><a href={release.significance_source}>Independent source on significance</a></p>}
+        </section>}
         {text ? <Markdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={{
           a: ({ href, children }) => <a href={href && !href.startsWith("#") ? new URL(href, source + "/").href : href}>{children}</a>,
         }}>{text.replace(/^# [^\n]+\n/, "")}</Markdown> : <p>{release.summary}</p>}
-          <h2>Reproduce the result</h2>
-          <p>Use the sources pinned to {release.version}. The tagged note lists the toolchain
+        <h2>Reproduce the result</h2>
+        <p>Use the sources pinned to {release.version}. The tagged note lists the toolchain
             and commands for checking this result. <a href={source.replace("/tree/", "/blob/") + "/README.md"}>Read the reproduction instructions</a>.</p>
       </article>
     </main>
