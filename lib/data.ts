@@ -72,7 +72,7 @@ export const hero = {
 
 export const now = [
   { label: "currently", text: "studying Computer Science at TU Delft" },
-  { label: "recently", text: "built and launched BookHero, a booking platform for small businesses" },
+  { label: "in progress", text: "developing an agentic math research laboratory" },
 ];
 
 export type ProjectSection = { heading: string; paragraphs: string[] };
